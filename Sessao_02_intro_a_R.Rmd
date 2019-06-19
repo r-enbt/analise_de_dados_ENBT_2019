@@ -28,7 +28,6 @@ output:
 + R é um dialeto de S (1976, desenvolvido por John Chambers e Bell Labs, baseado em FORTRAN, reescrito em C em 1988, existente até hoje porém software proprietário).
 
 + Criado em 1991, Ross Ihaka e Robert Gentleman na Nova Zelândia, tranformado em free software em 1995 (GNU General Public License)
-+ 1996 lista de emailsR-help e R-devel
 + 1997, o R core group é criado (muita gente de S-PLUS) daqui vem o código principal
 + Outros membros sugerem mudanças
 
@@ -37,7 +36,7 @@ output:
 __Um ambiente interativo, que facilite a transição de usuário para programador. Que permita ver os dados e analisar e depois desenvolver as próprias ferramentas__
 
 ---
-# R
+# # Características de R
 
 + Desenvolvimento ativo, qualquer plataforma e sistema operativo
 + Uma estrutura básica (core) e o resto com estrutura em pacotes, facilita a instalação e atualização
@@ -55,11 +54,9 @@ __Um ambiente interativo, que facilite a transição de usuário para programado
 .footnote[Jeff Leek e Roger Peng de John Hopkins University em Coursera]
 ---
 
----
 # Características de R
 
-+ base R é salvo no CRAN : the comprehensive R
-archive network.
++ base R é salvo no CRAN : the comprehensive R archive network.
 + 4,000 pacotes no CRAN escritos por usuários
 + Outras fontes de pacotes: Bioconductor, um projeto para desenvolver R em ciências biológicas (genômica, genética). github, páginas pessoais. 
 

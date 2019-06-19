@@ -19,7 +19,9 @@ O ambiente estatístico __R__ está sendo cada vez mais utilizado em biologia, e
 
 Entender a estrutura básica de um projeto de análise de dados, aprender o básico de __R__, aprender onde e como buscar as soluções específicas para os próprios problemas e a executar as análises de uma maneira organizada e reproduzível. Isto é, separando os dados brutos e modificados, e dando visibilidade, reprodutibilidade e portabilidade a cada passo da análise, para que esta possa ser replicada posteriormente. O aluno também aprenderá sobre a realização de relatórios dinâmicos usando rmarkdown.  <!-- A avaliação será feita diretamente a partir de problemas e dados reais dos discentes, buscando que cada um consiga atingir objetivos dentro de seu próprio projeto de tese/dissertação. --> 
 
+
 # Conteúdo programático: 
+
 1.	Introdução à ciência aberta (open science).
 2.	Introdução ao ambiente estatístico __R__: história, interfaces gráficas de usuário (GUIs), CRAN, Taskviews, instalação de pacotes, como buscar ajuda.
  <!-- http://datacarpentry.org/semester-biology/materials/googling-for-help/ --> 
@@ -32,8 +34,6 @@ Entender a estrutura básica de um projeto de análise de dados, aprender o bás
 9.	Análise exploratória de dados.
 10.	Criação e exportação de figuras. 
 11.	Relatórios reproduzíveis usando rmarkdown.
-
-
 
 
 # Responsáveis
@@ -79,7 +79,7 @@ agruparlos - habrá ecólogos, habrá taxónomos, gente de algas, semillas, anat
  debates, ¿por qué sí o por qué no?¿vale la pena? qué toca hacer para mejorar?
  + herramientas y workflows de trabajo. cómo trabajabamos antes - cómo trabajamos hoy. qué falta mejorar. ¿cómo trabajan ellos? cómo deberían y qué espacio hay para mejorar. ¿cómo funciona el almazenamiento de datos en sus laboratorios? - research data management --> 
  
-### Sessão 2 - Introdução ao ambiente estatístico R:
+### Sessão 2 - Introdução ao ambiente estatístico R
 
  <!-- + História
 + Características
@@ -102,42 +102,42 @@ https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html
 http://datacarpentry.org/semester-biology/materials/googling-for-help/  
 http://community.rstudio.com --> 
 
-### Sessão 3 - Introdução ao ambiente estatístico R - aula prática
-(aula já mãos na massa, apresentando o rstudio e falando de cada aspecto enquanto mostra)
-Todo mundo no mesmo block de carpentries
+<!-- ### Sessão 3 - Introdução ao ambiente estatístico R - aula prática -->
+<!-- (aula já mãos na massa, apresentando o rstudio e falando de cada aspecto enquanto mostra) -->
+<!-- Todo mundo no mesmo block de carpentries -->
 
-Abrir, criar um script.
-Salvar na pasta qualquer do curso.
-O script. .R na pasta.
-getwd()
-a pasta está aí
-salvar o arquivo na mesma pasta.
-
-
-fechar, tranquilo. abrir de novo, criar um projeto de R.
-
-getwd() hasta que todos entiendan perfecto y tengan un rproj en la carpeta con un .R
-
-o que acontece quando estamos por fora do projeto?
+<!-- Abrir, criar um script. -->
+<!-- Salvar na pasta qualquer do curso. -->
+<!-- O script. .R na pasta. -->
+<!-- getwd() -->
+<!-- a pasta está aí -->
+<!-- salvar o arquivo na mesma pasta. -->
 
 
-isso tem que ficar super claro porque o projeto é super útil
+<!-- fechar, tranquilo. abrir de novo, criar um projeto de R. -->
 
-Todo mundo con un proyecto  y un script vacío llamado script.R
-script,
-pasta de trabalho,
-consola - terminal
-historia
-navegador de arquivos,
-workspace
-programação dirigida a objetos.
-2+2
-vs. a <- 2 + 2
-a
-no está en los archivos, está en el workspace.
-todo tendrá que ser leído y reescrito para guardar.
-funções básicas
-calculadora
+<!-- getwd() hasta que todos entiendan perfecto y tengan un rproj en la carpeta con un .R -->
+
+<!-- o que acontece quando estamos por fora do projeto? -->
+
+
+<!-- isso tem que ficar super claro porque o projeto é super útil -->
+
+<!-- Todo mundo con un proyecto  y un script vacío llamado script.R -->
+<!-- script, -->
+<!-- pasta de trabalho, -->
+<!-- consola - terminal -->
+<!-- historia -->
+<!-- navegador de arquivos, -->
+<!-- workspace -->
+<!-- programação dirigida a objetos. -->
+<!-- 2+2 -->
+<!-- vs. a <- 2 + 2 -->
+<!-- a -->
+<!-- no está en los archivos, está en el workspace. -->
+<!-- todo tendrá que ser leído y reescrito para guardar. -->
+<!-- funções básicas -->
+<!-- calculadora -->
 
 
 ## Día 2
@@ -159,7 +159,9 @@ recordar que R maneja la noción de pasta de trabalho (working directory)
 
 https://nicercode.github.io/blog/2013-04-05-projects/
 
-### Sessão 5 - Organização e formatação de dados
+### Sessão 5- Lendo dados em R - exploração inicial
+
+### Sessão 6 - Organização e formatação de dados
 https://datacarpentry.org/spreadsheet-ecology-lesson/
 
 No final desta lição o aluno terá noções de como organizar uma tabela de dados em excel ou libreoffice,
@@ -176,10 +178,7 @@ usando a codificação padrão, ponto como decimal.
 + Basic quality control and data manipulation in spreadsheets
 + Exporting data from spreadsheets
         
-### Sessão 7- Lendo dados em R - exploração inicial
-
-
-### Sessão 6 - Formatação e limpeza de dados (juntar os temas das sesiones 5 y 6?)
+### Sessão 7 - Limpeza de dados (juntar os temas das sesiones 6 y 7?)
 
 
 ## Día 3

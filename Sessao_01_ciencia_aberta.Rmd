@@ -9,9 +9,9 @@ output:
     nature:
       highlightStyle: github
       highlightLines: true
-      countIncrementalSlides: false
+      countIncrementalSlides: true
 ---
-class: middle
+class: middle, inverse, center
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -19,11 +19,7 @@ options(htmltools.dir.version = FALSE)
 
 
 
----
-class: middle, inverse, center
-
-
-# O que é ciência aberta e por que pensar nela num curso sobre análise de dados em R?
+# O que é ciência aberta e por que pensar nela em um curso sobre análise de dados em R?
 
 ---
 # O que é ciência aberta?
@@ -39,13 +35,13 @@ class: middle, inverse, center
 ---
 # Os seis pilares da ciência aberta
 
-1. __Dados__ abertos para disponibilizar os grupos de dados sem tratamento
+1. __Dados__ abertos para disponibilizar os grupos de dados sem tratamento e processados
 --
 
 1. __Ferramentas__ "open source" - não apenas gratuitas, mas de código aberto.
 --
 
-1. __Metolodogia aberta__, compartilhando os detalhes e as ferramentas para garantir transparência e reprodutibilidade
+1. __Metolodogia aberta__, compartilhando os detalhes do processamento e análise dos dados e as ferramentas para garantir transparência e reprodutibilidade
 --
 
 1. __Acesso__ aberto para a publicação dos resultados
@@ -59,17 +55,67 @@ class: middle, inverse, center
 --
 
 .footnote[
-+ Kraker, P., Leony, D., Reinhardt, W., & Beham, G. (2011). The Case for an Open Science in Technology Enhanced Learning. International Journal of Technology Enhanced Learning, 6(3), 643–654  
-+ http://opendefinition.org/od/2.1/en/  
-+ https://nikokriegeskorte.org/2016/02/15/the-four-pillars-of-open-science/
-
+Kraker, P., Leony, D., Reinhardt, W., & Beham, G. (2011). The Case for an Open Science in Technology Enhanced Learning. International Journal of Technology Enhanced Learning, 6(3), 643–654  
+http://opendefinition.org/od/2.1/en/  
+https://nikokriegeskorte.org/2016/02/15/the-four-pillars-of-open-science/
 ]
+
+---
+class: middle, inverse, center
+# Dados científicos e dados científicos abertos
+
+---
+# Dados científicos
+
++ __Dados primários__:
+  + Calibração dos instrumentos e seu _output_
+  + Dados brutos
+  + Dados processados
+  + Cálculos estatísticos
+  + Gravações análogas e digitais
+  + Imagens fotográficas e de microscopia
+  + Arquivos eletrônicos
++ __Protocolos experimentais__: o plano detalhado de um experimento, tratamento ou proedimento científico ou médico.
++ __Procedimentos de redução (limpeza) e análise__.
+
+.footnote[
+https://researchethics.od.nih.gov/DataManagement2.aspx
+]
+
+---
+# Aquisição dos dados - O que deve ser registrado?
+
++ Os métodos e sua lógica, detalhes sobre o processamento dos dados brutos
++ Materiais utiilizados, localização da coleta
++ Os dados e observações
++ Passos próximos
++ Marcação adequada das amostras e identificação de todos os dados
+
+__METADADOS__
+
+---
+# Quem é responsável?
+Qualquer indivíduo envolvido no desenvolvimento e execução da pesquisa e procesamento dos dados
+
++ Os estudantes
++ O pesquisador principal
++ O orientador
++ Os assistentes de laboratório
++ Os assistentes de campo etc. 
+
+---
+# Manejo/manutenção e compartilhamento
+
++ O caderno de laboratório/de campo é um registro permanente, bem organizado, compreensível, completo, que permita a replicação por outros.
++ Os dados salvos em planilhas eletrônicas
++ Longo prazo - reanálise
++ Repetição, replicação
 
 ---
 # Passos para que nossa pesquisa seja (mais) aberta
 
 1. Refletir sobre a questão ética subjacente, entender por que é importante.
-Recursos públicos, extensão, impacto, alfabetização científica, valorização da ciência. Robusteza nos resultados, resolver a crise de reprodutibilidade. 
+Recursos públicos, extensão, impacto, alfabetização científica, valorização da ciência. Robusteza nos resultados, combater a crise de reprodutibilidade. 
 1. Entender o contexto legal
  + Saber quando _não_ se devem compartilhar os dados
  (sujeitos humanos, registros de espécies comercializadas)
@@ -204,54 +250,6 @@ https://redasci.org/
 
 
 ---
-# Aquisição e manejo/manutenção de dados científicos
-
-+ __Protocolos experimentais__: o plano detalhado de um experimento, tratamento ou proedimento científico ou médico.
-
-+ __Dados primários__:
-  + Calibração dos instrumentos e seu _output_
-  + Dados brutos
-  + Dados processados
-  + Cálculos estatísticos
-  + Gravações análogas e digitais
-  + Imagens fotográficas e de microscopia
-  + Arquivos eletrônicos
-
-+ __Procedimentos de redução (limpeza) e análise__.
-
-.footnote[
-https://researchethics.od.nih.gov/DataManagement2.aspx
-]
-
----
-# O que deve ser registrado?
-
-+ Os métodos e sua lógica, detalhes sobre o processamento dos dados brutos
-+ Materiais utiilizados, localização da coleta
-+ Os dados e observações
-+ Passos próximos
-+ Marcação adequada das amostras e identificação de todos os dados
-
-__METADADOS__
-
-O caderno de laboratório/de campo é um registro permanente, bem organizado, compreensível, completo, que permita a replicação por outros.
-
----
-# Quem é responsável?
-Qualquer indivíduo envolvido no desenvolvimento e execução da pesquisa e procesamento dos dados
-
-+ Os estudantes
-+ O pesquisador principal
-+ O orientador
-+ Os assistentes de laboratório
-+ Os assistentes de campo etc. 
-
-
-# Manutenção e compartilhamento
-
-+ Longo prazo - reanálise
-+ Repetição, replicação
-
 
 ---
 # Metodologia aberta
