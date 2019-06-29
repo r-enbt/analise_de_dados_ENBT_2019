@@ -1,0 +1,411 @@
+---
+title: "Disciplina: Projetos de análise de dados usando R"
+subtitle: "Dia 1, aula 2: Introdução ao ambiente estatístico R"
+author: "Andrea Sánchez Tapia, Sara Mortara, Diogo Rocha"
+date: "2019/06/17 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---
+
+# Breve história de R
+
++ R é um dialeto de S (1976), desenvolvido por John Chambers e Bell Labs  <!-- , baseado em FORTRAN, reescrito em C em 1988, existente até hoje porém software proprietário). -->  
++ Criado em 1991, Ross Ihaka e Robert Gentleman na Nova Zelândia, tranformado em free software em 1995 (GNU General Public License)
++ 1997: o [R core group]() é criado daqui vem o código principal. 
++ Outros membros sugerem mudanças
++ R Foundation mantém hoje - mas organizações satélite como R Consortium e até empresas privadas como RStudio <!-- - que desenvolve RStudio e sedia alguns dos cientistas de dados que desenvolvem parte do ecossistema de R. --> 
+
+###  Filosofia 
+
+[__Um ambiente interativo, que facilite a transição de usuário para programador__]()
+
+---
+# R
+
++ Uma estrutura básica (core) e o resto com estrutura em pacotes, facilita a instalação e atualização
++ Cross-platform: qualquer plataforma e sistema operativo
++ Capacidade gráfica!
++ Desenvolvimento ativo, uma comunidade super ativa, listas de emails, stack overflow, __A comunidade cria a maior parte dos pacotes__
++ free: gratuito e livre
++ Livre de rodar para o que você quiser, de adaptar e modificar o que for preciso, de venda
+---
+# O CRAN
++ base R é salvo no CRAN : the comprehensive R archive network.
++ 4,000 pacotes no CRAN escritos por usuários
++ Outras fontes de pacotes: Bioconductor, um projeto para desenvolver R em ciências biológicas (genômica, genética). github, páginas pessoais. 
+
++ reprodutibilidade, _script-based_, no clicks
++ integración con otras herramientas
++ modular, interdisciplinario, extensible
++ permite procesar un gran volumen de trabajo
+
+## porém...
++ Se algo não existe você tem que criá-lo, não tem responsável
++ Guarda coisas na RAM
+
+
+.footnote[Jeff Leek e Roger Peng de John Hopkins University em Coursera]
+---
+## 
+
+![](http://www.r-project.org/Rlogo.png)
+
+* R é a linguagem de programação e o ambiente estatístico
+* Software _libre_: gratuito e de código livre
+* Multiplataforma
+* Estrutura modular, em pacotes:
+    + Pacotes básicos, desenvolvidos pelo R Core Development Team
+    + Pacotes desenvolvidos pela comunidade (>1500!), disponíveis em vários repositórios: **R-CRAN** (The Comprehensive R Archive Network: http://cran.r-project.org/ ), **github**, **rOpenSci.org**, **Bioconductor** etc.
+
+---
+## Vantagens de usar R
+
+* Robusteza: o código é escrito pelos cientistas
+* Reproductibilidade: programação baseada em _scripts_
+* Flexibilidade: o usuário pode virar programador
+* Eficiência (rapidez, poder de computação)
+* Suporte: uma comunidade ativa trabalhando nas mesmas perguntas que você
+
+---
+## Interfaces de usuário de R (onde rodar `R`?)
+
++ R pode ser rodado desde qualquer __terminal__ de windows, mac, linux.
++ A interface original de R é uma consola onde o código é escrito
++ Na versão para windows e mac, tem um editor de texto incorporado e algumas opções (R-GUI)
++ Algumas interfaces gráficas e ajudas para executar:
+  + Rcommander
+  + RTinn
+  + Modo ESS do Emacs
+  + Rgedit
+  + RStudio ![](http://www.rstudio.com/wp-content/uploads/2014/03/blue-125.png) 
+
+---
+# Como buscar ajuda no R
+
+https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html  
+http://datacarpentry.org/semester-biology/materials/googling-for-help/  
+http://community.rstudio.com
+
+
+---
+# R é
+
++ uma **linguagem** de programação estatística
++ o **programa** onde se faz a programação com a linguagem R
+  - a linguagem + o programa: um **ambiente estatístico**
++ **software _libre_**: gratuito e de código livre
++ **modular**: alguns pacotes 'base' e mais de 1500 pacotes no CRAN (The Comprehensive R Archive Network: http://cran.r-project.org/ )
++ Atualmente é uma das plataformas que lidera a análise de dados em ciência 
++ CRAN: Comprehensive R Arquive Network, com espelhos no mundo todo (no Brasil, UFPR, FIOCRUZ)
+
+---
+
+# Configuração inicial: Checar no computador
+
++ Instale R
++ Instale RStudio
++ Instale git (https://git-scm.com/)
++ Crie uma conta de github (https://github.com/) 
+
+---
+background-image:url("figs/interface-do-rstudio1.jpg")
+background-size: cover
+
+# Trabalhando no RStudio
+
+
+---
+# Trabalhando no RStudio
+
+ <!-- abrir, 
+ Arquivo > Novo arquivo > R script
+4 esquinas, o script, a consola, algumas abas que iremos explorando 1. foco en el script
+getwd() control enter, algo similar a esto debe aparecer
+ dà para escribir lo mismo en la consola pero no va a quedar guardado. 
+ el script puede ser salvado. 
+ la hitoria va a registrar ambas cosas
+ a maior parte do trabalho vai ser aqui e quando tiver um plot vai na aba de plots, quando tiver algum objeto no ambiente, ele vai ser listado no ambiente
+ --> 
+
+```{r remedy001}
+getwd()
+```
+
+-- 
+
+```{r remedy002}
+ls()
+a <- 2
+ls()
+```
+
+---
+# Configurações gerais
+
+1. Abra RStudio - se abrir R está OK.
+2. Abra um terminal usando `Ferramentas > Terminal > Novo Terminal`
+3. Teclei `pwd` no Terminal. pwd significa `print working directory`, deve ter o nome de uma pasta. Qual é?  <!-- anotar o de todos -->
+
+[Até aqui RStudio, R e o terminal dentro de RStudio estão funcionando]()
+
+---
+# Configurações gerais
+
+5. No Terminal, tecle:  
+`git config user.name`   
+`git config user.email`   
+Nada deve aparecer, se algo aparecer avisa
+6. Agora tecle:  
+`git config user.name "seu nome"`  
+`git config user.email "seu email do github!"`   
+7. Agora confira de novo:  
+`git config user.name`  
+`git config user.email`  
+__As variáveis que você inseriu devem aparecer__
+
+## [Até aqui git está configurado no computador e ele sabe quem é você. Vamos conectar o seu computador com "a nuvem"]()
+
+---
+### Desde RStudio 
+
+1. `Preferencias > git/svn`
+1. Checar que git está apontando para um arquivo `git.exe`
+2. O campo SVN vazio
+3. Naõ deve ter nada no campo da chave RSA.
+4. `Criar RSA Key`
+5. Ver a RSA Key, copiar a chave. Ela é uma chave que identifica seu computador e vamos copiá-la no github.com
+
+### No Github
+
+1. Log in
+2. Perfil > Chaves ssh > criar uma chave ssh
+4. Nome de seu computador
+5. Colar a chave que tinha sido copiada. 
+6. Add, OK. 
+
+## [Até aqui github e seu computador podem se comunicar]() :D
+
+---
+
+### Criar um repositório de trabalho
+
+#### No Github
+1. Novo repositório (botão verde). Nomeie, público, YES, com readme. 
+2. Botão verde: `Clone or download`. From ssh. Click no ícone de copiar
+
+#### No RStudio
+1. `New project...`
+2. Version control
+3. git
+4. URL-> __COLE__
+5. Selecione a pasta onde seu repositório vai estar. __Não a pasta do repositório__
+6. Open in new session
+7. OK
+
+---
++ Abra o terminal e digite pwd
+a pasta deve ser aquela que você indicou
++ Agora crie um novo script de R e digite getwd()
++ Para mandar linhas de código para a consola, `ctr+enter`
+
+
+```{r remedy003}
+
+getwd()
+
+
+```
+
+
+---
+
+# Instalar pacotes
+
+
+```{r, eval =F}
+install.packages("vegan")
+```
+
+```{r, eval =T}
+library("vegan")
+citation("vegan")
+```
+
+---
+
+
+
+---
+## Uma breve introdução a R
+* Programação orientada a objetos
+
+```{r}
+3 + 2 # executa a soma
+a <- 3 # cria o objeto a
+a # para obter o valor de a o comando "a" deve ser executado
+```
+
+* Os objetos são armazenados na memória RAM (temporariamente) no __workspace__ da sessão.
+* Para ver o que há no workspace: `ls()`
+
+---
+## Uma breve introdução a R
+
+Uma sessão de trabalho em R inclui:
+
+* Ler os dados do HD para "dentro" da sessão
+* Trabalhar com os objetos do workspace, executando funções 
+* Salvar o output no HD de volta
+* Para executar as funções recomenda-se o uso de um __script__, não executar diretamente na consola
+
+---
+## O script de R
+* Arquivo de texto com extensão .R
+* Manda as instruções para a consola com ctrl + Enter (em RStudio) ou ctrl+R (em R e outros)
+* __O script é mais importante do que o workspace!__
+
+* Permite saber o que foi feito e quando, recriar o workspace, assegura a reproducibilidade da análise, permite a troca de análises.
+    
+* É a unidade de busca e troca entre pesquisadores e está sendo anexada a publicações científicas
+
+
+---
+## A pasta de trabalho: __Working directory__
+
+Toda sessão de R é executada em uma pasta específica do computador, a pasta de trabalho. 
+
+* Armazena o workspace (.RData)
+* Lê os arquivos e outros objetos
+* Onde deve ir o script
+
+__Onde estou trabalhando?__ `getwd()`  
+__Onde quero trabalhar?__ `setwd()`
+
+Exercício:
+
+* Checar a pasta atual de trabalho
+* Criar uma pasta do curso no computador `ecopop` 
+* Determinar que `ecopop` seja a nova pasta de trabalho. 
+* Criar um script e salvar na pasta: vamos fazer tudo neste arquivo.
+
+---
+## Boas práticas de trabalho em R
+
+  1. Manter cada projeto de R em uma única pasta de trabalho
+  2. Ter uma estrutura de pastas e subpastas que permita organizar a informação adequadamente, separando __dados originais__, __outputs__ e __documentação__ (`./data`,`./outputs`, `./figs` e `./docs`, por exemplo). Usar caminhos relativos (_relative pathways_) para ler os dados dentro dessa estrutura de pastas.
+  3. Usar sempre script e comentar muito o código (#).
+  4. Em ocasiões pode ser necessário criar um arquivo de metadados (README).
+ 
+---  
+## O help de R
+
+* R possui ampla documentação de cada função e pacote.
+
+```{r,eval = FALSE}
+?anova
+??anova
+help(anova)
+```
+
+* A estrutura do help é sempre similar: Description, Usage, Arguments... Details, Notes, References, See Also, Examples 
+
+* O uso de todas as funções é:   
+`nome da função(argumentos)`
+
+
+---
+## Tipos de dado em R
+
+R pode lidar com dados numéricos inteiros, contínuos, texto, valores lógicos.
+
+```{r}
+x <- "a"
+class(x)
+y <- 2
+class(y)
+a <- TRUE
+class(a)
+z <- 2L
+class(z)
+```    
+
+---
+## Tipos de objeto em R
+
+Vetores: arranjos unidimensionais de elementos da mesma classe
+
+```{r}
+c(3, 4, 5, 1)
+c("a", 3, 2, 1)
+c(TRUE, 1, 2)
+c(TRUE, "a")
+````
+
+
+## Vetores
+```{r}
+v <- c(5, 4, 3, 2, 2)
+length(v)
+v[2] # para selecionar o segundo elemento de v
+v == 2 #quais elementos equivalem a 2: resposta lógica
+v[v == 2]
+```
+
+---
+## Tipos de objeto em R
+
+Matrizes: arranjos bidimensionais de elementos da mesma classe
+```{r}
+m <- matrix(c(20, 5, 12, 3, 5, 4), nrow = 2)
+dim(m)#sempre linhas primeiro e colunas depois
+m[2, ] # escolhe a linha 2
+m[, 3] # escolhe a coluna 3
+```
+
+---
+## Tipos de objeto em R
+
+*Dataframes* podem misturar variáveis categóricas, numéricas, lógicas. 
+
+```{r}
+library(lattice)
+data(barley)
+head(barley)
+```
+
+---
+## Tipos de objeto em R
+
++ Listas são arranjos n dimensionais de qualquer tipo de dado.
+
+```{r}
+list(barley,m)
+```
+
+---
+## Subsetting de vetores
+
+```{r}
+x <- c("a", "b", "c", "c", "d", "a")
+x[1:4]
+x > "a"
+x[x > "a"]
+u <- x > "a"
+x[u]
+```
+
+---
+## Subsetting de matrizes
+
+```{r}
+x <- matrix(1:6, 2, 3)
+x[1, 2]
+x[2, 1]
+x[1, ]###só a primeira linha!!
+x[, 2]###A segunda coluna
+```

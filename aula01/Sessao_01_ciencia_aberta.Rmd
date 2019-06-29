@@ -1,0 +1,417 @@
+---
+title: "Disciplina: Projetos de análise de dados usando R"
+subtitle: "Dia 1, aula 1: Introdução à Ciência Aberta"
+author: "Andrea Sánchez Tapia, Sara Mortara, Diogo Rocha"
+date: "2019/06/17 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---
+class: middle, inverse, center
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# O que é [ciência aberta]() e por que pensar nela num curso sobre análise de dados em R?
+
+---
+# O que é ciência aberta?
+
++ Um movimento que busca que todos os produtos da pesquisa científica sejam disponíveis publicamente
+
++ Dados e conteúdo aberto poderiam ser __usados__, __modificados__, __compartilhados__ livremente por qualquer pessoa, para qualquer propósito
+
++ O conhecimento é aberto se qualquer pessoa está livre para acessá-lo, utilizá-lo, modificá-lo, e compartilhá‑lo — restrito, no máximo, a medidas que preservam a proveniência e abertura.
+
++ __Desde os dados originais até a publicação final, incluindo a metodologia.__
+
+---
+# Os seis pilares da ciência aberta
+
+1. __Dados__ abertos para disponibilizar os grupos de dados sem tratamento
+--
+
+1. __Ferramentas__ "open source" - não apenas gratuitas, mas de código aberto.
+--
+
+1. __Metolodogia aberta__, compartilhando os detalhes e as ferramentas para garantir transparência e reprodutibilidade
+--
+
+1. __Acesso__ aberto para a publicação dos resultados
+--
+
+1. __Revisão__ (_peer review_) aberta
+--
+
+1. __Fontes de educação__ abertas
+
+--
+
+.footnote[
++ Kraker, P., Leony, D., Reinhardt, W., & Beham, G. (2011). The Case for an Open Science in Technology Enhanced Learning. International Journal of Technology Enhanced Learning, 6(3), 643–654  
++ http://opendefinition.org/od/2.1/en/  
++ https://nikokriegeskorte.org/2016/02/15/the-four-pillars-of-open-science/
+
+]
+
+---
+# Os seis pilares da ciência aberta
+
+1. **Dados** abertos para disponibilizar os grupos de dados sem tratamento
+1. __Ferramentas__ "open source" - não apenas gratuitas, mas de código aberto.
+1. __Metolodogia aberta__, compartilhando os detalhes e as ferramentas para garantir transparência e reprodutibilidade
+1. __Acesso__ aberto para a publicação dos resultados
+1. ~~__Revisão__ (_peer review_) aberta~~
+1. ~~__Fontes de educação__ abertas~~
+
+
+.footnote[
++ Kraker, P., Leony, D., Reinhardt, W., & Beham, G. (2011). The Case for an Open Science in Technology Enhanced Learning. International Journal of Technology Enhanced Learning, 6(3), 643–654  
++ http://opendefinition.org/od/2.1/en/  
++ https://nikokriegeskorte.org/2016/02/15/the-four-pillars-of-open-science/
+
+]
+ <!-- vamos falar da parte até a submissão --> 
+
+---
+class: center, middle, inverse
+
+# O primeiro pilar da ciência aberta: [Dados abertos]()
+## Aquisição e manejo/manutenção de dados científicos
+
+---
+# O que constitui um dado científico?
+
+--
+
++ __Dados primários__:
+  + Dados de saída dos instrumentos de medição (_output_)
+  + Dados brutos
+  + Dados processados
+  + Gravações análogas e digitais
+  + Imagens fotográficas e de microscopia
+  + Arquivos eletrônicos
+  + Cálculos estatísticos
+--
+
++ __Protocolos experimentais__: 
+  + O plano detalhado de um experimento, tratamento ou procedimento científico ou médico.
+  + Detalhes sobre a calibração dos instrumentos
+--
+
++ __Procedimentos de limpeza, processamento, e análise de dados__
+
+--
+
+[A metodologia é um dado científico]()
+
+--
+.footnote[
+https://researchethics.od.nih.gov/DataManagement2.aspx
+]
+
+---
+# O que deve ser registrado?
+
+[__METADADOS__](): o que, onde, como, quando, quem, por que do dado
+
++ Os métodos e sua lógica, detalhes sobre o processamento dos dados brutos
++ Materiais utiilizados, localização da coleta
++ Os dados e observações
++ Passos próximos
++ Marcação adequada das amostras e identificação de todos os dados
+
+
+O caderno de laboratório/de campo é um registro permanente, bem organizado, compreensível, completo, que permita a replicação por outros.
+
+---
+
+# Quem é responsável?
+Qualquer indivíduo envolvido no desenvolvimento e execução da pesquisa e procesamento dos dados
+
++ Os estudantes
++ O pesquisador principal
++ O orientador
++ Os assistentes de laboratório
++ Os assistentes de campo etc. 
+
+--
+
+# Manutenção e compartilhamento
+
++ Longo prazo - reanálise
++ Repetição, replicação
++ _Backups_ locais, repositórios na web, repositórios das instituções
++ Às vezes associados às publicações (e.g. Dryad, https://www.datadryad.org/)
+
+---
+background-image: figs/rda.png
+
+# FAIR Data 
+
++ Research Data Alliance https://www.rd-alliance.org/ FAIR data:
+    + Findable
+    + Accessible
+    + Interoperative
+    + Reusable
+
+---
+# Findable:
+
++ F1. (meta)dados têm um identificador global único e persistente (DOI) 
++ F2. dados são descritos com metadados abundantes
++ F3. (meta)dados estão registrados ou indexados em algum recurso com busca
++ F4. metadados remitem ao identificador dos dados
+
+--
+
+# Accessible:
+
++ A1  (meta)dados podem ser adquiridos pelo identificador através de um protocolo padrão de comunicação
+    + A1.1 o protocolo é aberto, gratuito e impementável universalmente
+    + A1.2 o protocolo permite autenticação e autorização, quando preciso
++ A2 metadados são acessíveis, inclsuive quando o dado não está mais disponível
+
+---
+# Interoperable:
+
++ I1. (meta)dados usam uma linguagem formal, acessível, compartilhada, aplicável amplamente
++ I2. (meta)dados usam vocabulacion que segue os princípios FAIR
++ I3. (meta)dados incluem referências qualificadas a outros (meta)dados.
+
+--
+
+# Re-usable:
+
++ R1. meta(data) têm uma variedade de atributos precisos e relevantes. 
+    + R1.1. (meta)dados são disponibilizados com uma licência de uso clara e acessível.
+    + R1.2. (meta)dados estão associadoscom sua proveniência.
+    + R1.3. (meta)dados cumprem com os protocolos padrão da comunidade (ex. ecologia, genética).
+
+---
+
+![](figs/FAIR-digital-objects.jpg)
+
+---
+class: inverse, center
+
+## Como estou registrando meus dados?
+## Como estou guardando meus dados?
+## Quem é responsável pela integridade dos meus dados?
+
+##[Durante esta disciplina vamos manter a integridade do dado primário e manter uma distinção permanente entre o que é dado e o que é resultado]()
+
+
+---
+# Metodologia aberta
+
++ Cada publicação deve conter toda a informação necessária para que outros cientistas possam repetir o trabalho e a lista completa de referências usadas para realizar a pesquisa.
++ Facilita a colaboração
++ O registro adequado de metadados
+
+
+---
+# Replicação e reprodutibilidade
+
+---
+# Revistas de acesso aberto
+
+1. Revistas que não cobram pelo acesso ao leitor
+2. ...mas algumas transferem o custo da publicação ao autor 
+3. Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)
+4. Revistas que aceitam a submissão de __pre-prints__ 
+5. Revistas que pedem o código utilizado para as análises
+6. Revistas que recebem manuscritos reproduzíveis
+ <!-- quem já publicou em revistas similares?  --> 
+ <!-- o modelo 6 vai ser mais usado cada vez, a gente tem que poder fazer este tipo de submissões  --> 
+7. Revistas com revisão (_peer-review_) aberta
+
+
+---
+# Revistas de acesso aberto
+
+1. Revistas que não cobram pelo acesso ao leitor
+2. ...mas algumas transferem o custo da publicação ao autor 
+3. __Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)__
+4. Revistas que aceitam a submissão de __pre-prints__ 
+5. __Revistas que pedem o código utilizado para as análises__
+6. __Revistas que recebem manuscritos reproduzíveis__
+ <!-- quem já publicou em revistas similares?  --> 
+ <!-- o modelo 6 vai ser mais usado cada vez, a gente tem que poder fazer este tipo de submissões  --> 
+7. Revistas com revisão (_peer-review_) aberta
+
+
+---
+# Passos para que nossa pesquisa seja (mais) aberta
+
+1. [Refletir]() sobre a questão ética subjacente, entender por que é importante.
+ <!-- Recursos públicos, extensão, impacto, alfabetização científica, valorização da ciência. Robusteza nos resultados, resolver a crise de reprodutibilidade. --> 1. Entender o contexto legal
+ + Saber quando [_não_]() se devem compartilhar os dados
+ (sujeitos humanos, registros de espécies comercializadas)
+ + Distinguir entre publicações abertas e [predatórias]()
+ + Entender, discutir e corrigir as [restrições]() que persistem apesar de a pesquisa ser aberta
+1. Examinar as práticas diárias de pesquisa
+ + Que fases de meu trabalho poderiam ser mais abertas? (dados, publicações, metodologias...)
+ + Quais são as limitações que devo considerar ou superar hoje?
+1. Entender quais ferramentas e comunidades existem para que ajudar a fazer ciência (mais) aberta
+
+.footnote[
+(modificado de Marcela Alfaro - Universidade da Costa Rica)
+]
+---
+class: center, middle, inverse
+ 
+# Precisamos refletir sobre nosso fluxo de trabalho... 
+
+---
+# Ferramentas e fluxos de trabalho
+
+https://101innovations.wordpress.com/workflows/
+
++ Onde você procura artigos?
+ + Tabelas de conteúdo, feeds RSS, Google Scholar, listas de email, twitter, F1000, ResearchGate
+--
+
++ Como você toma os dados?
+ + Lápis, papel
+ + Spreadsheets (Excel, LibreOffice). 
+ + Bases de dados estruturadas? 
+ + Bases de dados do laboratório?
+--
+
++ Onde você guarda seus dados? 
+ + Dropbox, github, repositórios, backup institucional.
+ + Os __formatos__ são abertos? O software é proprietário? .csv vs. .xls, por exemplo. Daqui a 5, 10, 100 anos poderemos ver os dados?
+ 
+--
+
+Um formato aberto não impõe restrições monetárias ou de qualquer tipo sobre seu uso e pode ser processado completamente em pelo menos uma ferramenta de software libre/gratuita/open-source. (http://opendefinition.org/od/2.1/en)
+
+---
+
++ Como você analisa seus dados? __`R`__
+
+--
+
++ Como você escreve sua dissertação? seus manuscritos? Microsoft Word, né? Você comprou o Microsoft Word?
+
+--
+
++ Onde você publica? Revistas de acesso aberto? 
+
+--
+
++ Como você divulga sua pesquisa? researchgate, twitter
+
+--
+
++ Como sua pesquisa é avaliada? Índices de impacto (a revista), índices H (você), __altmetrics__, engajamento digital (twitter por ex.)
+
+---
+# Barreiras para o progresso em direção a uma ciência aberta
+
+The major barriers to progress are not technological, but psychological, cultural, and political: individual habits, institutional inertia, unhealthy incentives, and vested interests. The biggest challenge is the fact that the present way of doing science does work (albeit suboptimally) and our vision for open science has not merely not yet been implemented, but has yet to be fully conceived. We will need to find ways to gradually evolve our individual workflows and our scientific culture.(https://nikokriegeskorte.org/2016/02/15/the-four-pillars-of-open-science/)
+
+__Má-prática__ pode ser uma grande barreira para o compartilhamento de dados, metodologias - ela deve ser corrigida.
+
+
+
+---
+class: middle, inverse, center
+
+# A Reprodutibilidade é o eixo da análise de dados aberta
+
+https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970
+
+---
+
+![](figs/scifigure.png)
+
+Leek et al 2019.
+
+---
+# Mais referências
++ Open Science Framework https://osf.io/
++ Blog OpenScience.com https://openscience.com/
++ Gorgolewski, Krzysztof J., y Russell A. Poldrack. “A Practical Guide for Improving Transparency and Reproducibility in Neuroimaging Research”. BioRxiv, febrero de 2016, p. 039354. www.biorxiv.org, doi:10.1101/039354.
++ NIH - Instruction in Responsible Conduct of Research https://oir.nih.gov/sourcebook/ethical-conduct/responsible-conduct-research-training/
++ Zook, Matthew, et al. “Ten Simple Rules for Responsible Big Data Research”. PLOS Computational Biology, vol. 13, núm. 3, marzo de 2017, p. e1005399. PLoS Journals, doi:10.1371/journal.pcbi.1005399.
+
+---
+class: middle
+# O que é ciência responsável?
+
+A gente escreve projetos, desenha experimentos, toma dados, analisa, dicsute, escreve, submete, publica
+Revisa, lida com recursos públicos, orienta, colabora
+
+__A análise de dados é apenas uma parte__
+
+---
+# Responsible Conduct of Research (NIH, NSF)
+
+1. Integridade científica
+1. Aqcuisição, manejo, compartilhamento, autoria de dados
+__Como os dados da pesquisa, como cadernos de laboratório (notas de campo) deveriam ser mantidos? Quem é dono e quem tem acesso?__
+1. Práticas de publicação e autoria responsável
+1. Revisão por pares
+1. Relação orientador-orientado
+1. Ciência colaborativa
+1. Pesquisa em sujeitos humanos e animais
+1. Conflitos de interesse e Responsabilidade
+
+Treinamento online  Introduction to the Responsible Conduct of Research. https://researchethics.od.nih.gov/
+
+---
+
+# Análise de dados e integridade da pesquisa: 
+
++ Usar programas para gerar gráficos que melhorem os dados de uma maneira que modifique os resultados
+ 
++ Modificar o método de análise para obter os resultados desejados
+ 
++ Omitir dados que não suportam suas conclusões
+ 
++ Fabricar dados e reportar dados falsos como reais
+ 
++ Modificar deliberadamente os dados
+ 
++ Reportar os mesmos dados em publicações múltiples (_"salami science"_)
+
+---
+
+# Ciência de dados responsável (Responsible data science)
+https://redasci.org/
+
++ Data science without prejudice – How to avoid unfair conclusions even if they are true?
++ Data science without guesswork – How to answer questions with a guaranteed level of  accuracy?
++ Data science that ensures confidentiality – How to answer questions without revealing secrets?
++ Data science that provides transparency – How to clarify answers such that they become indisputable?
+
+
+---
+class: inverse, center, middle
+
+# Sobre esta disciplina
+
+---
+
+Andrea, Sara, Diogo
+
+---
+# Estrutura da disciplina 
+
+
+`setup -> dados: como lidar com eles -> análise exploratoria de dados -> gráficos -> relatórios reproduzíveis`
+
+|  Seg|  Ter|  Qua|  Qui|  Sex|
+|--:|--:|--:|--:|--:|
+| R|  Trabalhando com dados| AED|Gráficos|Relatórios reproduzíveis|
+|  Configuração de tudo|  Manipulando Dados em R|  AED|Gráficos|R para biólogos taxônomos e ecólogos|
+
+
+
