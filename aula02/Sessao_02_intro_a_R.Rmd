@@ -1,6 +1,6 @@
 ---
 title: "Disciplina: Projetos de análise de dados usando R"
-subtitle: "Dia 1, aula 2: Introdução ao ambiente estatístico R"
+subtitle: "[Dia 1, aula 2: Introdução ao ambiente estatístico R]()"
 author: "Andrea Sánchez Tapia, Sara Mortara, Diogo Rocha"
 date: "2019/06/17 (updated: `r Sys.Date()`)"
 output:
@@ -12,37 +12,40 @@ output:
       countIncrementalSlides: true
 ---
 
-# Breve história de R
+![](http://www.r-project.org/Rlogo.png)
 
-+ R é um dialeto de S (1976), desenvolvido por John Chambers e Bell Labs  <!-- , baseado em FORTRAN, reescrito em C em 1988, existente até hoje porém software proprietário). -->  
-+ Criado em 1991, Ross Ihaka e Robert Gentleman na Nova Zelândia, tranformado em free software em 1995 (GNU General Public License)
-+ 1997: o [R core group]() é criado daqui vem o código principal. 
-+ Outros membros sugerem mudanças
-+ R Foundation mantém hoje - mas organizações satélite como R Consortium e até empresas privadas como RStudio <!-- - que desenvolve RStudio e sedia alguns dos cientistas de dados que desenvolvem parte do ecossistema de R. --> 
++ uma **linguagem** de programação estatística criada em 1991 a partir de S e S-PLUS 
+
+--
+
++ **software _livre_**: gratuito e de código livre, livre de ser usado e modificado para qualquer fim
++ __Cross-platform__: qualquer plataforma e sistema operacional
+
+--
+
++ **Estrutura modular**: Uma estrutura básica (`base`) e o resto com estrutura em pacotes, facilita a instalação e atualização
+    + Pacotes básicos são desenvolvidos pelo R Core Development Team
+    + Mais de 1500 pacotes no CRAN (The Comprehensive R Archive Network: http://cran.r-project.org/)
+    + Outras fontes de pacotes: Bioconductor, github,  **rOpenSci.org**, páginas pessoais. 
+
+
+---
+## Vantagens de usar R
+
+* Robusteza: o código é escrito pelos cientistas
+* Reprodutibilidade: programação baseada em _scripts_
+* Flexibilidade: o usuário pode virar programador
++ Integração com outras ferramentas
+* Eficiência (rapidez, poder de computação)
+* Suporte: uma comunidade ativa trabalhando nas mesmas perguntas que você (listas de emails, stack overflow, rstudio community)
++ Capacidade gráfica!
++ A comunidade cria a maior parte dos pacotes -> interdisciplinario, extensível
 
 ###  Filosofia 
 
 [__Um ambiente interativo, que facilite a transição de usuário para programador__]()
 
 ---
-# R
-
-+ Uma estrutura básica (core) e o resto com estrutura em pacotes, facilita a instalação e atualização
-+ Cross-platform: qualquer plataforma e sistema operativo
-+ Capacidade gráfica!
-+ Desenvolvimento ativo, uma comunidade super ativa, listas de emails, stack overflow, __A comunidade cria a maior parte dos pacotes__
-+ free: gratuito e livre
-+ Livre de rodar para o que você quiser, de adaptar e modificar o que for preciso, de venda
----
-# O CRAN
-+ base R é salvo no CRAN : the comprehensive R archive network.
-+ 4,000 pacotes no CRAN escritos por usuários
-+ Outras fontes de pacotes: Bioconductor, um projeto para desenvolver R em ciências biológicas (genômica, genética). github, páginas pessoais. 
-
-+ reprodutibilidade, _script-based_, no clicks
-+ integración con otras herramientas
-+ modular, interdisciplinario, extensible
-+ permite procesar un gran volumen de trabajo
 
 ## porém...
 + Se algo não existe você tem que criá-lo, não tem responsável
@@ -50,29 +53,10 @@ output:
 
 
 .footnote[Jeff Leek e Roger Peng de John Hopkins University em Coursera]
----
-## 
-
-![](http://www.r-project.org/Rlogo.png)
-
-* R é a linguagem de programação e o ambiente estatístico
-* Software _libre_: gratuito e de código livre
-* Multiplataforma
-* Estrutura modular, em pacotes:
-    + Pacotes básicos, desenvolvidos pelo R Core Development Team
-    + Pacotes desenvolvidos pela comunidade (>1500!), disponíveis em vários repositórios: **R-CRAN** (The Comprehensive R Archive Network: http://cran.r-project.org/ ), **github**, **rOpenSci.org**, **Bioconductor** etc.
 
 ---
-## Vantagens de usar R
 
-* Robusteza: o código é escrito pelos cientistas
-* Reproductibilidade: programação baseada em _scripts_
-* Flexibilidade: o usuário pode virar programador
-* Eficiência (rapidez, poder de computação)
-* Suporte: uma comunidade ativa trabalhando nas mesmas perguntas que você
-
----
-## Interfaces de usuário de R (onde rodar `R`?)
+## Onde rodar `R`?
 
 + R pode ser rodado desde qualquer __terminal__ de windows, mac, linux.
 + A interface original de R é uma consola onde o código é escrito
@@ -85,42 +69,9 @@ output:
   + RStudio ![](http://www.rstudio.com/wp-content/uploads/2014/03/blue-125.png) 
 
 ---
-# Como buscar ajuda no R
-
-https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html  
-http://datacarpentry.org/semester-biology/materials/googling-for-help/  
-http://community.rstudio.com
-
-
----
-# R é
-
-+ uma **linguagem** de programação estatística
-+ o **programa** onde se faz a programação com a linguagem R
-  - a linguagem + o programa: um **ambiente estatístico**
-+ **software _libre_**: gratuito e de código livre
-+ **modular**: alguns pacotes 'base' e mais de 1500 pacotes no CRAN (The Comprehensive R Archive Network: http://cran.r-project.org/ )
-+ Atualmente é uma das plataformas que lidera a análise de dados em ciência 
-+ CRAN: Comprehensive R Arquive Network, com espelhos no mundo todo (no Brasil, UFPR, FIOCRUZ)
-
----
-
-# Configuração inicial: Checar no computador
-
-+ Instale R
-+ Instale RStudio
-+ Instale git (https://git-scm.com/)
-+ Crie uma conta de github (https://github.com/) 
-
----
 background-image:url("figs/interface-do-rstudio1.jpg")
 background-size: cover
 
-# Trabalhando no RStudio
-
-
----
-# Trabalhando no RStudio
 
  <!-- abrir, 
  Arquivo > Novo arquivo > R script
@@ -131,18 +82,23 @@ getwd() control enter, algo similar a esto debe aparecer
  la hitoria va a registrar ambas cosas
  a maior parte do trabalho vai ser aqui e quando tiver um plot vai na aba de plots, quando tiver algum objeto no ambiente, ele vai ser listado no ambiente
  --> 
+---
 
-```{r remedy001}
-getwd()
-```
+# Configuração inicial: Checar no computador
 
--- 
++ Instale R
++ Instale RStudio
++ Instale git (https://git-scm.com/)
++ Crie uma conta de github (https://github.com/) 
 
-```{r remedy002}
-ls()
-a <- 2
-ls()
-```
+---
+background-image:url("figs/0a_setup.png")
+---
+background-image:url("figs/0b_soft_wrap.png")
+---
+background-image:url("figs/0c_codificacao.png")
+---
+background-image:url("figs/0d_terminal.png")
 
 ---
 # Configurações gerais
@@ -160,9 +116,15 @@ ls()
 `git config user.name`   
 `git config user.email`   
 Nada deve aparecer, se algo aparecer avisa
+
+--
+
 6. Agora tecle:  
 `git config user.name "seu nome"`  
 `git config user.email "seu email do github!"`   
+
+--
+
 7. Agora confira de novo:  
 `git config user.name`  
 `git config user.email`  
@@ -221,9 +183,26 @@ getwd()
 
 ```
 
+# [FOI!]()
+
+![](https://media.giphy.com/media/3oriO04qxVReM5rJEA/giphy.gif) 
 
 ---
 
+
+```{r remedy001}
+getwd()
+```
+
+-- 
+
+```{r remedy002}
+ls()
+a <- 2
+ls()
+```
+
+---
 # Instalar pacotes
 
 
@@ -235,10 +214,6 @@ install.packages("vegan")
 library("vegan")
 citation("vegan")
 ```
-
----
-
-
 
 ---
 ## Uma breve introdução a R
@@ -279,12 +254,11 @@ Uma sessão de trabalho em R inclui:
 
 Toda sessão de R é executada em uma pasta específica do computador, a pasta de trabalho. 
 
-* Armazena o workspace (.RData)
+* Armazena o workspace (um arquivo temporal .RData)
 * Lê os arquivos e outros objetos
 * Onde deve ir o script
 
 __Onde estou trabalhando?__ `getwd()`  
-__Onde quero trabalhar?__ `setwd()`
 
 Exercício:
 
@@ -296,10 +270,10 @@ Exercício:
 ---
 ## Boas práticas de trabalho em R
 
-  1. Manter cada projeto de R em uma única pasta de trabalho
-  2. Ter uma estrutura de pastas e subpastas que permita organizar a informação adequadamente, separando __dados originais__, __outputs__ e __documentação__ (`./data`,`./outputs`, `./figs` e `./docs`, por exemplo). Usar caminhos relativos (_relative pathways_) para ler os dados dentro dessa estrutura de pastas.
-  3. Usar sempre script e comentar muito o código (#).
-  4. Em ocasiões pode ser necessário criar um arquivo de metadados (README).
+1. Manter cada projeto de R em uma única pasta de trabalho
+2. Ter uma estrutura de pastas e subpastas que permita organizar a informação adequadamente, separando __dados originais__, __outputs__ e __documentação__ (`./data`,`./outputs`, `./figs` e `./docs`, por exemplo). Usar caminhos relativos (_relative pathways_) para ler os dados dentro dessa estrutura de pastas.
+3. Usar sempre script e comentar muito o código (#).
+4. Criar um arquivo de metadados (README).
  
 ---  
 ## O help de R
@@ -317,8 +291,16 @@ help(anova)
 * O uso de todas as funções é:   
 `nome da função(argumentos)`
 
+---
+# Como buscar ajuda
+https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html  
+http://datacarpentry.org/semester-biology/materials/googling-for-help/  
+http://community.rstudio.com
+
++ A comunidade + google
 
 ---
+
 ## Tipos de dado em R
 
 R pode lidar com dados numéricos inteiros, contínuos, texto, valores lógicos.
@@ -344,7 +326,7 @@ c(3, 4, 5, 1)
 c("a", 3, 2, 1)
 c(TRUE, 1, 2)
 c(TRUE, "a")
-````
+```
 
 
 ## Vetores
@@ -360,6 +342,7 @@ v[v == 2]
 ## Tipos de objeto em R
 
 Matrizes: arranjos bidimensionais de elementos da mesma classe
+
 ```{r}
 m <- matrix(c(20, 5, 12, 3, 5, 4), nrow = 2)
 dim(m)#sempre linhas primeiro e colunas depois
