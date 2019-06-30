@@ -62,15 +62,43 @@ output:
 + A interface original de R é uma consola onde o código é escrito
 + Na versão para windows e mac, tem um editor de texto incorporado e algumas opções (R-GUI)
 + Algumas interfaces gráficas e ajudas para executar:
-  + Rcommander
-  + RTinn
   + Modo ESS do Emacs
-  + Rgedit
   + RStudio ![](http://www.rstudio.com/wp-content/uploads/2014/03/blue-125.png) 
 
 ---
-background-image:url("figs/interface-do-rstudio1.jpg")
-background-size: cover
+background-image:url("figs/00_rstudio.png")
+background-size: 100%
+
+---
+background-image:url("figs/00_rstudio.png")
+background-size: 100%
+
+.pull-left[
+
+#Script
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+#Console
+]
+
+.pull-right[
+#Environment
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+# Extra functions
+]
 
 
  <!-- abrir, 
@@ -82,6 +110,7 @@ getwd() control enter, algo similar a esto debe aparecer
  la hitoria va a registrar ambas cosas
  a maior parte do trabalho vai ser aqui e quando tiver um plot vai na aba de plots, quando tiver algum objeto no ambiente, ele vai ser listado no ambiente
  --> 
+
 ---
 
 # Configuração inicial: Checar no computador
@@ -103,7 +132,8 @@ background-image:url("figs/0d_terminal.png")
 ---
 # Configurações gerais
 
-1. Abra RStudio - se abrir R está OK.
+
+1. Abra RStudio - se abrir, R está bem instalado.
 2. Abra um terminal usando `Ferramentas > Terminal > Novo Terminal`
 3. Teclei `pwd` no Terminal. pwd significa `print working directory`, deve ter o nome de uma pasta. Qual é?  <!-- anotar o de todos -->
 
@@ -170,6 +200,8 @@ __As variáveis que você inseriu devem aparecer__
 7. OK
 
 ---
+# Checando que tudo deu certo
+
 + Abra o terminal e digite pwd
 a pasta deve ser aquela que você indicou
 + Agora crie um novo script de R e digite getwd()
@@ -177,66 +209,69 @@ a pasta deve ser aquela que você indicou
 
 
 ```{r remedy003}
-
 getwd()
-
-
 ```
 
 # [FOI!]()
 
-![](https://media.giphy.com/media/3oriO04qxVReM5rJEA/giphy.gif) 
-
 ---
-
-
-```{r remedy001}
-getwd()
-```
-
--- 
-
-```{r remedy002}
-ls()
-a <- 2
-ls()
-```
-
----
-# Instalar pacotes
-
-
-```{r, eval =F}
-install.packages("vegan")
-```
-
-```{r, eval =T}
-library("vegan")
-citation("vegan")
-```
-
----
-## Uma breve introdução a R
-* Programação orientada a objetos
-
-```{r}
-3 + 2 # executa a soma
-a <- 3 # cria o objeto a
-a # para obter o valor de a o comando "a" deve ser executado
-```
-
-* Os objetos são armazenados na memória RAM (temporariamente) no __workspace__ da sessão.
-* Para ver o que há no workspace: `ls()`
+![](https://media.giphy.com/media/3oriO04qxVReM5rJEA/giphy.gif)
 
 ---
 ## Uma breve introdução a R
 
 Uma sessão de trabalho em R inclui:
 
-* Ler os dados do HD para "dentro" da sessão
-* Trabalhar com os objetos do workspace, executando funções 
-* Salvar o output no HD de volta
-* Para executar as funções recomenda-se o uso de um __script__, não executar diretamente na consola
++ Criar objetos ou ler os dados do HD para "dentro" da sessão (o workspace)
++ Trabalhar com os objetos do workspace, executando funções de pacotes 
++ Salvar o output no HD de volta
+ <!-- * Para executar as funções recomenda-se o uso de um __script__, não executar diretamente na consola --> 
+
+---
+## Uma breve introdução a R
+### Programação orientada a objetos
+
+[__Criar objetos que são salvos na memória temporal (RAM) do computador__]()
+
+```{r}
+ls() # lista os objetos guardados na memória
+3 + 2 # executa a soma
+ls()
+```
+
+---
+## Uma breve introdução a R
+
++ O operador [__`<-`__]() assigna o nome ao objeto
+
+
+```{r}
+ls()
+a <- 3 # cria o objeto a
+# para obter o valor de a o comando "a" deve ser executado
+a 
+ls()
+```
+
+O objeto __`a`__ foi criado e agora ele está no [__workspace__]()
+
+---
+
+# Os objetos são armazenados na memória RAM (temporariamente) no [__workspace__]() da sessão.
+# O operador [__`<-`__]() assigna o nome ao objeto
+# Para ver o que há no workspace: [`ls()`]()
+
+---
+## Sobre o workspace...
+
++ R pode salvar o workspace (.RData) e restabelecê-lo entre sessões
+
+## Só porque você pode fazer algo não quer dizer que você _deva_ fazê-lo
+
++ A recomendação é depender do [__script__]() e salvar os  objetos maiores no HD (para que estes possam ser lidos).
+
+---
+background-image:url("figs/0a_setup.png")
 
 ---
 ## O script de R
@@ -247,6 +282,8 @@ Uma sessão de trabalho em R inclui:
 * Permite saber o que foi feito e quando, recriar o workspace, assegura a reproducibilidade da análise, permite a troca de análises.
     
 * É a unidade de busca e troca entre pesquisadores e está sendo anexada a publicações científicas
+
++ Também é a unidade de avaliação de cursos e a única maneira de receber ajuda de alguém... 
 
 
 ---
@@ -262,10 +299,26 @@ __Onde estou trabalhando?__ `getwd()`
 
 Exercício:
 
-* Checar a pasta atual de trabalho
-* Criar uma pasta do curso no computador `ecopop` 
-* Determinar que `ecopop` seja a nova pasta de trabalho. 
+* Checar a pasta atual de trabalho `getwd()`
 * Criar um script e salvar na pasta: vamos fazer tudo neste arquivo.
+
+---
+
++ O setup que realizamos previamente fez com que a __pasta de trabalho__ ficasse associada a um __projeto de RStudio__
++ Vejam o arquivo .rproj na pasta onde vocês estão.
+
+---
+# Instalar pacotes
+
+
+```{r, eval =F}
+install.packages("vegan")
+```
+
+```{r, eval =T}
+library("vegan")
+citation("vegan")
+```
 
 ---
 ## Boas práticas de trabalho em R
