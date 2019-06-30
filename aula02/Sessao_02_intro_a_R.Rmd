@@ -266,14 +266,18 @@ O objeto __`a`__ foi criado e agora ele está no [__workspace__]()
 
 + R pode salvar o workspace (.RData) e restabelecê-lo entre sessões
 
-## Só porque você pode fazer algo não quer dizer que você _deva_ fazê-lo
+#### Só porque você pode fazer algo não quer dizer que você _deva_ fazê-lo
 
-+ A recomendação é depender do [__script__]() e salvar os  objetos maiores no HD (para que estes possam ser lidos).
+![](figs/crochet.jpg)
+
 
 ---
 background-image:url("figs/0a_setup.png")
 
 ---
+
+#### A recomendação é depender do [__script__]() e salvar os  objetos maiores no HD (para que estes possam ser lidos).
+
 ## O script de R
 * Arquivo de texto com extensão .R
 * Manda as instruções para a consola com ctrl + Enter (em RStudio) ou ctrl+R (em R e outros)
@@ -323,13 +327,15 @@ citation("vegan")
 ---
 ## Boas práticas de trabalho em R
 
-1. Manter cada projeto de R em uma única pasta de trabalho
-2. Ter uma estrutura de pastas e subpastas que permita organizar a informação adequadamente, separando __dados originais__, __outputs__ e __documentação__ (`./data`,`./outputs`, `./figs` e `./docs`, por exemplo). Usar caminhos relativos (_relative pathways_) para ler os dados dentro dessa estrutura de pastas.
-3. Usar sempre script e comentar muito o código (#).
-4. Criar um arquivo de metadados (README).
+1. Manter cada projeto de R em uma única pasta de trabalho ✔
+2. Usar sempre script e comentar muito o código (`#`) ✔
+3. Criar um arquivo de metadados (README).
+3. Ter uma estrutura de pastas e subpastas que permita organizar a informação adequadamente, separando __dados originais__, __outputs__ e __documentação__ (`./data`,`./outputs`, `./figs` e `./docs`, por exemplo).
+4. Usar caminhos relativos (_relative pathways_) para ler os dados dentro dessa estrutura de pastas.
  
----  
-## O help de R
+---
+
+# O help de R
 
 * R possui ampla documentação de cada função e pacote.
 
