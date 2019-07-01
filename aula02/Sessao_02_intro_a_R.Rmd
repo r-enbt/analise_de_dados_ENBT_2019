@@ -56,6 +56,14 @@ output:
 
 ---
 
+# CRAN https://cran.r-project.org/
+
+![](figs/000_cran.png)
+
+"CRAN é uma rede de servidores ftp e web servers ao redor do mundo que guarda versões identicas, atualizadas, do código e documentação para R. Por favor use o espelho (_mirror_) de CRAN mais próximo de você para minimizar a carga da rede." 
+
+---
+
 ## Onde rodar `R`?
 
 + R pode ser rodado desde qualquer __terminal__ de windows, mac, linux.
@@ -124,6 +132,8 @@ getwd() control enter, algo similar a esto debe aparecer
 background-image:url("figs/0a_setup.png")
 ---
 background-image:url("figs/0b_soft_wrap.png")
+---
+background-image:url("figs/0bb_packages.png")
 ---
 background-image:url("figs/0c_codificacao.png")
 ---
@@ -303,7 +313,7 @@ __Onde estou trabalhando?__ `getwd()`
 
 Exercício:
 
-* Checar a pasta atual de trabalho `getwd()`
+* Checar a pasta atual de trabalho com `getwd()` e `pwd` no terminal
 * Criar um script e salvar na pasta: vamos fazer tudo neste arquivo.
 
 ---
@@ -312,6 +322,10 @@ Exercício:
 + Vejam o arquivo .rproj na pasta onde vocês estão.
 
 ---
+# Caminhos relativos
+
++ Qual é o resultado de sua chamada a getwd()?
+
 # Instalar pacotes
 
 
@@ -351,12 +365,23 @@ help(anova)
 `nome da função(argumentos)`
 
 ---
-# Como buscar ajuda
+# Onde buscar ajuda?
+
++ A pessoa do seu lado.
++ Colegas mais experientes
++ google
++ Stack Overflow: leia bem as instruções para postar perguntas e tente dar exemplos
++ A lista de emails de R-help: um monte de pessoas lê e posta mas o tom pode ser um pouco seco. 
++ Os autores do pacote ou os repositorios de github 
++ A comunidade de RStudio community.rstudio.com
++ Listas de emails específicas (GIS, phylogenetics, etc…)
++ Twitter, hashtag `#rstats`
+
+
 https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html  
 http://datacarpentry.org/semester-biology/materials/googling-for-help/  
 http://community.rstudio.com
 
-+ A comunidade + google
 
 ---
 
