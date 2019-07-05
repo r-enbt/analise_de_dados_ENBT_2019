@@ -58,7 +58,7 @@ output:
 
 # CRAN https://cran.r-project.org/
 
-![](figs/000_cran.png)
+![](figs/cran.png)
 
 "CRAN é uma rede de servidores ftp e web servers ao redor do mundo que guarda versões identicas, atualizadas, do código e documentação para R. Por favor use o espelho (_mirror_) de CRAN mais próximo de você para minimizar a carga da rede." 
 
@@ -212,9 +212,9 @@ __As variáveis que você inseriu devem aparecer__
 ---
 # Checando que tudo deu certo
 
-+ Abra o terminal e digite pwd
++ Abra o terminal e digite `pwd`
 a pasta deve ser aquela que você indicou
-+ Agora crie um novo script de R e digite getwd()
++ Agora crie um novo script de R e digite `getwd()`
 + Para mandar linhas de código para a consola, `ctr+enter`
 
 

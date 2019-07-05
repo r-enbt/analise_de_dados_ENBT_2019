@@ -81,7 +81,7 @@ options(htmltools.dir.version = FALSE)
 ---
 class: center, middle, inverse
 
-# O primeiro pilar da ciência aberta: [Dados abertos]()
+# O primeiro pilar da ciência aberta: <br> [Dados abertos]()
 ## Aquisição e manejo/manutenção de dados científicos
 
 ---
@@ -108,7 +108,7 @@ class: center, middle, inverse
 
 --
 
-[A metodologia é um dado científico]()
+### [A metodologia é um dado científico]()
 
 --
 .footnote[
@@ -118,7 +118,7 @@ https://researchethics.od.nih.gov/DataManagement2.aspx
 ---
 # O que deve ser registrado?
 
-[__METADADOS__](): o que, onde, como, quando, quem, por que do dado
+[__METADADOS__](): o que, onde, como, quando, quem, e por que dos dados
 
 + Os métodos e sua lógica, detalhes sobre o processamento dos dados brutos
 + Materiais utiilizados, localização da coleta
@@ -126,28 +126,36 @@ https://researchethics.od.nih.gov/DataManagement2.aspx
 + Passos próximos
 + Marcação adequada das amostras e identificação de todos os dados
 
+### Há protocolos padrão dependendo da disciplina -> investigue se na sua área também. (DarwinCore, EML - Ecological Metadata Language)
 
-O caderno de laboratório/de campo é um registro permanente, bem organizado, compreensível, completo, que permita a replicação por outros.
+---
+# Registro
+
++ Primeiro passo: no campo, no lab, no herbário. 
+
+O caderno de laboratório/de campo deve ser um registro [permanente](), [bem organizado](), [compreensível](), [completo](), que permita a replicação por outros.
+
+Em geral os cadernos de laboratório pertencem ao laboratório
+
+--
+## Manutenção e compartilhamento
+
+- Digitalização (_foi feita corretamente?_)
++ _Backups_ locais, repositórios na web, repositórios das instituções
++ Longo prazo - reanálise
++ Repetição, replicação
++ Às vezes associados às publicações (e.g. Dryad, https://www.datadryad.org/)
 
 ---
 
 # Quem é responsável?
-Qualquer indivíduo envolvido no desenvolvimento e execução da pesquisa e procesamento dos dados
+[__Qualquer indivíduo envolvido no desenvolvimento e execução da pesquisa e procesamento dos dados__]()
 
 + Os estudantes
 + O pesquisador principal
 + O orientador
 + Os assistentes de laboratório
-+ Os assistentes de campo etc. 
-
---
-
-# Manutenção e compartilhamento
-
-+ Longo prazo - reanálise
-+ Repetição, replicação
-+ _Backups_ locais, repositórios na web, repositórios das instituções
-+ Às vezes associados às publicações (e.g. Dryad, https://www.datadryad.org/)
++ Os assistentes de campo que realizaram as medições e/ou ficaram nas planilhas etc. 
 
 ---
 background-image: figs/rda.png
@@ -204,13 +212,24 @@ class: inverse, center
 ## Como estou guardando meus dados?
 ## Quem é responsável pela integridade dos meus dados?
 
-##[Durante esta disciplina vamos manter a integridade do dado primário e manter uma distinção permanente entre o que é dado e o que é resultado]()
+##[Durante esta disciplina vamos manter a integridade do dado primário e manter uma distinção permanente entre o que é dado bruto e os passos intermediários durante a análise: dado limpo/processado/analisado - resultado]()
 
 
 ---
+class: center, middle, inverse
+
+# O segundo pilar da ciência aberta: [Metodologia aberta]()
+
+---
+
 # Metodologia aberta
 
-+ Cada publicação deve conter toda a informação necessária para que outros cientistas possam repetir o trabalho e a lista completa de referências usadas para realizar a pesquisa.
++ (Lembrando que a metodologia de registro processamento e análise pode ser considerada um dado científico por si só)
++ Cada publicação deve conter toda a informação necessária para que
+    + O leitor entenda exatemente o que foi feito. Robusteza. 
+    + Outros cientistas possam repetir o trabalho
+
++ Isto inclui a lista completa de referências usadas para realizar a pesquisa.
 + Facilita a colaboração
 + O registro adequado de metadados
 
@@ -219,50 +238,18 @@ class: inverse, center
 # Replicação e reprodutibilidade
 
 ---
-# Revistas de acesso aberto
+class: middle, inverse, center
 
-1. Revistas que não cobram pelo acesso ao leitor
-2. ...mas algumas transferem o custo da publicação ao autor 
-3. Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)
-4. Revistas que aceitam a submissão de __pre-prints__ 
-5. Revistas que pedem o código utilizado para as análises
-6. Revistas que recebem manuscritos reproduzíveis
- <!-- quem já publicou em revistas similares?  --> 
- <!-- o modelo 6 vai ser mais usado cada vez, a gente tem que poder fazer este tipo de submissões  --> 
-7. Revistas com revisão (_peer-review_) aberta
+# A Reprodutibilidade é o eixo da análise de dados aberta
 
+https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970
 
 ---
-# Revistas de acesso aberto
 
-1. Revistas que não cobram pelo acesso ao leitor
-2. ...mas algumas transferem o custo da publicação ao autor 
-3. __Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)__
-4. Revistas que aceitam a submissão de __pre-prints__ 
-5. __Revistas que pedem o código utilizado para as análises__
-6. __Revistas que recebem manuscritos reproduzíveis__
- <!-- quem já publicou em revistas similares?  --> 
- <!-- o modelo 6 vai ser mais usado cada vez, a gente tem que poder fazer este tipo de submissões  --> 
-7. Revistas com revisão (_peer-review_) aberta
+![](figs/scifigure.png)
 
+Leek et al 2019.
 
----
-# Passos para que nossa pesquisa seja (mais) aberta
-
-1. [Refletir]() sobre a questão ética subjacente, entender por que é importante.
- <!-- Recursos públicos, extensão, impacto, alfabetização científica, valorização da ciência. Robusteza nos resultados, resolver a crise de reprodutibilidade. --> 1. Entender o contexto legal
- + Saber quando [_não_]() se devem compartilhar os dados
- (sujeitos humanos, registros de espécies comercializadas)
- + Distinguir entre publicações abertas e [predatórias]()
- + Entender, discutir e corrigir as [restrições]() que persistem apesar de a pesquisa ser aberta
-1. Examinar as práticas diárias de pesquisa
- + Que fases de meu trabalho poderiam ser mais abertas? (dados, publicações, metodologias...)
- + Quais são as limitações que devo considerar ou superar hoje?
-1. Entender quais ferramentas e comunidades existem para que ajudar a fazer ciência (mais) aberta
-
-.footnote[
-(modificado de Marcela Alfaro - Universidade da Costa Rica)
-]
 ---
 class: center, middle, inverse
  
@@ -271,7 +258,7 @@ class: center, middle, inverse
 ---
 # Ferramentas e fluxos de trabalho
 
-https://101innovations.wordpress.com/workflows/
+
 
 + Onde você procura artigos?
  + Tabelas de conteúdo, feeds RSS, Google Scholar, listas de email, twitter, F1000, ResearchGate
@@ -294,23 +281,77 @@ Um formato aberto não impõe restrições monetárias ou de qualquer tipo sobre
 
 ---
 
-+ Como você analisa seus dados? __`R`__
++ Como você analisa seus dados? São metodologias bem documentadas? Usando programas de "apontar e clicar"? Quando você usa metodologias de apontar e clicar, você documenta todos os passos?
+
+Aqui entra __`R`__
 
 --
 
 + Como você escreve sua dissertação? seus manuscritos? Microsoft Word, né? Você comprou o Microsoft Word?
 
+.footnote[
+https://101innovations.wordpress.com/workflows/
+]
+---
+class: center, middle, inverse
+
+# O terceiro pilar da ciência aberta: [A publicação em revistas de acesso aberto]()
+
+
+---
+# Revistas de acesso aberto
+
+1. Revistas que não cobram pelo acesso ao leitor
+2. ...mas algumas transferem o custo da publicação ao autor 
+3. Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)
+4. Revistas que aceitam a submissão de _pre-prints_ 
+5. Revistas que pedem o código utilizado para as análises
+6. Revistas que recebem manuscritos reproduzíveis
+ <!-- quem já publicou em revistas similares?  --> 
+ <!-- o modelo 6 vai ser mais usado cada vez, a gente tem que poder fazer este tipo de submissões  --> 
+7. Revistas com revisão (_peer-review_) aberta ([4P]())
+
+
+---
+# Revistas de acesso aberto
+
+1. Revistas que não cobram pelo acesso ao leitor
+2. ...mas algumas transferem o custo da publicação ao autor 
+3. __Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)__
+4. Revistas que aceitam a submissão de __pre-prints__ 
+5. __Revistas que pedem o código utilizado para as análises__
+6. __Revistas que recebem manuscritos reproduzíveis__
+ <!-- quem já publicou em revistas similares?  --> 
+ <!-- o modelo 6 vai ser mais usado cada vez, a gente tem que poder fazer este tipo de submissões  --> 
+7. Revistas com revisão (_peer-review_) aberta ([4P]())
+
 --
 
-+ Onde você publica? Revistas de acesso aberto? 
+## [A metodologia terá de ser aberta!]() 
 
---
+---
+# Passos para que nossa pesquisa seja (mais) aberta
 
-+ Como você divulga sua pesquisa? researchgate, twitter
+1. [Refletir]() sobre a questão ética subjacente, entender por que é importante.
+ + ~Tentar~ fazer _Ciência responsável_: A gente escreve projetos, desenha experimentos, toma dados, analisa, discute, escreve, submete, publica, revisa manuscritos, lida com recursos públicos, orienta, colabora, faz extensão e forma outras pessoas
 
---
+__A análise de dados é apenas uma parte__
 
-+ Como sua pesquisa é avaliada? Índices de impacto (a revista), índices H (você), __altmetrics__, engajamento digital (twitter por ex.)
+ <!-- Recursos públicos, extensão, impacto, alfabetização científica, valorização da ciência. Robusteza nos resultados, resolver a crise de reprodutibilidade. --> 
+ 
+1. Entender o contexto legal
+ + Saber quando [_não_]() se devem compartilhar os dados
+ (sujeitos humanos, registros de espécies comercializadas)
+ + Distinguir entre publicações abertas e [predatórias]()
+ + Entender, discutir e corrigir as [restrições]() que persistem apesar de a pesquisa ser aberta
+1. Examinar as práticas diárias de pesquisa
+ + Que fases de meu trabalho poderiam ser mais abertas? (dados, publicações, metodologias...)
+ + Quais são as limitações que devo considerar ou superar hoje?
+1. Entender quais ferramentas e comunidades existem para que ajudar a fazer ciência (mais) aberta
+
+.footnote[
+(modificado de Marcela Alfaro - Universidade da Costa Rica)
+]
 
 ---
 # Barreiras para o progresso em direção a uma ciência aberta
@@ -321,18 +362,6 @@ __Má-prática__ pode ser uma grande barreira para o compartilhamento de dados, 
 
 
 
----
-class: middle, inverse, center
-
-# A Reprodutibilidade é o eixo da análise de dados aberta
-
-https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970
-
----
-
-![](figs/scifigure.png)
-
-Leek et al 2019.
 
 ---
 # Mais referências
@@ -344,12 +373,6 @@ Leek et al 2019.
 
 ---
 class: middle
-# O que é ciência responsável?
-
-A gente escreve projetos, desenha experimentos, toma dados, analisa, dicsute, escreve, submete, publica
-Revisa, lida com recursos públicos, orienta, colabora
-
-__A análise de dados é apenas uma parte__
 
 ---
 # Responsible Conduct of Research (NIH, NSF)
@@ -412,6 +435,7 @@ Andrea, Sara, Diogo
 |--:|--:|--:|--:|--:|
 | R|  Trabalhando com dados| AED|Gráficos|Relatórios reproduzíveis|
 |  Configuração de tudo|  Manipulando Dados em R|  AED|Gráficos|R para biólogos taxônomos e ecólogos|
+
 
 
 
