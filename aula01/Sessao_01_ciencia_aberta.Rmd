@@ -138,6 +138,7 @@ O caderno de laboratório/de campo deve ser um registro [permanente](), [bem org
 Em geral os cadernos de laboratório pertencem ao laboratório
 
 --
+
 ## Manutenção e compartilhamento
 
 - Digitalização (_foi feita corretamente?_)
