@@ -12,9 +12,19 @@ output:
       countIncrementalSlides: true
 ---
 
+<!-- falar de R
+introduzir rstudio
+falar da consola, do script, do workspace e do diretorio de trabalho,
+falar de caminhos relativos,
+falar do help,
+do help das funcoes, 
+de ajuda online,
+falar de boas praticas de trabalho em R: 
+-->
+
 ![](http://www.r-project.org/Rlogo.png)
 
-+ uma **linguagem** de programação estatística criada em 1991 a partir de S e S-PLUS 
++ uma **linguagem** de programação estatística criada em 1991 a partir de S e S-PLUS o código original tem mais de 40 anos e consistia em rotinas de FORTRAN para análise estatística
 
 --
 
@@ -23,23 +33,39 @@ output:
 
 --
 
-+ **Estrutura modular**: Uma estrutura básica (`base`) e o resto com estrutura em pacotes, facilita a instalação e atualização
-    + Pacotes básicos são desenvolvidos pelo R Core Development Team
++ **Estrutura modular**: Uma estrutura básica e o resto com estrutura em pacotes, facilita a instalação e atualização
+    + A `base` é desenvolvida e mantida pelo R Core Development Team
+    + As pessoas escrevem pacotes, submetem para CRAN segundo umas regras estritas e os pacotes ficam disponíveis
     + Mais de 1500 pacotes no CRAN (The Comprehensive R Archive Network: http://cran.r-project.org/)
-    + Outras fontes de pacotes: Bioconductor, github,  **rOpenSci.org**, páginas pessoais. 
+    + Outras fontes de pacotes: Bioconductor, github,  **rOpenSci.org**, páginas pessoais etc. 
 
 
 ---
 ## Vantagens de usar R
 
-* Robusteza: o código é escrito pelos cientistas
-* Reprodutibilidade: programação baseada em _scripts_
-* Flexibilidade: o usuário pode virar programador
++ Robusteza: o código é escrito pelos especialistas
+--
+
++ Suporte: uma comunidade ativa trabalhando nas mesmas perguntas que você
+--
+
++ Interdisciplinário e extensível (listas de emails, stack overflow, rstudio community)
+--
+
++ Reprodutibilidade: programação baseada em _scripts_
+--
+
++ Flexibilidade: o usuário pode virar programador
+--
+
 + Integração com outras ferramentas
-* Eficiência (rapidez, poder de computação)
-* Suporte: uma comunidade ativa trabalhando nas mesmas perguntas que você (listas de emails, stack overflow, rstudio community)
+--
+
++ Eficiência (rapidez, poder de computação)
+--
+
 + Capacidade gráfica!
-+ A comunidade cria a maior parte dos pacotes -> interdisciplinario, extensível
+--
 
 ###  Filosofia 
 
@@ -47,20 +73,14 @@ output:
 
 ---
 
-## porém...
-+ Se algo não existe você tem que criá-lo, não tem responsável
-+ Guarda coisas na RAM
-
-
-.footnote[Jeff Leek e Roger Peng de John Hopkins University em Coursera]
-
----
-
 # CRAN https://cran.r-project.org/
 
 ![](figs/cran.png)
 
-"CRAN é uma rede de servidores ftp e web servers ao redor do mundo que guarda versões identicas, atualizadas, do código e documentação para R. Por favor use o espelho (_mirror_) de CRAN mais próximo de você para minimizar a carga da rede." 
+"CRAN é uma rede de servidores ftp e web servers ao redor do mundo que guarda versões idênticas e atualizadas do código e documentação para R. Por favor use o espelho (_mirror_) de CRAN mais próximo de você para minimizar a carga da rede."  --> fiocruz
+
+---
+background-image:url("figs/0bb_packages.png")
 
 ---
 
@@ -71,7 +91,15 @@ output:
 + Na versão para windows e mac, tem um editor de texto incorporado e algumas opções (R-GUI)
 + Algumas interfaces gráficas e ajudas para executar:
   + Modo ESS do Emacs
-  + RStudio ![](http://www.rstudio.com/wp-content/uploads/2014/03/blue-125.png) 
+  + RStudio
+  
+# RStudio não é R e não está fazendo as análises
+
+--
+
+.pull-right[
+...mas estaremos usando RStudio
+]
 
 ---
 background-image:url("figs/00_rstudio.png")
@@ -82,8 +110,9 @@ background-image:url("figs/00_rstudio.png")
 background-size: 100%
 
 .pull-left[
-
-#Script
+<br>
+<br>
+##Script
 <br>
 <br>
 <br>
@@ -92,11 +121,17 @@ background-size: 100%
 <br>
 <br>
 <br>
-#Console
+<br>
+<br>
+<br>
+<br>
+##Consola (o R vive aqui)
 ]
 
 .pull-right[
-#Environment
+<br>
+<br>
+## Environment
 <br>
 <br>
 <br>
@@ -105,7 +140,11 @@ background-size: 100%
 <br>
 <br>
 <br>
-# Extra functions
+<br>
+<br>
+<br>
+<br>
+### Abas com funções adicionais
 ]
 
 
@@ -118,6 +157,177 @@ getwd() control enter, algo similar a esto debe aparecer
  la hitoria va a registrar ambas cosas
  a maior parte do trabalho vai ser aqui e quando tiver um plot vai na aba de plots, quando tiver algum objeto no ambiente, ele vai ser listado no ambiente
  --> 
+
+---
+## Uma breve introdução a R
+
+Uma sessão de trabalho em R inclui:
+
++ Criar objetos ou ler os dados do HD para "dentro" da sessão (o [workspace]())
++ Trabalhar com os objetos do workspace, executando funções de pacotes 
++ Salvar o output no HD de volta
+ <!-- * Para executar as funções recomenda-se o uso de um __script__, não executar diretamente na consola --> 
+ 
+ <br>
+ <br>
+ <br>
+ <br>
+ 
+ 
+    Tudo o que existe são objetos.  
+    Tudo o que acontece são chamadas a funções
+                         Chambers, 2014
+                         
+---
+## Uma breve introdução a R
+
+[__Criar objetos que são salvos na memória temporal (RAM) do computador__]()
+
+```{r}
+ls() # lista os objetos guardados na memória
+3 + 2 # executa a soma
+ls()
+```
+
+---
+## Uma breve introdução a R
+
++ O operador [__`<-`__]() assigna o nome ao objeto
+
+
+```{r}
+ls()
+a <- 3 # cria o objeto a
+# para obter o valor de a o comando "a" deve ser executado
+a 
+ls()
+```
+
+O objeto __`a`__ foi criado e agora ele está no [__workspace__]()
+
+---
+
+# Os objetos são armazenados na memória RAM (temporariamente) no [__workspace__]() da sessão.
+# O operador [__`<-`__]() assigna o nome ao objeto
+# Para ver o que há no workspace: [`ls()`]()
+
+---
+## Sobre o workspace...
+
++ R pode salvar o workspace (.RData) e restabelecê-lo entre sessões
+
+#### Só porque você pode fazer algo não quer dizer que você _deva_ fazê-lo
+#### A recomendação é depender do [__script__]() para reconstituir todo o fluxo de trabalho. 
+#### Caso seja necessário, usar o script para salvar objetos maiores no HD (para que estes possam ser lidos posteriormente).
+
+![](figs/crochet.jpg){width=200px}
+
+---
+
+## O script de R
+* Arquivo de texto com extensão .R
+* Manda as instruções para a consola com ctrl + Enter (em RStudio) 
+* [__O script é mais importante do que o workspace!__]()
+
+* Permite saber o que foi feito e quando, recriar o workspace, assegura a reprodutibilidade da análise, permite a troca de análises.
+    
+* É a unidade de busca e troca entre pesquisadores e está sendo anexada a publicações científicas para que você possa fazer suas análises :)
+
+
+---
+## A pasta de trabalho: __Working directory__
+
+Toda sessão de R é executada em uma pasta específica do computador, a pasta de trabalho. 
+
+* Armazena o workspace
+* Lê os arquivos e outros objetos
+* Onde deve ir o script
+
+__Onde estou trabalhando?__ `getwd()`  
+
++ Qual é o resultado de sua chamada a `getwd()`?
+
++ Cada projeto de análise deveria ter sua própria pasta. 
+
+`andreasanchez
+
+
+---
+# Caminhos relativos
+
+
+---
+## Boas práticas de trabalho em R
+
+1. Manter cada projeto de R em uma única pasta de trabalho ✔
+2. Usar sempre script e comentar muito o código (`#`) ✔
+3. Criar um arquivo de metadados (README).
+3. Ter uma estrutura de pastas e subpastas que permita organizar a informação adequadamente, separando __dados originais__, __outputs__ e __documentação__ (`./data`,`./outputs`, `./figs` e `./docs`, por exemplo).
+4. Usar caminhos relativos (_relative pathways_) para ler os dados dentro dessa estrutura de pastas.
+ 
+---
+
+# Instalar pacotes
+
+
+```{r, eval =F}
+install.packages("vegan")
+```
+
+```{r, eval =T}
+library("vegan")
+citation("vegan")
+```
+
+---
+
+# O help de R
+
+* R possui ampla documentação de cada função e pacote.
+
+```{r,eval = FALSE}
+?anova
+??anova
+help(anova)
+```
+
+* A estrutura do help é sempre similar: Description, Usage, Arguments... Details, Notes, References, See Also, Examples 
+
+* O uso de todas as funções é:   
+`nome da função(argumentos)`
+
+---
+# Onde buscar ajuda?
+
++ A pessoa do seu lado.
++ Colegas mais experientes
++ google
++ Stack Overflow: leia bem as instruções para postar perguntas e tente dar exemplos
++ A lista de emails de R-help: um monte de pessoas lê e posta mas o tom pode ser um pouco seco. 
++ Os autores do pacote ou os repositorios de github 
++ A comunidade de RStudio community.rstudio.com
++ Listas de emails específicas (GIS, phylogenetics, etc…)
++ Twitter, hashtag `#rstats`
+
+
+https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html  
+http://datacarpentry.org/semester-biology/materials/googling-for-help/  
+http://community.rstudio.com
+
+
+---
+# A estrutura de pastas de um projeto de análise
+
+
+
+
+
+
+
+
+---
+# [FOI!]()
+![](https://media.giphy.com/media/3oriO04qxVReM5rJEA/giphy.gif)
 
 ---
 
@@ -212,8 +422,7 @@ __As variáveis que você inseriu devem aparecer__
 ---
 # Checando que tudo deu certo
 
-+ Abra o terminal e digite `pwd`
-a pasta deve ser aquela que você indicou
++ Abra o terminal e digite `pwd` a pasta deve ser aquela que você indicou
 + Agora crie um novo script de R e digite `getwd()`
 + Para mandar linhas de código para a consola, `ctr+enter`
 
@@ -221,258 +430,10 @@ a pasta deve ser aquela que você indicou
 ```{r remedy003}
 getwd()
 ```
-
-# [FOI!]()
-
----
-![](https://media.giphy.com/media/3oriO04qxVReM5rJEA/giphy.gif)
-
----
-## Uma breve introdução a R
-
-Uma sessão de trabalho em R inclui:
-
-+ Criar objetos ou ler os dados do HD para "dentro" da sessão (o workspace)
-+ Trabalhar com os objetos do workspace, executando funções de pacotes 
-+ Salvar o output no HD de volta
- <!-- * Para executar as funções recomenda-se o uso de um __script__, não executar diretamente na consola --> 
-
----
-## Uma breve introdução a R
-### Programação orientada a objetos
-
-[__Criar objetos que são salvos na memória temporal (RAM) do computador__]()
-
-```{r}
-ls() # lista os objetos guardados na memória
-3 + 2 # executa a soma
-ls()
-```
-
----
-## Uma breve introdução a R
-
-+ O operador [__`<-`__]() assigna o nome ao objeto
-
-
-```{r}
-ls()
-a <- 3 # cria o objeto a
-# para obter o valor de a o comando "a" deve ser executado
-a 
-ls()
-```
-
-O objeto __`a`__ foi criado e agora ele está no [__workspace__]()
-
----
-
-# Os objetos são armazenados na memória RAM (temporariamente) no [__workspace__]() da sessão.
-# O operador [__`<-`__]() assigna o nome ao objeto
-# Para ver o que há no workspace: [`ls()`]()
-
----
-## Sobre o workspace...
-
-+ R pode salvar o workspace (.RData) e restabelecê-lo entre sessões
-
-#### Só porque você pode fazer algo não quer dizer que você _deva_ fazê-lo
-
-![](figs/crochet.jpg)
-
-
----
-background-image:url("figs/0a_setup.png")
-
----
-
-#### A recomendação é depender do [__script__]() e salvar os  objetos maiores no HD (para que estes possam ser lidos).
-
-## O script de R
-* Arquivo de texto com extensão .R
-* Manda as instruções para a consola com ctrl + Enter (em RStudio) ou ctrl+R (em R e outros)
-* __O script é mais importante do que o workspace!__
-
-* Permite saber o que foi feito e quando, recriar o workspace, assegura a reproducibilidade da análise, permite a troca de análises.
-    
-* É a unidade de busca e troca entre pesquisadores e está sendo anexada a publicações científicas
-
-+ Também é a unidade de avaliação de cursos e a única maneira de receber ajuda de alguém... 
-
-
----
-## A pasta de trabalho: __Working directory__
-
-Toda sessão de R é executada em uma pasta específica do computador, a pasta de trabalho. 
-
-* Armazena o workspace (um arquivo temporal .RData)
-* Lê os arquivos e outros objetos
-* Onde deve ir o script
-
-__Onde estou trabalhando?__ `getwd()`  
-
-Exercício:
-
-* Checar a pasta atual de trabalho com `getwd()` e `pwd` no terminal
-* Criar um script e salvar na pasta: vamos fazer tudo neste arquivo.
-
 ---
 
 + O setup que realizamos previamente fez com que a __pasta de trabalho__ ficasse associada a um __projeto de RStudio__
 + Vejam o arquivo .rproj na pasta onde vocês estão.
 
 ---
-# Caminhos relativos
 
-+ Qual é o resultado de sua chamada a getwd()?
-
-# Instalar pacotes
-
-
-```{r, eval =F}
-install.packages("vegan")
-```
-
-```{r, eval =T}
-library("vegan")
-citation("vegan")
-```
-
----
-## Boas práticas de trabalho em R
-
-1. Manter cada projeto de R em uma única pasta de trabalho ✔
-2. Usar sempre script e comentar muito o código (`#`) ✔
-3. Criar um arquivo de metadados (README).
-3. Ter uma estrutura de pastas e subpastas que permita organizar a informação adequadamente, separando __dados originais__, __outputs__ e __documentação__ (`./data`,`./outputs`, `./figs` e `./docs`, por exemplo).
-4. Usar caminhos relativos (_relative pathways_) para ler os dados dentro dessa estrutura de pastas.
- 
----
-
-# O help de R
-
-* R possui ampla documentação de cada função e pacote.
-
-```{r,eval = FALSE}
-?anova
-??anova
-help(anova)
-```
-
-* A estrutura do help é sempre similar: Description, Usage, Arguments... Details, Notes, References, See Also, Examples 
-
-* O uso de todas as funções é:   
-`nome da função(argumentos)`
-
----
-# Onde buscar ajuda?
-
-+ A pessoa do seu lado.
-+ Colegas mais experientes
-+ google
-+ Stack Overflow: leia bem as instruções para postar perguntas e tente dar exemplos
-+ A lista de emails de R-help: um monte de pessoas lê e posta mas o tom pode ser um pouco seco. 
-+ Os autores do pacote ou os repositorios de github 
-+ A comunidade de RStudio community.rstudio.com
-+ Listas de emails específicas (GIS, phylogenetics, etc…)
-+ Twitter, hashtag `#rstats`
-
-
-https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html  
-http://datacarpentry.org/semester-biology/materials/googling-for-help/  
-http://community.rstudio.com
-
-
----
-
-## Tipos de dado em R
-
-R pode lidar com dados numéricos inteiros, contínuos, texto, valores lógicos.
-
-```{r}
-x <- "a"
-class(x)
-y <- 2
-class(y)
-a <- TRUE
-class(a)
-z <- 2L
-class(z)
-```    
-
----
-## Tipos de objeto em R
-
-Vetores: arranjos unidimensionais de elementos da mesma classe
-
-```{r}
-c(3, 4, 5, 1)
-c("a", 3, 2, 1)
-c(TRUE, 1, 2)
-c(TRUE, "a")
-```
-
-
-## Vetores
-```{r}
-v <- c(5, 4, 3, 2, 2)
-length(v)
-v[2] # para selecionar o segundo elemento de v
-v == 2 #quais elementos equivalem a 2: resposta lógica
-v[v == 2]
-```
-
----
-## Tipos de objeto em R
-
-Matrizes: arranjos bidimensionais de elementos da mesma classe
-
-```{r}
-m <- matrix(c(20, 5, 12, 3, 5, 4), nrow = 2)
-dim(m)#sempre linhas primeiro e colunas depois
-m[2, ] # escolhe a linha 2
-m[, 3] # escolhe a coluna 3
-```
-
----
-## Tipos de objeto em R
-
-*Dataframes* podem misturar variáveis categóricas, numéricas, lógicas. 
-
-```{r}
-library(lattice)
-data(barley)
-head(barley)
-```
-
----
-## Tipos de objeto em R
-
-+ Listas são arranjos n dimensionais de qualquer tipo de dado.
-
-```{r}
-list(barley,m)
-```
-
----
-## Subsetting de vetores
-
-```{r}
-x <- c("a", "b", "c", "c", "d", "a")
-x[1:4]
-x > "a"
-x[x > "a"]
-u <- x > "a"
-x[u]
-```
-
----
-## Subsetting de matrizes
-
-```{r}
-x <- matrix(1:6, 2, 3)
-x[1, 2]
-x[2, 1]
-x[1, ]###só a primeira linha!!
-x[, 2]###A segunda coluna
-```
