@@ -1,0 +1,149 @@
+---
+title: "Disciplina: Projetos de análise de dados usando R"
+subtitle: "Dia 5, aula 2: R para biólogos, ecólogos e taxônomos"
+author: "Andrea Sánchez Tapia, Sara Mortara, Diogo Rocha"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---
+
+# As respostas que vocês deram
+ 
++ Análise exploratória
++ Modelos lineares
++ Análise multivariada
++ Análises filogenéticas
++ Mapas e sistemas de informação geográfica
++ Modelos de nicho ecológico
+
+---
+
+# Como começar?
+
++ Estudando - R não resolve nada por si só
++ Livros da área: Legendre & Legendre Numerical ecology - Borcard et al 1999 Numerical ecology using R
++ A seção de métodos dos artigos científicos
++ As __vignettes__ dos pacotes 
++ As páginas web (__ISSO AINDA EXISTE__) dos autores - Legendre lab, Oksanen 
++ google
++ researchgate
++ Os coleguinha
++ stack overflow (mas nem sempre funciona para temas acadêmicos)
+
+---
+
+# R Task views
+
+alguns pacotes organizados por temas, curados por um especialista
+ 
+ https://cran.r-project.org/web/views/
+https://cran.r-project.org/web/views/Multivariate.html
+
+
+---
+# Análise multivariada em R
+
++ Análise multivaraiada em geral: Legendre & Legendre - Numerical Ecology
++ Cajo Ter Braak
++ Página do Legendre Lab
++ Página do Jari Oksanen
++ Help do pacote vegan
+
+```
+library(vegan)
+citation(vegan)
+```
+
+---
+
+# Alguns pacotes de análise multivariada em R
+
+--
++ Quais pacotes? 
++ Com calcular medidas de distância?
++ Como fazer classificação, análises de agrupamento (_cluster analysis_)?
++ Análise de componentes principais
++ Como e onde executar outros métodos de ordenação?
+
+---
+
+# Alguns pacotes de análise multivariada em R
+
+--
++ Quais pacotes? [vegan]() e [ade4](), [factomineR]() entre outros
++ Como calcular medidas de distância? [dist()]() de base, [vegdist()]() de vegan
++ Como fazer classificação, análises de agrupamento (_cluster analysis_)? [hclust]() de stats - 
++ Análise de componentes principais `stats::prcomp()`, `vegan::rda()`
++ Como e onde executar outros métodos de ordenação?
+
+
++ Classificação: `stats::hclust()`.
++ vegan Oksanen et al 
++ `ade4` - grupo francês
++ factomineR
+
+---
+
+# Análise multivariada em R
+Quais medidas de distância e por quê? qual método de agrupamento e por quê? 
+Qual método de ordenação e por quê? 
+
+`¯\_(ツ)_/¯`
+
+---
+
+# Análise de diversidade
+
+--
+## Diversidade taxonômica
+
++ Índices clássicos de diversidade: Shannon, Simpson, com `diversity()`
++ We <3 `vegan ()` sempre - 
+
+Scripts de artigos científicos
+
+--
+## Diversidade funcional
+
+Pacotes FD, vegan, labDSV, 
+Literatura científica: Sandrine Pavoine, Carlo Ricotta, André Dias, Francesco de Bello entre outros. Scripts com cálculos de índices de diversidade, comparação entre medidas de diversidade funcional e filogenética etc. 
+
+---
+## Análises filogenéticas
+
++ Como é um _workflow_ de análise em filogenia? 
++ Em ecologia, ler, modificar e escrever árvores filogenéticas, plotar, anotar. + Árvores filogenéticas: formatos Nexus e Newick
+
+```
+((A, B), C);
+```
+
+---
+## Análises filogenéticas
+
+
+---
+## Modelagem de nicho ecológico
+
++ Peterson et al 
++ Quais pacotes?
+    biomod2, dismo, sdm, wallace, kuenm
++ Pacotes acessórios
+ENMeval, spThin, presenceabsence
+
+    bisso grupo tem um fluxo de trabalho que empacota várias 
+    
++ Input necessário: 
+    + Arquivos raster de variáveis explicativas
+    + Coordenadas de ocorrência
+    
++ Os pacotes: preparação dos dados, limpeza, partição dos dados em dados de treino e teste dos algoritmos, algoritmos, medidas de desempenho e avaliação. 
+
+`
+
+

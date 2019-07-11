@@ -17,6 +17,25 @@ class: middle, inverse, center
 options(htmltools.dir.version = FALSE)
 ```
 
+# Sobre esta disciplina
+
+---
+
+Andrea, Sara, Diogo
+
+---
+# Estrutura da disciplina 
+
+
+`setup -> dados: como lidar com eles -> análise exploratoria de dados -> gráficos -> relatórios reproduzíveis`
+
+|  Seg|  Ter|  Qua|  Qui|  Sex|
+|--:|--:|--:|--:|--:|
+| R|  Trabalhando com dados| AED|Gráficos|Relatórios reproduzíveis|
+|  Configuração de tudo|  Manipulando Dados em R|  AED|Gráficos|R para biólogos taxônomos e ecólogos|
+
+---
+class: inverse, center, middle
 # O que é [ciência aberta]() e por que pensar nela num curso sobre análise de dados em R?
 
 ---
@@ -25,8 +44,6 @@ options(htmltools.dir.version = FALSE)
 + Um movimento que busca que todos os produtos da pesquisa científica sejam disponíveis publicamente
 
 + Dados e conteúdo aberto poderiam ser __usados__, __modificados__, __compartilhados__ livremente por qualquer pessoa, para qualquer propósito
-
-+ O conhecimento é aberto se qualquer pessoa está livre para acessá-lo, utilizá-lo, modificá-lo, e compartilhá‑lo — restrito, no máximo, a medidas que preservam a proveniência e abertura.
 
 + __Desde os dados originais até a publicação final, incluindo a metodologia.__
 
@@ -85,51 +102,24 @@ class: center, middle, inverse
 ## Aquisição e manejo/manutenção de dados científicos
 
 ---
-# O que constitui um dado científico?
+# O que constitui um dado?
 
 --
 
-+ __Dados primários__:
-  + Dados de saída dos instrumentos de medição (_output_)
-  + Dados brutos
-  + Dados processados
-  + Gravações análogas e digitais
-  + Imagens fotográficas e de microscopia
-  + Arquivos eletrônicos
-  + Cálculos estatísticos
---
++ Dados de saída dos instrumentos de medição (_output_)
++ Dados brutos
++ Gravações análogas e digitais
++ Imagens fotográficas e de microscopia
++ Arquivos eletrônicos
 
-+ __Protocolos experimentais__: 
-  + O plano detalhado de um experimento, tratamento ou procedimento científico ou médico.
-  + Detalhes sobre a calibração dos instrumentos
---
+Mas também: 
 
-+ __Procedimentos de limpeza, processamento, e análise de dados__
++ Dados processados
++ Cálculos estatísticos
 
---
-
-### [A metodologia é um dado científico]()
-
---
-.footnote[
-https://researchethics.od.nih.gov/DataManagement2.aspx
-]
 
 ---
-# O que deve ser registrado?
-
-[__METADADOS__](): o que, onde, como, quando, quem, e por que dos dados
-
-+ Os métodos e sua lógica, detalhes sobre o processamento dos dados brutos
-+ Materiais utiilizados, localização da coleta
-+ Os dados e observações
-+ Passos próximos
-+ Marcação adequada das amostras e identificação de todos os dados
-
-### Há protocolos padrão dependendo da disciplina -> investigue se na sua área também. (DarwinCore, EML - Ecological Metadata Language)
-
----
-# Registro
+## Registro
 
 + Primeiro passo: no campo, no lab, no herbário. 
 
@@ -141,22 +131,25 @@ Em geral os cadernos de laboratório pertencem ao laboratório
 
 ## Manutenção e compartilhamento
 
-- Digitalização (_foi feita corretamente?_)
++ Digitalização (_foi feita corretamente?_)
 + _Backups_ locais, repositórios na web, repositórios das instituções
-+ Longo prazo - reanálise
-+ Repetição, replicação
++ Longo prazo_ deve permitir a reanálise
++ Repetição, replicação, reprodução
 + Às vezes associados às publicações (e.g. Dryad, https://www.datadryad.org/)
 
 ---
+# O que mais deve ser registrado?
 
-# Quem é responsável?
-[__Qualquer indivíduo envolvido no desenvolvimento e execução da pesquisa e procesamento dos dados__]()
+[__METADADOS__](): o que, onde, como, quando, quem, e por que dos dados
 
-+ Os estudantes
-+ O pesquisador principal
-+ O orientador
-+ Os assistentes de laboratório
-+ Os assistentes de campo que realizaram as medições e/ou ficaram nas planilhas etc. 
++ Os métodos e sua lógica, detalhes sobre o processamento dos dados brutos
++ Materiais utilizados, localização da coleta
++ Os dados e observações
++ Passos próximos
++ Marcação adequada das amostras e identificação de todos os dados
+
+### Há protocolos padrão dependendo da disciplina (DarwinCore, EML - Ecological Metadata Language)
+
 
 ---
 background-image: figs/rda.png
@@ -204,17 +197,39 @@ background-image: figs/rda.png
 
 ---
 
-![](figs/FAIR-digital-objects.jpg)
+![](figs/FAIR-digital-objects.png)
+https://twitter.com/CODATANews/status/1065631595292352512
 
 ---
-class: inverse, center
+# O que constitui um dado científico?
 
-## Como estou registrando meus dados?
-## Como estou guardando meus dados?
-## Quem é responsável pela integridade dos meus dados?
+--
 
-##[Durante esta disciplina vamos manter a integridade do dado primário e manter uma distinção permanente entre o que é dado bruto e os passos intermediários durante a análise: dado limpo/processado/analisado - resultado]()
++ __Dados primários__:
+  + Dados de saída dos instrumentos de medição (_output_)
+  + Dados brutos
+  + Dados processados
+  + Gravações análogas e digitais
+  + Imagens fotográficas e de microscopia
+  + Arquivos eletrônicos
+  + Cálculos estatísticos
+--
 
++ __Protocolos experimentais__: 
+  + O plano detalhado de um experimento, tratamento ou procedimento científico ou médico.
+  + Detalhes sobre a calibração dos instrumentos
+--
+
++ __Procedimentos de limpeza, processamento, e análise de dados__
+
+--
+
+### [A metodologia e o dado científico são parcialmente indissociáveis]()
+
+--
+.footnote[
+https://researchethics.od.nih.gov/DataManagement2.aspx
+]
 
 ---
 class: center, middle, inverse
@@ -249,20 +264,87 @@ https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.1
 
 ![](figs/scifigure.png)
 
-Leek et al 2019.
+
+Leek et al 2019. https://cran.r-project.org/web/packages/scifigure/vignettes/Visualizing_Scientific_Replication.html
+
+https://www.researchgate.net/publication/272191032_Reproducible_Research_Can_Still_Be_Wrong_Adopting_a_Prevention_Approach
 
 ---
+class: center, middle, inverse
+
+# O terceiro pilar da ciência aberta: [A publicação em revistas de acesso aberto]()
+
+
+---
+# Revistas de acesso aberto
+
+1. Revistas que não cobram pelo acesso ao leitor
+--
+
+2. ...mas algumas transferem o custo da publicação ao autor 
+--
+
+3. Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)
+--
+
+4. Revistas que aceitam a submissão de _pre-prints_ 
+--
+
+5. Revistas que aceitam/pedem o código utilizado para as análises
+--
+
+6. Revistas que recebem manuscritos reproduzíveis
+--
+
+7. Revistas com revisão (_peer-review_) aberta ([O quarto pilar]())
+
+
+---
+# Revistas de acesso aberto
+
+1. Revistas que não cobram pelo acesso ao leitor
+2. ...mas algumas transferem o custo da publicação ao autor 
+3. [Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)]()
+4. Revistas que aceitam a submissão de _pre-prints_ 
+5. [Revistas que aceitam/pedem o código utilizado para as análises]()
+6. [Revistas que recebem manuscritos reproduzíveis]()
+7. Revistas com revisão (_peer-review_) aberta ([O quarto pilar]())
+
+
+--
+
+## Os quatro primeiros pilares da ciência aberta passam pela necessidade de transparência, a responsabilidade das metodologias.
+## [A metodologia terá de ser aberta!]() 
+
+
+---
+
+---
+
+
+
+
+
 class: center, middle, inverse
  
 # Precisamos refletir sobre nosso fluxo de trabalho... 
 
 ---
+
+
+class: inverse, center
+
+## Como estou registrando meus dados?
+## Como estou guardando meus dados?
+## Quem é responsável pela integridade dos meus dados?
+
+##[Durante esta disciplina vamos manter a integridade do dado primário e manter uma distinção permanente entre o que é dado bruto e os passos intermediários durante a análise: dado limpo/processado/analisado - resultado]()
+
+
+---
+
 # Ferramentas e fluxos de trabalho
 
-
-
-+ Onde você procura artigos?
- + Tabelas de conteúdo, feeds RSS, Google Scholar, listas de email, twitter, F1000, ResearchGate
 --
 
 + Como você toma os dados?
@@ -284,6 +366,24 @@ Um formato aberto não impõe restrições monetárias ou de qualquer tipo sobre
 
 + Como você analisa seus dados? São metodologias bem documentadas? Usando programas de "apontar e clicar"? Quando você usa metodologias de apontar e clicar, você documenta todos os passos?
 
++ A ferramenta é aberta? O fluxo de trabalho é aberto?
+
+```{r remedy001, echo = F}
+library(kableExtra)
+df <- data.frame(`Fluxo de trabalho` = c("aberto", "não-aberto"),
+                 Aberta = c("Ideal", "Não adianta!"),
+                 Fechada = c("Pode ser", "Horror")) %>% 
+  kable() %>%
+#  kable_styling("bordered") %>% 
+  add_header_above(c("", "Ferramenta" = 2))
+
+```
+
+|  |  aberta|  não aberta|
+|--:|--:|--:|
+|  aberto|  Ideal|  Pode ser|
+|  não aberto|  Não adianta! |  Horror|
+
 Aqui entra __`R`__
 
 --
@@ -293,50 +393,30 @@ Aqui entra __`R`__
 .footnote[
 https://101innovations.wordpress.com/workflows/
 ]
----
-class: center, middle, inverse
-
-# O terceiro pilar da ciência aberta: [A publicação em revistas de acesso aberto]()
-
 
 ---
-# Revistas de acesso aberto
+# Quem é responsável?
+[__Qualquer indivíduo envolvido no desenvolvimento e execução da pesquisa e procesamento dos dados__]()
 
-1. Revistas que não cobram pelo acesso ao leitor
-2. ...mas algumas transferem o custo da publicação ao autor 
-3. Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)
-4. Revistas que aceitam a submissão de _pre-prints_ 
-5. Revistas que pedem o código utilizado para as análises
-6. Revistas que recebem manuscritos reproduzíveis
- <!-- quem já publicou em revistas similares?  --> 
- <!-- o modelo 6 vai ser mais usado cada vez, a gente tem que poder fazer este tipo de submissões  --> 
-7. Revistas com revisão (_peer-review_) aberta ([4P]())
-
++ Os estudantes
++ O pesquisador principal
++ O orientador
++ Os assistentes de laboratório
++ Os assistentes de campo que realizaram as medições e/ou ficaram nas planilhas etc. 
 
 ---
-# Revistas de acesso aberto
 
-1. Revistas que não cobram pelo acesso ao leitor
-2. ...mas algumas transferem o custo da publicação ao autor 
-3. __Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)__
-4. Revistas que aceitam a submissão de __pre-prints__ 
-5. __Revistas que pedem o código utilizado para as análises__
-6. __Revistas que recebem manuscritos reproduzíveis__
- <!-- quem já publicou em revistas similares?  --> 
- <!-- o modelo 6 vai ser mais usado cada vez, a gente tem que poder fazer este tipo de submissões  --> 
-7. Revistas com revisão (_peer-review_) aberta ([4P]())
-
---
-
-## [A metodologia terá de ser aberta!]() 
-
----
 # Passos para que nossa pesquisa seja (mais) aberta
 
 1. [Refletir]() sobre a questão ética subjacente, entender por que é importante.
- + ~Tentar~ fazer _Ciência responsável_: A gente escreve projetos, desenha experimentos, toma dados, analisa, discute, escreve, submete, publica, revisa manuscritos, lida com recursos públicos, orienta, colabora, faz extensão e forma outras pessoas
+ + ~~Tentar~~ fazer _Ciência responsável_ 
+ 
+ A gente escreve projetos, desenha experimentos, toma dados, analisa, discute, escreve, submete, publica, revisa manuscritos, lida com recursos públicos, orienta, colabora, faz extensão e forma outras pessoas
 
 __A análise de dados é apenas uma parte__
+
+---
+# Passos para que nossa pesquisa seja (mais) aberta
 
  <!-- Recursos públicos, extensão, impacto, alfabetização científica, valorização da ciência. Robusteza nos resultados, resolver a crise de reprodutibilidade. --> 
  
@@ -372,8 +452,6 @@ __Má-prática__ pode ser uma grande barreira para o compartilhamento de dados, 
 + NIH - Instruction in Responsible Conduct of Research https://oir.nih.gov/sourcebook/ethical-conduct/responsible-conduct-research-training/
 + Zook, Matthew, et al. “Ten Simple Rules for Responsible Big Data Research”. PLOS Computational Biology, vol. 13, núm. 3, marzo de 2017, p. e1005399. PLoS Journals, doi:10.1371/journal.pcbi.1005399.
 
----
-class: middle
 
 ---
 # Responsible Conduct of Research (NIH, NSF)
@@ -394,6 +472,8 @@ Treinamento online  Introduction to the Responsible Conduct of Research. https:/
 
 # Análise de dados e integridade da pesquisa: 
 
+# O que não deve ser feito: 
+
 + Usar programas para gerar gráficos que melhorem os dados de uma maneira que modifique os resultados
  
 + Modificar o método de análise para obter os resultados desejados
@@ -407,35 +487,6 @@ Treinamento online  Introduction to the Responsible Conduct of Research. https:/
 + Reportar os mesmos dados em publicações múltiples (_"salami science"_)
 
 ---
-
-# Ciência de dados responsável (Responsible data science)
-https://redasci.org/
-
-+ Data science without prejudice – How to avoid unfair conclusions even if they are true?
-+ Data science without guesswork – How to answer questions with a guaranteed level of  accuracy?
-+ Data science that ensures confidentiality – How to answer questions without revealing secrets?
-+ Data science that provides transparency – How to clarify answers such that they become indisputable?
-
-
----
-class: inverse, center, middle
-
-# Sobre esta disciplina
-
----
-
-Andrea, Sara, Diogo
-
----
-# Estrutura da disciplina 
-
-
-`setup -> dados: como lidar com eles -> análise exploratoria de dados -> gráficos -> relatórios reproduzíveis`
-
-|  Seg|  Ter|  Qua|  Qui|  Sex|
-|--:|--:|--:|--:|--:|
-| R|  Trabalhando com dados| AED|Gráficos|Relatórios reproduzíveis|
-|  Configuração de tudo|  Manipulando Dados em R|  AED|Gráficos|R para biólogos taxônomos e ecólogos|
 
 
 
