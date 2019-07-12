@@ -9,27 +9,28 @@ output:
     nature:
       highlightStyle: github
       highlightLines: true
-      countIncrementalSlides: false
+      countIncrementalSlides: true
 ---
-class: middle
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
 
-# O workflow
+# O fluxo de trabalho
 
-`Dados > Análise > __Escrita__`
+`Dados > Análise >` __`Redação`__
 
 + Abre word
 + Copia e cola as figuras...
++ Perde muito tempo configurando as figuras `¬¬` 
 + Copia e cola os valores no texto: "A média de altura foi 4.86m"
 + Percebe um erro
 + Refaz as análises
 
-# [Isto não é mais um problema porque a gente usa `R`]()
+__[Isto não é mais um problema porque a gente usa `R`]()__
 
 + Copia e cola as figuras...
++ Perde muito tempo configurando as figuras `¬¬`...
 + Copia e cola os valores corrigidos no texto...
 + Percebe um erro...
 
@@ -42,64 +43,149 @@ options(htmltools.dir.version = FALSE)
 class: middle, inverse, center
 
 
-# No início tinha $\LaTeX$
+# $\LaTeX$
+
+
+
+---
+# $\LaTeX$
+
++ Sistemas de preparação de documentos baseados em arquivos de texto.
 
 --
 
-### (...mas a lógica de markdown é similar)
-
----
-# $\LaTeX$ (e markdown)
-
-+ Sistemas de preparação de documentos baseados em arquivos de texto.
 + Diferente de editores de texto [WYSIWYG - What you see is what you get]()
 
-+ A formatação é realizada usando marcações ("_markup_") que são relativamente fáceis de aprender 
-    (do mesmo jeito que você sabe que `ctrl + B` ou `ctrl + N` resulta em negrito, uma palavra entre subtraços `__a__` é negrito: __a__)
+--
 
-## [Peguem agora seus celulares, abram o watsap e teclem]() 
++ A formatação é realizada usando marcações que são relativamente fáceis de aprender
 
-## `oi _oi_ *oi* ~oi~`
 
-## oi _oi_ __oi__ ~~oi~~
-    
 ---
+
 ## Vantagens de usar $\LaTeX$
 
-+ Output formoso maravilhoso <3 (especialmente $\LaTeX$)
++ Output maravilhoso <3
+
+--
+
 + Arquivos de texto: pode ser usado em [__controle de versões__]() como `git` 
+
+--
+
 + Arquivos de $\LaTeX$ podem ser submetidos como
 manuscritos para algumas revistas (o que é _amplamente usado _ em outras disciplinas mas a ecologia chega lá já já)
 
-## [Dá para incluir código de R, que o código seja executado e que o output do código entre no documento]()
+--
 
-+ $\LaTeX$ -> `Sweave` ("tecer")
-+ rmarkdown -> `knitr` (também "tecer")
++ __[Dá para incluir código de R, que o código seja executado e que o output do código entre no documento]()__
+
+<center> 
+$\LaTeX$ -> `Sweave`
+</center>
 
 
 ---
 ## Desvantagens de $\LaTeX$ 
 
 + Instalação complicada
+
+--
+
 + Suporte multi-língua às vezes complicado
+
+--
+
 + Marcação complexa, curva de aprendizado íngrime
 
-+ Algumas soluções para aprender melhor
-![](figs/overleaf.png)
+--
+
++ Uma boa opção para aprender: __Overleaf__
+
 
 ---
+background-image: url(figs/overleaf.png)
+background-size: 100%
+
+# Overleaf
+
+.footnote[https://www.overleaf.com/7447819279hqmkncfvybhf]
+
+---
+background-image: url(https://bookdown.org/yihui/rmarkdown/images/hex-rmarkdown.png)
+background-size: 20%
+background-position: 90% 80%
 
 # markdown é $\LaTeX$ sem esteroides - e às vezes é o que a gente precisa. 
 
----
-# Markdown 
 
 + Baseado em html, comandos relativamente simples
++ Para inserir código de `R`: __rmarkdown__
++ Bem implementado no RStudio
++ Em vez de sweave: rmarkdown -> `knitr`
 
- 
 
 
+```{r}
+2 + 2
+```
+
+---
+# Como fazer? 
+
++ Arquivo novo -> Rmarkdown.
++ Bote um título e seu nome, selecione Apresentação html. 
++ Faça click em `knitr` e salve o arquivo na pasta [docs]() de seu projeto. 
++ Compare o que foi knittado com o arquivo original... 
+
+---
+# Estrutura de um documento de markdown
+
++ Um documento de rmarkdown tem a estrutura seguinte. 
++ Um cabeçalho (chamado de YAML), com opções, entre outras o título, o autor, a data e o tipo de output que você quer. Outras funções poderão ser incluídas posteriormente, inclusive a citação de artigos. 
++ O código de R se encontra entre acentos graves triplos
++ Cada porção de código é chamada de _chunk_ na internet e na documentação de rmarkdown e rstudio.
++ O primeiro _chunk_ tem as opções gerais que serão usadas. 
++ O texto vai por fora dos chunks, e pode ser formatado 
+
+---
+# Marcações de markdown e rmarkdown
+
+.pull-left[
+`texto simples`  
+`__negrito__` e `**negrito**`  
+`superscript^2^`    
+`~~strikethrough~~`   
+`[link](www.rstudio.com)`
+`# Titulo 1`
+`## Titulo 2`
+]
+
+.pull-right[
+texto simples  
+__negrito__  e **negrito**  
+superscript^2^    
+~~strikethrough~~   
+[link](www.rstudio.com) 
+# Titulo 1
+## Titulo 2
+]
+
++ Títulos #, #
++ negrito cursivo listas numeradas ou não
 
 ---
 
+# Dá para adicionar no git porque é texto!
+
+# No terminal
+
+`git add docs <seu arquivo.Rmd>`  
+`git commit -m "uma mensagem de commit"`  
+`git push origin master`  
+
+# Não é preciso adicionar o arquivo html
+
+---
+# Referências
 https://peerj.com/preprints/3159/
