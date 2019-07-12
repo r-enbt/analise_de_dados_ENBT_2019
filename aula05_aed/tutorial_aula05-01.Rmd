@@ -116,6 +116,7 @@ par(mfrow=c(1,1)) # retorna a janela grafica para o padrao de 1 linha e 1 coluna
 
 O conjunto de dados `iris` que vocês já utilizaram, foi coletado por Edgar Anderson e ficou famoso pelo trabalho de Ronald E. Fisher. Vamos carregar os dados no R. 
 
+
 ```{r, results='hide',echo=FALSE}
 data(iris)
 ```
