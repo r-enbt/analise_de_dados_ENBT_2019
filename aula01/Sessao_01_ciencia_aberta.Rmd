@@ -114,23 +114,32 @@ class: center, middle
 
 - A análise de dados é apenas uma parte
 - Nossa forma de trabalhar pode ser um empecilho para estas atividades: __boas práticas__
+- A ciência aberta pode ser um marco para pensar alguns temas relativos a estas boas práticas
 
 ---
 # O que é ciência aberta?
 
-+ Para muitos, ciência aberta significa _publicação em revistas de acesso aberto_. 
-
 + Um conjunto de práticas que busca que todos os produtos da pesquisa científica sejam disponíveis publicamente __desde os dados originais até a publicação, incluindo a metodologia.__
 
+--
 
 + Dados e conteúdo aberto poderiam ser __usados__, __modificados__, __compartilhados__ livremente por qualquer pessoa, para qualquer propósito
 
+--
+
++ Melhora a __transparência__,  a __qualidade__ e a __reprodutibilidade__
+
+--
+
++ Resultados mais robustos, disponíveis para revisão, correção por parte de pares e de qualquer cidadão.
+
+--
+
++ Facilita a __colaboração__ 
+
+--
+
 + Retorno das atividades científicas à sociedade
-
-+ Melhora a transparência e reprodutibilidade
-
-+ Resultados mais robustos a disponíveis para sua revisão, correção por parte de pares e de qualquer cidadão.
-
 
 ---
 # Os seis princípios da ciência aberta
@@ -302,8 +311,7 @@ background-position: 80% 80%
 ---
 class: middle
 
-![](figs/FAIR-digital-objects.png)
-https://twitter.com/CODATANews/status/1065631595292352512
+![](figs/FAIR-digital-objects.jpg)
 
 
 ---
@@ -324,18 +332,23 @@ class: center, middle
     + sem restrição
     + _sem discriminação de qualquer tipo a grupos de pessoas ou campos de ação_
     + mantendo a licença original
-+ Há toda uma taxonomia de licenças para a modificação e reutilização de código . algumas restrições dependendo do caso.
++ Há toda uma taxonomia de licenças para a modificação e reutilização de código
 
 ---
 # Software de código aberto
-<!-- ö figuras-->
-+ Linux
-+ `R`
-+ Python
-+ LibreOffice
-+ Zotero
-+ git
-+ ImageJ
+
++ Linux: sistema operativo
++ `R` e Python para análise de dados
++ QGIS para SIG
++ LibreOffice para desenhos, apresentações, manuscritos
++ Zotero para gerenciar a bibliografia
++ git para controlar as versões de seus projetos
++ ImageJ e GIMP para processar imagens
+
+--
+
+- Dá para subtituir todos os passos de seu fluxo de trabalho por software de código aberto? 
+
 
 
 ---
@@ -374,7 +387,6 @@ knitr::include_graphics("figs/reproducibility-graphic-online3a.png")
 ]
 
 + Há uma crise de reprodutibilidade
-+ Reproduzir resultados é difícil
 
 ---
 class: middle
@@ -398,7 +410,31 @@ knitr::include_graphics("figs/reproducibility-graphic-online3b.png")
 ]
 
 ---
+## Análise de dados e integridade da pesquisa
 
++ Não usar programas para gerar gráficos que melhorem os dados de uma maneira que modifique os resultados
+ 
+--
+
++ Não modificar o método de análise para obter os resultados desejados
+
+--
+
++ Não omitir dados que não suportam suas conclusões
+
+--
+
++ Não fabricar dados e reportar dados falsos como reais
+
+--
+
++ Não modificar deliberadamente os dados
+
+--
+
++ Não reportar os mesmos dados em publicações múltiples (_"salami science"_)
+
+---
 .pull-left[
 ```{r, echo = F, out.width=350}
 knitr::include_graphics("figs/reproducibility-graphic-online5.jpg")
@@ -424,23 +460,34 @@ knitr::include_graphics("figs/reproducibility-graphic-online6.jpg")
 __Mas nem todo mundo está tomando decisões a respeito... __ 
 
 ---
-# Análise de dados e integridade da pesquisa
+# Passos para uma metodologia aberta
 
-+ Não usar programas para gerar gráficos que melhorem os dados de uma maneira que modifique os resultados
- 
-+ Não modificar o método de análise para obter os resultados desejados
- 
-+ Não omitir dados que não suportam suas conclusões
- 
-+ Não fabricar dados e reportar dados falsos como reais
- 
-+ Não modificar deliberadamente os dados
- 
-+ Não reportar os mesmos dados em publicações múltiples (_"salami science"_)
++ Priorizar ferramentas baseadas em _scripts_ como `R` ou python
+
+--
+
++ Usar sistemas de __controle de versões__ como git*
+
+--
+
++ Documentar todos os passos da metodologia
+
+--
+
++ Publicar os protocolos e o código
+
+--
+
++ Fomentar a revisão da metodologia e do código entre pares
+
+--
+
+#### Isto resolve todos os problemas? Não, mas é um bom primeiro passo
 
 ---
 ## Para a reprodutibilidade é mais importante ter ferramentas abertas ou metodologias abertas?
 
+--
 
 ```{r remedy001, echo = F, message = F}
 library(kableExtra)
@@ -448,9 +495,9 @@ library(dplyr)
 
 df <- data.frame(`Metodologia` = c("Aberta", "Não-aberta"),
                  Aberta = c("Ideal", "Não adianta!"),
-                 `Não-aberta` = c("Pode ser", "Horror")) %>% 
+                 `Não-aberta` = c("Pode ser", "1/Ideal")) %>% 
   mutate(Aberta = cell_spec(Aberta, "html", color = ifelse(Aberta == "Ideal", "red", "white")),
-         Não.aberta = cell_spec(Não.aberta, "html", color = ifelse(Não.aberta == "Horror", "red", "white"))) %>% 
+         Não.aberta = cell_spec(Não.aberta, "html", color = ifelse(Não.aberta == "1/Ideal", "red", "white"))) %>% 
   kable(format = "html", escape = F) %>%
  kable_styling("bordered", full_width = T) %>% 
   add_header_above(c("", "Ferramenta" = 2))
@@ -463,9 +510,9 @@ df
 ```{r remedy002, echo = F, message = F}
 df2 <- data.frame(`Metodologia` = c("Aberta", "Não-aberta"),
                  Aberta = c("Ideal", "Não adianta!"),
-                 `Não-aberta` = c("Pode ser", "Horror")) %>% 
+                 `Não-aberta` = c("Pode ser", "1/Ideal")) %>% 
   mutate(Aberta = cell_spec(Aberta, "html", color = ifelse(Aberta == "Ideal", "red", "#23395b")),
-         Não.aberta = cell_spec(Não.aberta, "html", color = ifelse(Não.aberta == "Horror", "red", "#23395b"))) %>% 
+         Não.aberta = cell_spec(Não.aberta, "html", color = ifelse(Não.aberta == "1/Ideal", "red", "#23395b"))) %>% 
   kable(format = "html", escape = F) %>%
  kable_styling("bordered", full_width = T) %>% 
   add_header_above(c("", "Ferramenta" = 2))
@@ -478,68 +525,66 @@ df2
 + __Dá para criar metodologias reproduzíveis usando software proprietário__
 
 ---
-# Passos para uma metodologia aberta
-
-+ Priorizar ferramentas baseadas em _scripts_ 
-
-+ Usar sistemas de __controle de versões__
-
-+ Documentar todos os passos da metodologia
-
-+ Publicar os protocolos e o código
-
-+ Fomentar a revisão da metodologia e do código entre pares
-
---
-
-+ Isto resolve todos os problemas? Não, mas é um bom primeiro passo
-
-
----
 class: center, middle
 
 # O quarto princípio da ciência aberta: __A publicação em revistas de acesso aberto__
 
 
 ---
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Open_Access_logo_PLoS_transparent.svg/142px-Open_Access_logo_PLoS_transparent.svg.png)
+background-size: 20%
+background-position: 80% 20%
+
 # Revistas de acesso aberto
 
-1. Revistas que não cobram pelo acesso ao leitor
+1. Dourado: disponível gratuitamente na internet, cobrando uma taxa aos autores
+
 --
 
-2. ...mas transferem o custo da publicação ao autor 
+1. Diamante: Dourado e sem cobrar dos autores
+
 --
 
-3. Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)
+1. Verde: permite que os autores depositem versões próprias em repositórios. 
+
 --
 
-4. Revistas que aceitam a submissão de _pre-prints_ 
+1. Híbrido: mistura de manuscritos abertos e não abertos
+
 --
 
-5. Revistas que aceitam/pedem o código utilizado para as análises
---
-
-6. Revistas que recebem manuscritos reproduzíveis
---
-
-7. Revistas com revisão (_peer-review_) aberta (__O quinto princípio da ciência aberta!__)
+#### Atenção com __revistas predatórias__!
 
 
 ---
-# Revistas de acesso aberto
+# Novos modos de publicação
 
-1. Revistas que não cobram pelo acesso ao leitor
-2. ...mas transferem o custo da publicação ao autor 
-3. __Revistas que pedem que os dados estejam acessíveis em algum repositório (dryad)__
-4. Revistas que aceitam a submissão de _pre-prints_ 
-5. __Revistas que aceitam/pedem o código utilizado para as análises__
-6. __Revistas que recebem manuscritos reproduzíveis__
+1. O manuscrito clássico, escrito em _word_, sem código
+
+--
+
+4. Revistas que aceitam a submissão de _pre-prints_, versões previamente publicadas na internet porém sem revisão por pares 
+
+--
+
+3. Revistas que pedem que os dados estejam acessíveis em algum repositório (Dryad)
+
+--
+
+5. Revistas que aceitam/pedem o código utilizado para as análises
+
+--
+
+6. Revistas que recebem __manuscritos reproduzíveis__
+
+--
+
 7. Revistas com revisão (_peer-review_) aberta (__O quinto princípio da ciência aberta!__)
 
 
 --
 
-### Os cinco primeiros princípios da ciência aberta passam pela necessidade de transparência e responsabilidade nas metodologias.
+#### Os cinco primeiros princípios da ciência aberta passam pela necessidade de transparência e responsabilidade nas metodologias.
 
 ---
 class: center, middle
@@ -548,12 +593,12 @@ class: center, middle
 e sobre nossa responsabilidade
 
 ---
-# Ferramentas e fluxos de trabalho
+## Ferramentas e fluxos de trabalho
 
 + Como é seu fluxo de trabalho hoje?
 + Ele se beneficiaria de alguma mudança em termos destes princípios?
 
-+ Sobre seus dados:
+- Sobre seus dados:
   + Quem é responsável pela integridade dos dados?
   + Como está registrando os dados?
   + Como e onde está guardando os dados?
@@ -561,6 +606,8 @@ e sobre nossa responsabilidade
   + Deposita seus dados em bases de dados?
   + Poderia compartilhar os dados no estado em que eles estão hoje?
   + Usa formatos abertos? O software é proprietário? Daqui a 5, 10, 100 anos poderia ver os dados?
+  + Há contextos nos quais você não deva compartilhar os dados?
+  + Há barreiras para esse compartilhamento?
   
 ---
 
@@ -573,77 +620,28 @@ e sobre nossa responsabilidade
   + Você usa softare pago ou proprietário? Usa software "pirata"?
 
 ---
+# Esta disciplina: 
 
++ Tentar manter a integridade do dado primário
 
+--
 
-##__Durante esta disciplina vamos manter a integridade do dado primário e manter uma distinção permanente entre o que é dado bruto e os passos intermediários durante a análise: dado limpo/processado/analisado - resultado__
++ Manter uma distinção e um registro permanente dos passos de limpeza e processamento entre o dado bruto e o resultado
 
+--
 
++ Manter a metodologia aberta
 
+--
 
-# Passos para que nossa pesquisa seja (mais) aberta
++ Aprender sobre controle de versões 
 
-1. __Refletir__ sobre a questão ética subjacente, entender por que é importante.
- + ~~Tentar~~ fazer _Ciência responsável_ 
- 
- A gente escreve projetos, desenha experimentos, toma dados, analisa, discute, escreve, submete, publica, revisa manuscritos, lida com recursos públicos, orienta, colabora, faz extensão e forma outras pessoas
+--
 
-__A análise de dados é apenas uma parte__
-
----
-# Passos para que nossa pesquisa seja (mais) aberta
-
- <!-- Recursos públicos, extensão, impacto, alfabetização científica, valorização da ciência. Robusteza nos resultados, resolver a crise de reprodutibilidade. --> 
- 
-1. Entender o contexto legal
- + Saber quando ___não___ se devem compartilhar os dados
- (sujeitos humanos, registros de espécies comercializadas)
- + Distinguir entre publicações abertas e __predatórias__
- + Entender, discutir e corrigir as __restrições__ que persistem apesar de a pesquisa ser aberta
-1. Examinar as práticas diárias de pesquisa
- + Que fases de meu trabalho poderiam ser mais abertas? (dados, publicações, metodologias...)
- + Quais são as limitações que devo considerar ou superar hoje?
-1. Entender quais ferramentas e comunidades existem para que ajudar a fazer ciência (mais) aberta
-
-.footnote[
-(modificado de Marcela Alfaro - Universidade da Costa Rica)
-]
-
----
-# Barreiras para o progresso em direção a uma ciência aberta
-
-The major barriers to progress are not technological, but psychological, cultural, and political: individual habits, institutional inertia, unhealthy incentives, and vested interests. The biggest challenge is the fact that the present way of doing science does work (albeit suboptimally) and our vision for open science has not merely not yet been implemented, but has yet to be fully conceived. We will need to find ways to gradually evolve our individual workflows and our scientific culture.(https://nikokriegeskorte.org/2016/02/15/the-four-pillars-of-open-science/)
-
-__Má-prática__ pode ser uma grande barreira para o compartilhamento de dados, metodologias - ela deve ser corrigida.
-
-
-
-
-
-
----
-# Conduta responsável em pesquisa (NIH, NSF)
-
-1. Integridade científica
-1. Aqcuisição, manejo, compartilhamento, autoria de dados
-__Como os dados da pesquisa, como cadernos de laboratório (notas de campo) deveriam ser mantidos? Quem é dono e quem tem acesso?__
-1. Práticas de publicação e autoria responsável
-1. Revisão por pares
-1. Relação orientador-orientado
-1. Ciência colaborativa
-1. Pesquisa em sujeitos humanos e animais
-1. Conflitos de interesse e Responsabilidade
-
-Treinamento online  Introduction to the Responsible Conduct of Research. https://researchethics.od.nih.gov/
++ Aprender sobre relatórios e manuscritos reproduzíveis
 
 ---
 
-# Análise de dados e integridade da pesquisa: 
-
-# O que não deve ser feito: 
-
-
----
 # Referências
 
 +  Gorgolewski KJ, Poldrack RA (2016) A Practical Guide for Improving Transparency and Reproducibility in Neuroimaging Research. PLoS Biol 14(7): e1002506. https://doi.org/10.1371/journal.pbio.1002506
