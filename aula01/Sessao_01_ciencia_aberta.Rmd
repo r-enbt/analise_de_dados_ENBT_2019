@@ -337,6 +337,8 @@ class: center, middle
 ---
 # Software de código aberto
 
++ Firefox
++ Android
 + Linux: sistema operativo
 + `R` e Python para análise de dados
 + QGIS para SIG
