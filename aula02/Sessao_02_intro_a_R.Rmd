@@ -282,7 +282,7 @@ __Não salve o _workspace___
 ]
 
 .pull-right[
-![](figs/rstudio.png)
+![](figs/rstudio.jpg)
 + RStudio e R estão instalados em `C:/Arquivos de programa/...`
 + Os arquivos estão nas pastas  `C:/Usuario/.../Meus documentos/...`
 + _Ninguém abre RStudio primeiro_. 
@@ -328,7 +328,7 @@ class: inverse, center, middle
 ---
 ## Uma breve introdução a `R`
 
-+ Abra um script de R Arquivo > Novo arquivo > Script
++ Abra um script de `R Arquivo > Novo arquivo > Script`
 + Escreva `getwd()`
 + Mande o comando com `Ctrl+ Enter`
 + `getwd()` significa _Get working directory_ -> __onde estou trabalhando?__ 
@@ -344,7 +344,8 @@ getwd()
 ---
 ## Uma breve introdução a `R`
 
-+ Salve o script na __pasta vazia__ onde você quer trabalhar
++ Crie a pasta onde você quer trabalhar __"AQUI"__
++ Salve o script na pasta onde você quer trabalhar
 + Feche RStudio
 + Faça click no arquivo .R que você criou __DESDE O EXPLORADOR DE ARQUIVOS__
 + RStudio deve abrir de novo 
@@ -359,7 +360,7 @@ RStudio tem uma opção muito útil para manter a organização dos projetos de 
 No canto superior direito do programa, veja o botão de projeto
 
 + Novo projeto
-+ Directorio existente > Vá até a pasta
++ Directorio existente > Vá até a pasta "AQUI"
 + Crie ("test"), abra
 
 .pull-left[
@@ -376,7 +377,8 @@ No canto superior direito do programa, veja o botão de projeto
 # Projetos de RStudio
 
 + Os projetos de RStudio permitem que você tenha um arquivo associado a uma pasta para cada projeto de análise de dados. 
-+ RStudio inclui suporte para algo muito importante: o controle de versões via git
+
++ RStudio inclui suporte para algo muito importante: o __controle de versões__
 
 + Vamos fazer uma pausa para configurar RStudio com relação ao que foi dito na aula teórica
 
@@ -419,7 +421,7 @@ background-image:url("figs/0c_codificacao.png")
 background-size: 50%
 background-position: 100% 100%
 
-A codificação pode gerar erros entre sistemas operativos, em particular com caracteres especiais
+A codificação pode gerar erros entre sistemas operativos, em particular com caracteres especiais. UTF-8 é um padrão bem reconhecido entre plataformas.
 
 .pull-left[
 ![](figs/encoding.png)
@@ -433,13 +435,124 @@ background-position: 100% 100%
 O terminal de git vai dar menos problemas porque windows é diferente de mac e linux
 
 ---
-class: inverse, middle, center
+class: middle, center
 
-# RStudio pronto
+# RStudio pronto? RStudio pronto
+
+Um projeto de RStudio na pasta que queríamos + um script que só diz `getwd()`
+
+---
+# FOI!
+![](https://media.giphy.com/media/3oriO04qxVReM5rJEA/giphy.gif)
+
+---
+class: middle, center
+
+# Agora vamos fazer a configuração de RStudio e de git* 
+
+---
+# RStudio e git
+
++ Abra um terminal usando `Ferramentas > Terminal > Novo Terminal`
+
+--
+
++ Tecle `pwd` no Terminal. pwd significa `print working directory`, deve ter o nome da mesma pasta onde estamos
+
+---
+
+## Só se você está no seu próprio computador!
+
++ No Terminal, tecle:  
+`git config user.name`   
+`git config user.email`   
+(Nada deve aparecer, se algo aparecer avisa)
+--
+
++ Agora tecle:  
+`git config user.name "seu nome"`  
+`git config user.email "seu email do github!"`   
+--
+
++ Agora confira de novo:  
+`git config user.name`  
+`git config user.email`  
+__As variáveis que você inseriu devem aparecer__
+
++ __Até aqui git está configurado no computador e ele sabe quem é você. Vamos conectar o seu computador com `github`__
+
+---
+## Só se você está no seu próprio computador!
+
+1. `Preferencias > git/svn`
+1. Checar que git está apontando para um arquivo `git.exe`
+2. O campo SVN vazio
+3. Naõ deve ter nada no campo da chave RSA.
+4. `Criar RSA Key`
+5. Ver a RSA Key, copiar a chave. Ela é uma chave que identifica seu computador e vamos copiá-la no github.com
+
+---
+### No Github
+
+1. Log in
+2. Perfil > Chaves ssh > criar uma chave ssh
+4. Nome de seu computador
+5. Colar a chave que tinha sido copiada. 
+6. Add, OK. 
+
++ __Até aqui github e seu computador podem se comunicar :D__
+
+---
+### Criar um repositório de trabalho
+
+#### No Github
+1. Novo repositório (botão verde). Nomeie, público, YES, sem readme. 
+![](figs/1_github_create.png)
+
+2. Vai abrir uma página de instruções
+3. Selecione HTTPS ou SSH (computador próprio) e copie
+
+
+---
+#### No RStudio
+1. `Project options > Git/SVN Version control system: Git` (vai reiniciar)
+
+![](figs/projopt.png)
+
+---
+#### No RStudio
+
+2. Veja se há remotos para esta pasta: `git remote -v` Nada, não é?
+
+3. No terminal `git remote add origin [O que vc copiou]`
+(No meu caso: `git remote add origin [git@github.com:AndreaSanchezTapia/test.git]`)
+
+3. Cheque de novo: `git remote -v`. Ele deve mostrar o que você adicionou, como push e como pull
+
+#### Até aqui seu computador e github estão se comunicando e você está prontx para adicionar arquivos ao seu repositório
+
+
+4. `git add script.R`
+5. `git commit -m "Initial commit"`
+6. `git push -u origin master`
+
+---
+# Volte para sua conta de github: o que mudou?
+ 
++ Você acaba de usar git e github pela primeira vez. Vamos ter uma aula sobre git mais adiante
++ Vamos explorar a página do repositório
+
+---
+# Projeto de análise, repositório
+
++ __O setup que realizamos previamente fez com que o projeto de RStudio ficasse associado a um repositório de git com conexão a github.com__
+
++ A __pasta de trabalho__, o projeto de RStudio e o repositório ficam na mesma pasta de seu computador. 
 
 ---
 ## Uma breve introdução a `R`
 
+No script: 
 
 ```{r}
 ls() # lista os objetos guardados na memória
@@ -452,6 +565,7 @@ ls() # lista os objetos guardados na memória
 ls()
 ```
 
++ Nada mudou
 
 ---
 ## Uma breve introdução a `R`
@@ -484,14 +598,11 @@ Na aba ambiente deveria ter um objeto `a` e outro `b`
 a + b
 ```
 
-
-
-
-
 ---
 # Nosso script
 
 ```
+getwd()
 ls()
 3 + 2
 ls()
@@ -504,156 +615,27 @@ a + b
 ```
 
 ---
+# Veja a aba git
 
-class: middle, center
++ `script.R` está listado? M Modificado. 
++ Clic em `diff` o que dá para ver?
++ Faça click em staged - isto foi equivalente ao comando add que a gente fez antes
++ Escreva segundo commit na caixa de texto
++ Commit
++ Push
 
-# Agora vamos fazer a configuração de RStudio e de um projeto de análise em `R` com essas configurações.
-
----
-# FOI!
-![](https://media.giphy.com/media/3oriO04qxVReM5rJEA/giphy.gif)
-
----
-
-
----
-# Configurações gerais
-
-
-1. Abra RStudio - se abrir, `R` está bem instalado.
-2. Abra um terminal usando `Ferramentas > Terminal > Novo Terminal`
-3. Teclei `pwd` no Terminal. pwd significa `print working directory`, deve ter o nome de uma pasta. Qual é?  <!-- anotar o de todos -->
-
-Até aqui RStudio, `R` e o terminal dentro de RStudio estão funcionando
+background-image: url("figs/commit.mp4")
 
 ---
-# Configurações gerais
-
-5. No Terminal, tecle:  
-`git config user.name`   
-`git config user.email`   
-Nada deve aparecer, se algo aparecer avisa
-
---
-
-6. Agora tecle:  
-`git config user.name "seu nome"`  
-`git config user.email "seu email do github!"`   
-
---
-
-7. Agora confira de novo:  
-`git config user.name`  
-`git config user.email`  
-__As variáveis que você inseriu devem aparecer__
-
-+ __Até aqui git está configurado no computador e ele sabe quem é você. Vamos conectar o seu computador com `github`__
+# Volte para github.com
 
 ---
-### Desde RStudio 
+# Hoje: 
 
-1. `Preferencias > git/svn`
-1. Checar que git está apontando para um arquivo `git.exe`
-2. O campo SVN vazio
-3. Naõ deve ter nada no campo da chave RSA.
-4. `Criar RSA Key`
-5. Ver a RSA Key, copiar a chave. Ela é uma chave que identifica seu computador e vamos copiá-la no github.com
++ Configuramos uma pasta de trabalho que é projeto de RStudio e repositório de github
++ Adicionamos um script de R e modificamos o script. O progresso ficou salvo em dois "commits"
++ Amanhã vamos começar a usar esta estrutura de trabalho 
 
-### No Github
-
-1. Log in
-2. Perfil > Chaves ssh > criar uma chave ssh
-4. Nome de seu computador
-5. Colar a chave que tinha sido copiada. 
-6. Add, OK. 
-
-+ __Até aqui github e seu computador podem se comunicar :D__
-
----
-
-### Criar um repositório de trabalho
-
-#### No Github
-1. Novo repositório (botão verde). Nomeie, público, YES, com readme. 
-2. Botão verde: `Clone or download`. From ssh. Click no ícone de copiar
-
-#### No RStudio
-1. `New project...`
-2. Version control
-3. git
-4. URL-> __COLE__
-5. Selecione a pasta onde seu repositório vai estar. __Não a pasta do repositório__
-6. Open in new session
-7. OK
-
----
-# Checando que tudo deu certo
-
-+ Abra o terminal e digite `pwd` a pasta deve ser aquela que você indicou
-+ Agora crie um novo script de `R` e digite `getwd()`
-+ Para mandar linhas de código para a consola, `ctr+enter`
-
-
-```{r remedy003}
-getwd()
-```
----
-
-+ O setup que realizamos previamente fez com que a __pasta de trabalho__ ficasse associada a um __projeto de RStudio__
-+ Vejam o arquivo .rproj na pasta onde vocês estão.
-
----
-
-
-
-
-
-# Instalar pacotes
-
-
-```{r, eval =F}
-install.packages("vegan")
-```
-
-```{r, eval =T}
-library("vegan")
-citation("vegan")
-```
-
----
-
-# O help de `R`
-
-* `R` possui ampla documentação de cada função e pacote.
-
-```{r,eval = FALSE}
-?anova
-??anova
-help(anova)
-```
-
-* A estrutura do help é sempre similar: Description, Usage, Arguments... Details, Notes, References, See Also, Examples 
-
-* O uso de todas as funções é:   
-`nome da função(argumentos)`
-
----
-# Onde buscar ajuda?
-
-+ A pessoa do seu lado.
-+ Colegas mais experientes
-+ google
-+ Stack Overflow: leia bem as instruções para postar perguntas e tente dar exemplos
-+ A lista de emails de `R`-help: um monte de pessoas lê e posta mas o tom pode ser um pouco seco. 
-+ Os autores do pacote ou os repositorios de github 
-+ A comunidade de RStudio community.rstudio.com
-+ Listas de emails específicas (GIS, phylogenetics, etc…)
-+ Twitter, hashtag `#rstats`
-
-
-https://datacarpentry.org/`R`-ecology-lesson/00-before-we-start.html  
-http://datacarpentry.org/semester-biology/materials/googling-for-help/  
-http://community.rstudio.com
 
 
 
