@@ -2,17 +2,13 @@
 title: 'Tutorial aula 05: Análise Exploratória de Dados'
 author: "Sara Mortara, Andrea Sanchéz-Tapia & Diogo S. B. Rocha"
 date: "17.07.2019"
-output:
-  html_document:
-    theme: cosmo
-    toc: true
+output: 
+    html_document:
+        theme: cosmo
+        toc: yes
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, results='hide', fig.show = "hide")
-library(knitr)
-library(kableExtra)
-```
+
 
 # Parte 1: O quarteto de Anscombe
 
@@ -20,13 +16,15 @@ Vamos agora ao R explorar alguns dados. Primeiro, veja com seus próprios comand
 
 Os dados já existem dentro do R, por isso você pode carregá-los usando a função `data`. 
 
-```{r cars}
+
+```r
 data("anscombe")
 ```
 
 ## Funções básicas para checar os dados
 
-```{r summary, results='hide'}
+
+```r
 dim(anscombe) # dimensao dos dados, N de linhas e N de colunas
 head(anscombe) # seis primeiras linhas dos dados
 class(anscombe) # classe do objeto
@@ -37,7 +35,8 @@ str(anscombe) # estrutura do objeto
 
 Vamos fazer a média por das colunas com x.
 
-```{r pressure, results='hide'}
+
+```r
 mean(anscombe$x1)
 mean(anscombe$x2)
 mean(anscombe$x3)
@@ -48,7 +47,8 @@ mean(anscombe$x4)
 
 A mesma tarefa mas agora com apenas uma linha de comando usando a função `apply`.
 
-```{r, results='hide'}
+
+```r
 # o mesmo calculo, agora apenas em 1 linha de comando
 ## media de todos os vetores x
 apply(anscombe[,1:4], 2, mean) #aplica uma funcao a todas as linhas de um objeto
@@ -60,14 +60,16 @@ apply(anscombe[,5:8], 2, mean)
 ## Descrição estatística dos dados
 
 
-```{r, results='hide'}
+
+```r
 # variância dos dados
 apply(anscombe, 2, var) # aplica a funcao var a todas as linhas do objeto
 ```
 
 Ententendo a correlação e coeficiente de regressão dos conjuntos x e y. 
 
-```{r, results='hide'}
+
+```r
 # correlação
 cor(anscombe$x1, anscombe$y1)
 cor(anscombe$x2, anscombe$y2)
@@ -88,13 +90,15 @@ lapply(mlist, coef)
 
 Os dados têm mesma média, mesma variância, mesma correlação e mesmo valores dos coeficientes (intercepto e inclinação do modelo linear). Em que os dados são diferentes?
 
-```{r, results='hide'}
+
+```r
 anscombe
 ```
 
 Os valores parecem difentes. Mas quão diferentes?
 
-```{r, results='hide', fig.show='hide'}
+
+```r
 # funcao par para definir as configuracoes da janela grafica entre em ?par
 par(mfrow=c(2,2), #abre uma janela gráfica com 2 linhas  e 2 colunas
     las=1, # deixa as legendas dos eixos na vertical
@@ -107,6 +111,9 @@ plot(anscombe$y2 ~ anscombe$x3)
 abline(mlist[[3]])
 plot(anscombe$y3 ~ anscombe$x4)
 abline(mlist[[4]])
+```
+
+```r
 par(mfrow=c(1,1)) # retorna a janela grafica para o padrao de 1 linha e 1 coluna
 ```
 
@@ -117,13 +124,12 @@ par(mfrow=c(1,1)) # retorna a janela grafica para o padrao de 1 linha e 1 coluna
 O conjunto de dados `iris` que vocês já utilizaram, foi coletado por Edgar Anderson e ficou famoso pelo trabalho de Ronald E. Fisher. Vamos carregar os dados no R. 
 
 
-```{r, results='hide',echo=FALSE}
-data(iris)
-```
+
 
 Após carregar o conjunto de dados, use o comando `?iris` para entender mais sobre o conjunto de dados. Vamos então começar com as inspeções básicas do arquivo.
 
-```{r, results='hide'} 
+
+```r
 head(iris)
 summary(iris) 
 ```
@@ -132,13 +138,15 @@ summary(iris)
 
 Quantas informações por espécie?
 
-```{r, results="hide"}
+
+```r
 table(iris$Species)
 ```
 
 Qual a média das variáveis por espécie? Vamos usar as funções `agreggate` e `tapply`. As duas funções são semelhantes, o que muda são os argumentos e o formato de saída de cada uma delas. 
 
-```{r, results="hide"}
+
+```r
 # media do comprimento de sepala por especie
 tapply(X = iris$Sepal.Length, INDEX = list(iris$Species), FUN = mean)
 # a mesma tarefa, executada por outra funcao. Outros argumentos e outra saída
@@ -149,7 +157,8 @@ aggregate(Sepal.Length ~ Species, data=iris, mean)
 
 Podemos fazer o mesmo para as outras variáveis.
 
-```{r}
+
+```r
 aggregate(Sepal.Length ~ Species, data=iris, mean)
 aggregate(Sepal.Width ~ Species, data=iris, mean)
 aggregate(Petal.Length ~ Species, data=iris, mean)
@@ -157,7 +166,8 @@ aggregate(Petal.Length ~ Species, data=iris, mean)
 
 E agora vamos calcular o desvio padrão das variáveis. 
 
-```{r}
+
+```r
 tapply(X = iris$Sepal.Length, INDEX = list(iris$Species), FUN = sd)
 tapply(X = iris$Sepal.Width, INDEX = list(iris$Species), FUN = sd)
 tapply(X = iris$Petal.Length, INDEX = list(iris$Species), FUN = sd)
@@ -166,7 +176,8 @@ tapply(X = iris$Petal.Width, INDEX = list(iris$Species), FUN = sd)
 
 Sempre que você está copiando e colando um comando, pense que existe uma maneira melhor de executar a sequência de tarefas. Afinal, se você tivesse 99 variáveis, copiar e colar 99x um comando não parece uma boa ideia. Veja abaixo uma solução de como calular a média por espécie de todas as variáveis. Para isso, vamos usar o comando `for` e executar todas as tarefas em um mesmo ciclo. 
 
-```{r}
+
+```r
 # criando matriz de 3 colunas - uma para cada sp - e 4 linhas - uma para cada metrica
 medias <- matrix(NA, ncol=3, nrow=4)
 # definindo o nome das colunas e das linhas da matriz
@@ -179,10 +190,42 @@ medias[i,] <- tapply(iris[,i], iris$Species, mean)
 
 Se você chamar o objeto `medias` deverá ter algo como: 
 
-```{r, echo=FALSE, results="show"}
-knitr::kable(medias) %>% 
-  kable_styling(full_width = F)
-```
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> setosa </th>
+   <th style="text-align:right;"> versicolor </th>
+   <th style="text-align:right;"> virginica </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Sepal.Length </td>
+   <td style="text-align:right;"> 5.006 </td>
+   <td style="text-align:right;"> 5.936 </td>
+   <td style="text-align:right;"> 6.588 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sepal.Width </td>
+   <td style="text-align:right;"> 3.428 </td>
+   <td style="text-align:right;"> 2.770 </td>
+   <td style="text-align:right;"> 2.974 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Petal.Length </td>
+   <td style="text-align:right;"> 1.462 </td>
+   <td style="text-align:right;"> 4.260 </td>
+   <td style="text-align:right;"> 5.552 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Petal.Width </td>
+   <td style="text-align:right;"> 0.246 </td>
+   <td style="text-align:right;"> 1.326 </td>
+   <td style="text-align:right;"> 2.026 </td>
+  </tr>
+</tbody>
+</table>
 
 ## Estatísticas descritivas
 
@@ -204,7 +247,8 @@ As princpais estatísticas descritivas que vamos utilizar são:
 
 $\overline{x}= \frac{\sum^{n}_{i=1}x_i}{n}$
 
-```{r}
+
+```r
 vars <- iris[,-5]
 apply(vars, 2, mean)
 ```
@@ -212,14 +256,16 @@ apply(vars, 2, mean)
 
 #### Mediana: 50º quantil, de forma que divide os dados em duas metades
 
-```{r}
+
+```r
 apply(vars, 2, median)
 ```
 
 #### Moda: valor mais frequente na amostra
 
 
-```{r}
+
+```r
 freq_sl <- sort(table(iris$Sepal.Length), decreasing = TRUE)
 freq_sl[1]
 ```
@@ -230,7 +276,8 @@ freq_sl[1]
 #### Variância: desvio da média
 $s^{2}=\sum^{n}_{i=1}\frac{(x_i−\overline{x})^2}{n−1}$
 
-```{r}
+
+```r
 apply(vars, 2, var)
 ```
 
@@ -238,7 +285,8 @@ apply(vars, 2, var)
 
 $s=\sqrt{\sum^{n}_{i=1}\frac{(x_i−\overline{x})^2}{n−1}}$
 
-```{r}
+
+```r
 sd01 <- apply(vars, 2, sd)
 # outra forma:
 sd02 <- apply(vars, 2, function(x) sqrt(var(x)))
@@ -253,7 +301,8 @@ $CV=\frac{s}{\overline{x}}\times100$
 
 Não existe no R base uma função para calcular o coeficiente de variação. Isto não é um problema. Vamos formalmente criar nossa primeira função de R. Para isso, usamos a função `function`
 
-```{r}
+
+```r
 cv <- function(x){
   sd(x)/mean(x)*100
 }
@@ -265,7 +314,8 @@ apply(vars, 2, cv)
 É o valor que corta a enésima porcentagem de valores dos dados quando ordenados de forma ascendente. Por padrão, a função `quantile` retorna o mínimo, o 25º percentil, a mediana, o 50º percentil, o 75º percentil e o máximo, também conhecidos pelo sumário de cinco números proposto por Tuckey (que também é o retorno da função `summary` de um vetor numérico). Os cinco números dividem os dados em quatro quantis, que, por isso são chamados de **quartis**. Os **quartis** são uma métrica bastante útil para descrever os dados pois possuem uma interpretação simples e não são afetados pela distribuição dos dados.  É possível modificar os percentis desejados com o argumento `probs`.
 
 
-```{r}
+
+```r
 # sumario de 5 numeros
 apply(vars, 2, quantile)
 # 5%, 50% e 95%
@@ -276,7 +326,8 @@ apply(vars, 2, quantile, probs=c(0.5, 0.5, 0.95))
 
 O intervalo é a diferença entre o maior e o menor valor de determinada variável. 
 
-```{r}
+
+```r
 # a funcao range nos retorna os valores minimo e maximo
 apply(vars, 2, range)
 # aplicando a funcao diff ao resultado do range, temos o valor desejado
@@ -292,7 +343,8 @@ apply(vars, 2, my_range)
 
 O IIQ é a diferença entre o quartil superior (75%) e o quartil inferior (25%). 
 
-```{r}
+
+```r
 apply(vars, 2, IQR)
 ```
 
@@ -302,7 +354,8 @@ Uma matriz de correlação é uma tabela com os valores de correlação entre ca
 
 [](figs/thumb.jpg)
 
-```{r}
+
+```r
 cor(vars)
 ```
 
@@ -338,7 +391,8 @@ dispersão | plot() | geom_point() |
 
 Um gráfico de barras mostra a frequência de de observações em uma dada classe. 
 
-```{r}
+
+```r
 barplot(table(iris$Species))
 ```
 
@@ -350,21 +404,29 @@ O histograma é o equivalente do gráfico de barras para variáveis contínuas. 
 
 Vamos ver um exemplo de histograma padrão para os dados das espécies de *Iris*. 
 
-```{r}
+
+```r
 par(mfrow=c(2,2))
 hist(iris$Sepal.Length)
 hist(iris$Sepal.Width)
 hist(iris$Petal.Length)
 hist(iris$Petal.Length)
+```
+
+```r
 par(mfrow=c(1,1))
 ```
 
 Agora para o comprimento da sépala das espécies de *Iris*, vamos ver o efeito do número de intervalos no histograma com o argumento `breaks`. 
 
-```{r}
+
+```r
 par(mfrow=c(1,2))
 hist(iris$Sepal.Width)
 hist(iris$Sepal.Width, breaks = 4)
+```
+
+```r
 par(mfrow=c(1,1))
 ```
 
@@ -372,10 +434,14 @@ par(mfrow=c(1,1))
 
 A curva de densidade mostra a probabilidade de observar determinado valor. Em comparação ao histograma, no eixo y, ao invés de termos a frequência, temos a densidade probabilística. 
 
-```{r}
+
+```r
 par(mfrow=c(1,2))
 hist(iris$Sepal.Width)
 hist(iris$Sepal.Width, freq = FALSE)
+```
+
+```r
 par(mfrow=c(1,1))
 ```
 
@@ -386,13 +452,17 @@ A density estimation, also known as a Kernel density plot, generally provides a 
 No R podemos ver a curva de densidade a usando a função por meio do plot da função `density`. 
 
 
-```{r}
+
+```r
 par(mfrow=c(1,2))
 # plot da curva de densidade
 plot(density(iris$Sepal.Width))
 # plot da curva de densidade sobre o histograma de densidade
 hist(iris$Sepal.Width, freq = FALSE)
 lines(density(iris$Sepal.Width), col="blue") # note que agora estamos usando a funcao o comando add=TRUE
+```
+
+```r
 par(mfrow=c(1,1))
 ```
 
@@ -410,19 +480,7 @@ Box-plots são gráficos que representam o sumário de cinco números de Tuckey 
 
 Entendendo o box-plot:
 
-```{r, echo=FALSE, fig.show='asis', fig.align='center'}
-set.seed(2)
-par(bty="n")
-bp <- rnorm(1000, 0, 0.1)
-boxplot(bp, yaxt="n", xlim=c(0,3), ylim=c(-0.3, 0.3))
-text(x=1.82, y=min(bp), "último ponto (-1,5 x IIQ)", cex=.9)
-text(x=1.72, y=quantile(bp)[2], "primeiro quartil", cex=.9)
-text(x=1.72, y=median(bp), "mediana", cex=.9)
-text(x=1.72, y=quantile(bp)[4], "terceiro quartil", cex=.9)
-text(x=1.82, y=bp[203], "último ponto (+1,5 x IIQ)", cex=.9)
-arrows(x0=0.68, x1 = 0.68, y0=quantile(bp)[2], y1=quantile(bp)[4], code=3, length=0.05)
-text(x=0.54, y=median(bp), "IIQ", cex=.9)
-```
+<img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" style="display: block; margin: auto;" />
 
 
 A caixa do boxplot contém o primeiro quartil (25%, quartil inferior) e o terceiro quartil (75%, quartil superior). A mediana (50%, segundo quartil) é a linha preta no interior da caixa. Os extremos do gráfico ("bigodes") mostram os dados a uma distância $1.5\times$IIQ acima e abaixo o terceiro quartil e o primeiro quartil. Qualquer dado além do segmento é considerado um outlier. 
@@ -433,19 +491,39 @@ Outliers não são um erro (necessariamente, mas podem ser). Outliers representa
 
 Vamos agora fazer os box-plots das variáveis contidas no objeto `iris`. Vamos começar com as variáveis gerais. 
 
-```{r}
+
+```r
 boxplot(iris$Sepal.Length)
+```
+
+```r
 boxplot(iris$Sepal.Width)
+```
+
+```r
 boxplot(iris$Petal.Length)
+```
+
+```r
 boxplot(iris$Petal.Width)
 ```
 
 Agora vamos olhar para os valores por espécie. 
 
-```{r}
+
+```r
 boxplot(Sepal.Length ~ Species, data=iris)
+```
+
+```r
 boxplot(Sepal.Width ~ Species, data=iris)
+```
+
+```r
 boxplot(Petal.Length ~ Species, data=iris)
+```
+
+```r
 boxplot(Petal.Width ~ Species, data=iris)
 ```
 
@@ -453,8 +531,12 @@ Você identifica outliers no conjunto de dados? Como podemos checar os outliers?
 
 
 
-```{r}
+
+```r
 boxplot(iris$Sepal.Width)
+```
+
+```r
 my_boxplot <- boxplot(iris$Sepal.Width, plot=FALSE)
 my_boxplot
 # o objeto é uma lista e os valores outliers estão guardados no elemento $out da lista
@@ -468,8 +550,12 @@ iris[which(iris$Sepal.Width %in% outliers), c("Sepal.Width", "Species")]
 
 No caso anterior consideramos outliers em relação à distribuição da variável para todas as espécies juntas. É razoável assumir que cada espécie tenha um padrão morfométrico distinto de modo que poderíamos identificar outliers de maneira espécie específica. 
 
-```{r}
+
+```r
 boxplot(Sepal.Width ~ Species, data=iris)
+```
+
+```r
 my_boxplot2 <- boxplot(Sepal.Width ~ Species, data=iris, plot=FALSE)
 my_boxplot2
 # o objeto é uma lista e os valores outliers estão guardados no elemento $out da lista
@@ -480,4 +566,40 @@ iris[iris$Sepal.Width %in% outliers2 &
        iris$Species=="setosa", 
      c("Sepal.Width", "Species")]
 ```
+
+## Entendendo a distribuição dos dados
+
+Para muitas análises estatístca espera-se que os dados assumam uma distribuição normal. Isto nem sempre é o padrão em dados biológicos. O tipo de distribuição do dado vai depender da natureza do dado. Alguns exemplos de distribuições de probabilidade são:
+
+Distribuição  | Tipo | $E(X)$ | $\sigma^2(X)$ | Uso | Exemplo
+------------- | -----| -------|-----------|----------|-------------
+Normal        | contínua | $\mu$  | $\sigma^2$ | Curva simétrica para dados contínuos | Distribuição de tamanho
+Binomial | discreta | $np$      | $np(1-p)$ | Número de sucessos em $n$ tentativas | Presença ou ausência de espécies
+Poisson     | discreta  | $\lambda$ | $\lambda$ | Eventos raros independentes onde $\lambda$ é a taxa que o evento ocorre no espaço ou no tempo | Distribuição de espécies raras no espaço
+Log-normal | contínua | $log(\mu)$  | $log(\sigma^2)$ | Curva assimétrica | Distribuição de abundância de espécies
+
+Se o seu dado não segue uma distribuição normal, isto pode ser tanto porque a natureza do dado não é normal (gaussiana) ou você não tem um tamanho amostral suficiente. Se o dado não é normal, uma abordagem pode ser transformar o dado ou encontrar uma análise apropriada ao tipo de distribuição do dado (por exemplo, se está fazendo uma regressão linear, pode fazer um modelo linear generalizado adequado à sus distribuição). 
+
+Vamos olhar para os dados morfométricos das espécies de *Iris* e comparar com uma distribuição normal. No R, isto pode ser feito de forma visual com as funções `qqnorm` e `qqline`. 
+
+
+```r
+par(mfrow=c(1,3))
+qqnorm(iris$Sepal.Length[iris$Species=="setosa"], 
+       main="setosa")
+qqline(iris$Sepal.Length[iris$Species=="setosa"])
+qqnorm(iris$Sepal.Length[iris$Species=="versicolor"], 
+       main="versicolor")
+qqline(iris$Sepal.Length[iris$Species=="versicolor"])
+qqnorm(iris$Sepal.Length[iris$Species=="virginica"], 
+       main="virginica")
+qqline(iris$Sepal.Length[iris$Species=="virginica"])
+```
+
+```r
+par(mfrow=c(1,1))
+```
+
+## Relação entre variáveis
+
 
