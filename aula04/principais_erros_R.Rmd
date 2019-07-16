@@ -1,0 +1,96 @@
+---
+title: "Principais erros em R"
+author: "Diogo S. B. Rocha"
+date: "`r format(Sys.time(), '%a %d %b %Y')`"
+output: 
+  html_document: 
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Funções sem argumentos
+
+`getwd()`
+
+```
+> getwd 
+
+function () 
+.Internal(getwd())
+<bytecode: 0x00000274506e19a8>
+<environment: namespace:base>
+```
+Exibe a função e não executa. 
+*Lembra que as funções são objetos?*
+
+Solução: Adiciona `()`
+
+# Parênteses, aspas, chaves e colchetes 
+### `( )  " "  [ ]  { }`
+
+No console do R aparece `+` ao invés de `>`
+
+```
+> 
+
+> read.csv("meu_arquivo.csv)
++
+```
+
+O console fica com `+` quando esquecemos de 'fechar' algo.
+
+Solução: Ir no console e pressionar 'Esc' e o console voltará a ficar disponível `>`. Então, verifique o que esqueceu de fechar e corrija. 
+
+Retorne no script e verifique o que faltou 'ser fechado'
+
+# Vírgulas
+
+
+
+```
+> nomes <- c("Andrea", "Sara" "Diogo")
+
+Error: unexpected string constant in "nomes <- c("Andrea", "Sara" "Diogo""
+```
+
+# Função não encontrada
+
+```
+> raster("./meuraster.tif")
+
+Error in raster("./meuraster.tif") : could not find function "raster"
+```
+
+# Não importa o arquivo
+
+
+Erro em `read.table()`
+
+```
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") : cannot open file 'NOME_DO_ARQUIVO.csv': No such file or directory
+```
+
+Possíveis erros:
+
+- Nome digitado errado
+- Caminho errado
+- Working Directory errado
+
+<br>
+<br>
+
+Outro erro em `read.table()`
+
+```
+Error in read.table(file = file, header = header, sep = sep, quote = quote,  : object 'bci_env.csv' not found
+```
+Possível erro:
+
+- Sem aspas
+
+**_Em construção ..._**

@@ -1,0 +1,671 @@
+---
+title: "Introdução ao R e Manipulação de dados"
+author: "Andrea Sánchez-Tapia, Sara Mortara, Diogo S. B. Rocha"
+date: "`r format(Sys.time(), '%a %d %b %Y')`"
+output:
+  ioslides_presentation: 
+    incremental: yes
+    smaller: yes
+    widescreen: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      prompt = T,
+                      comment = "")
+```
+
+# Sintaxe da linguagem R
+
+## Sintaxe
+
+`função(argumento1 = valor, argumento2 = valor, ...)`
+
+``` 
+função(
+      argumento1 = valor, 
+      argumento2 = valor, 
+      ...
+      )
+
+```
+
+## Mas, como saberei quais são os argumentos de uma função? {.bigger .vcenter}
+
+
+```{r, out.width = "300px", fig.align = "center"}
+knitr::include_graphics("https://s.fishki.net/upload/users/2018/06/03/360125/cb7e5c02646ac6843b80b7509b67ca14.gif")
+```
+
+<!-- ## Com o HELP {.bigger} -->
+
+<!-- + -->
+<!-- ```{r, out.width = "300px", fig.align = "left"} -->
+<!-- knitr::include_graphics("https://media0.giphy.com/media/84Zige6lHv19S/source.gif") -->
+<!-- ``` -->
+
+## Help | `help()`  ou   `?`
+
+`help(list.files)` ou  [`?list.files`](http://search.r-project.org/R/library/base/html/list.files.html)
+
++
+```{r, out.width = "400px", fig.align = "center"}
+knitr::include_graphics("https://statistical-programming.com/wp-content/uploads/2018/09/dir-R-Function-Further-Arguments.png")
+```
+
+## Objetos | Classes 
+
++ **vetor**: uma sequência de valores numéricos ou de caracteres (letras, palavras). 
+
++ **matriz**: coleção de vetores em linhas e colunas, todos os vetores dever ser do mesmo tipo (numérico ou de caracteres). 
+
++ **dataframe**: O mesmo que uma matriz, mas aceita vetores de tipos diferentes (numérico e caracteres).
+
++ **lista**: conjunto de vetores, dataframes ou de matrizes. Não precisam ter o mesmo comprimento, é a forma que a maioria das funções retorna os resultados. 
+
++ **função**:  são objetos do R e o conteúdo das funções podem ser vistos digitando o nome da função (sem os parênteses).
+  - `lm`
+  - `glm` 
+
+- Mas, nem todas as funções, por exemplo: `min`, `max`, `rnorm` 
+
+- Estas funções não são escritas em linguagem R (em geral estão escritas em C).
+
++ **'outros'**: rasterlayer, rasterstack, ... 
+
+# Vetor
+
+## Vetor
+
+Vetor é uma estrutura básica em R. Contém sempre elementos do mesmo tipo. 
+
+Os principais são:
+
++ *numeric*
++ *integer* 
++ *character*
++ *factor*
++ *logical*
+
+## Vetor | Como criar um vetor em R ?
+
+```{r vector1, echo = TRUE}
+num <- c(1,2,3,4,5,6,7)
+num
+
+nomes <- c("Andrea", "Sara", "Diogo")
+nomes
+
+outros <- c("ENBT", 33, "UFRJ", 12)
+outros
+```
+
+## Vetor | Como criar um vetor em R ?
+
+Operador `':'`
+
+```{r vector2, echo = TRUE}
+num <- 1:7
+num
+```
+
+Usando a função `seq()`
+
+```{r vector3, echo = TRUE}
+num <- seq(1, 7, by = 1)
+num
+```
+
+## Vetor | tipos
+
+_numeric_
+
+```{r vector7, echo = TRUE}
+v1 <- 1:10
+v1
+class(v1)
+```
+
+_integer_
+
+```{r vector8, echo = TRUE}
+v2 <- seq(1, 5, by = 0.5)
+v2
+class(v2)
+```
+
+## Vetor | tipos
+
+_character_
+
+```{r vector4, echo = TRUE}
+sex <- c("Male", "Male", "Male", "Female","Female","Female")
+sex
+class(sex)
+```
+
+_factor_
+
+```{r vector5, echo = TRUE}
+sex_f <- factor(sex)
+sex_f
+class(sex_f)
+```
+
+## Vetor | tipos
+
+_logical_
+
+```{r vector6, echo = TRUE}
+logico <- c(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE)
+logico
+class(logico)
+```
+
+
+## Vetor | Indexação
+
+#### Usando vetor inteiro como índice
+
+```{r vector9, echo = TRUE}
+v1
+v1[3]           # access 3rd element
+v1[c(2, 4)]     # access 2nd and 4th element
+v1[-1]          # access all but 1st element
+v1[c(2.4, 3.54)]    # real numbers are truncated to integers
+
+```
+
+## Vetor | Indexação
+
+#### Usando vetor lógico como índice
+
+```{r vector10, echo = TRUE}
+v1[c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE)]
+v1 < 4
+v1[v1 < 4]  # filtering vectors based on conditions
+v1[v1 > 5]
+```
+
+## Vetor | Como modificar um vetor em R?
+
+```{r vector11, echo = TRUE}
+v1
+v1[2] <- 0; v1        # modify 2nd element
+v1[v1 < 2] <- 0; v1   # modify elements less than 0
+v1 <- v1[1:4]; v1      # truncate x to first 4 elements
+```
+
+## Vetor | Tamanho do vetor
+
+```{r vector12, echo = TRUE}
+length(v1)
+```
+
+### Cabeça e cauda do vetor
+```{r vector13, echo = TRUE}
+head(v1)
+tail(v1)
+```
+
+
+# Matriz
+
+## Matriz
+
+Matriz é uma estrutura de dados bidimensional, sempre elementos do mesmo tipo.
+
+```{r matrix1, echo = FALSE}
+m1 <- matrix(1:9, nrow = 3, ncol = 3)
+m1
+class(m1)
+```
+
+## Matriz | Como criar uma matriz?
+
+```{r matrix2, echo = TRUE}
+m1 <- matrix(1:9, nrow = 3, ncol = 3)
+m1
+```
+
+Também podemos preencher a matriz pela linhas
+
+```{r matrix3, echo = TRUE}
+m1 <- matrix(1:9, nrow = 3, ncol = 3, byrow = TRUE)
+m1
+```
+
+## Matriz | Outra maneira `cbind()`
+
+```{r matrix4, echo = TRUE}
+riq <- c(12,15,18,11,10)
+abun <- c(40,52,60,37,22)
+mat <- cbind(riq, abun)
+mat
+```
+
+### Dimensões
+
+```{r matrix5, echo = TRUE}
+dim(mat)
+```
+
+## Matriz | Nomes das colunas e das linhas 
+
+```{r matrix6, echo = TRUE}
+colnames(mat)
+rownames(mat)
+rownames(mat) <- c("P1", "P2", "P3", "P4", "P5")
+mat
+```
+
+## Matriz | Indexação com vetor inteiro
+
+```{r matrix7, echo = TRUE}
+mat[2, 1]    # select row 2 and columm 1
+mat[c(1,2), 1]    # select rows 1 & 2 and columns 2 & 3
+mat[c(3,2), ]    # leaving column field blank will select entire columns
+mat[ , ]    # leaving row as well as column field blank will select entire matrix
+mat[-1, ]    # select all rows except first
+```
+
+## Matriz | Indexação com vetor lógico
+
+```{r matrix8, echo = TRUE}
+dim(mat)
+mat[c(TRUE, TRUE, FALSE, FALSE, FALSE), ]
+```
+
+##Matriz | Como modificar uma matriz?
+
+```{r matrix9, echo = TRUE}
+mat
+mat[1,2] <- 0
+mat
+```
+
+##Matriz | Como modificar uma matriz?
+
+```{r matrix10, echo = TRUE}
+mat
+mat[mat < 15 ] <- 0
+mat
+```
+
+##Matriz | Como modificar uma matriz?
+
+Transpor
+
+```{r matrix11, echo = TRUE}
+mat
+t(mat)
+mat
+mat <- t(mat)
+mat
+```
+
+##Matriz | Como modificar uma matriz?
+
+Adicionando linhas ou colunas
+
+`rbind()` e `cbind()`
+
+```{r matrix12, echo = TRUE}
+mat
+cbind(mat, c(1,2,3,4,5))
+```
+
+```{r matrix13, echo = TRUE}
+mat
+rbind(mat, c(5,7))
+```
+
+# Data Frame
+
+## Data Frame
+
+Data frame é uma estrutura de dados bidimensional e pode conter elementos de diferetntes tipos. [link](https://www.datamentor.io/r-programming/data-frame/)
+
+```{r dataframe1, echo = TRUE}
+L3 <- LETTERS[1:3]
+class(L3)
+fac <- sample(L3, 10, replace = TRUE)
+class(fac)
+(df <- data.frame(x = 1, y = 1:10, fac = fac))
+class(df)
+```
+
+## Data Frame | Funções
+
+```{r dataframe2, echo = TRUE}
+df
+names(df)
+ncol(df)
+nrow(df)
+dim(df)
+```
+
+## Data Frame |  Como criar um data frame em R?
+
+```{r dataframe3, echo = TRUE}
+df <- data.frame("SN" = 1:2, "Age" = c(21,15), "Name" = c("John","Dora"))
+str(df)    # structure of df
+df
+```
+
+## Data Frame | `stringsAsFactors=FALSE`
+
+```{r dataframe4, echo = TRUE}
+df <- data.frame("SN" = 1:2, "Age" = c(21,15), "Name" = c("John", "Dora"), stringsAsFactors = FALSE)
+str(df)
+```
+
+
+## Data Frame |  Como acessar componentes de um Data Frame?
+
+Podemos usar `[`, `[[` or `$ ` 
+
+`[[` ou `$` são similares
+
+```{r dataframe5, echo = TRUE}
+df["Name"]
+df$Name
+df[["Name"]]
+df[[3]]
+```
+
+## Data Frame |  Como uma matriz `dim()`  `str()` `head()`
+
+```{r dataframe6, echo = TRUE}
+#dados internos do R library(help = "datasets")
+dim(trees)
+str(trees)
+head(trees, n = 3)
+```
+
+## Data Frame |  Como uma matriz
+
+```{r dataframe61, echo = TRUE}
+trees[2:3, ]    # select 2nd and 3rd row
+trees[trees$Height > 82, ]    # selects rows with Height greater than 82
+trees[10:12, 2]
+#drop=FALSE
+trees[10:12, 2, drop = FALSE]
+```
+
+## Data Frame | Como modificar um Data Frame?
+```{r dataframe7, echo = TRUE}
+df
+df[1, "Age"] <- 20
+df
+```
+
+## Data Frame | Adicionando 
+
+`rbind()`
+
+```{r dataframe8, echo = TRUE}
+rbind(df, c(1, 16, "Paul"))
+```
+
+`cbind()`
+
+```{r dataframe81, echo = TRUE}
+cbind(df, State = c("NY", "FL"))
+```
+
+Usando `$`
+```{r dataframe82, echo = TRUE}
+df
+df$State <- c("NY", "FL")
+```
+
+## Data Frame |  Deleting Component
+
+`NULL`
+
+```{r dataframe9, echo = TRUE}
+df$State <- NULL
+df
+```
+
+```{r dataframe91, echo = TRUE}
+df <- df[-1,]
+df
+```
+
+# Palavras reservadas em R
+
+---
+
+**Palavras reservadas em R**
+
+| 1 |	2 |	3 |	4 |	5 |
+| ---- | ---- | ---- | ---- | ---- |
+| if |	else |	repeat |	while |	function |
+| for |	in |	next |	break |	TRUE |
+| FALSE |	NULL |	Inf |	NaN |	NA |
+| NA_integer_ |	NA_real_	| NA_complex_ |	NA_character_	| … |
+
+<br>
+
+Esta lista pode ser visualizada digitando `help(reserved)` ou `?reserved` no R.
+
+---
+
+ `if`, `else`, `repeat`, `while`, `function`, `for`, `in`, `next` e `break` são usados para condições, loops e funções definidas pelo usuário.
+
+`TRUE` and `FALSE` are the logical constants in R.
+
+`NULL` representa a ausência de um valor ou um valor indefinido.
+
+`Inf` é para "Infinity", por exemplo, quando 1 é dividido por 0, enquanto
+
+`NaN` é ppara “Not a Number”, for example when 0 is divided by 0.
+
+`NA` significa "Not Available" e é usado para representar valores ausentes.
+
+R is a case sensitive language. Which mean that `TRUE` and `True` are not the same.
+
+```{r, echo = TRUE}
+#TRUE <- 1
+#Error in TRUE <- 1 : invalid (do_set) left-hand side to assignment
+True <- 1
+TRUE
+True
+```
+
+
+## Constantes em R | Caracteres
+
+As constantes de caracteres podem ser representadas usando aspas simples (') ou aspas duplas (") como delimitadores.
+
+```{r, echo = TRUE}
+'example'
+class("5")
+"character"
+```
+
+## Constantes em R | Internos
+
+Algumas das constantes internas definidas em R junto com seus valores são mostradas a seguir.
+
+
+```{r, echo = TRUE}
+LETTERS
+letters
+pi
+```
+
+---
+
+```{r, echo = TRUE}
+month.name
+month.abb
+```
+
+Mas não é bom confiar neles, pois eles são implementados como variáveis cujos valores podem ser alterados.
+
+```{r, echo = TRUE}
+pi
+pi <- 42
+pi
+```
+
+# Lendo os dados
+
+## `read.table()` ; `read.csv()` ; `read.csv2()`
+
+Principais funções para importação de dados
+
+`read.table()` => `header = FALSE` , `sep = ""` , `dec = "."`
+
+<br>
+
+`read.csv()` => `header = TRUE` , `sep = ","` , `dec = "."`
+
+<br>
+
+`read.csv2()` => `header = TRUE` , `sep = ";"` , `dec = ","`
+
+---
+
+Importando, mas atenção!
+
+```{r read1, echo = TRUE}
+read.table("./data/trees.csv", sep = ",", header = TRUE)
+
+```
+
+--- 
+
+```{r read2, echo = TRUE}
+arv <- read.table("./data/trees2.csv", sep = ",", header = TRUE)
+arv[1:6,]
+
+arv2 <- read.csv("./data/trees2.csv", sep = ",", header = TRUE, row.names = 1)
+arv2[1:6,]
+```
+
+
+# Conferindo os dados
+
+## `head()` ; `tail()`
+
+```{r conf1, echo = TRUE}
+head(arv)
+tail(arv)
+```
+
+## `str()` ; `class()` 
+
+```{r conf12, echo = TRUE}
+str(arv)
+class(arv)
+```
+
+## `summary()` 
+
+Resumo dos dados
+
+```{r conf2, echo = TRUE}
+summary(arv)
+```
+
+## `summary()` | E tem diferentes saídas, dependendo da classe do objeto
+
+```{r conf22, echo = TRUE}
+arv_reg <- lm(arv$Girth ~ arv$Height)
+arv_reg
+summary(arv_reg)
+```
+
+## dados "_sujos_"
+
+```{r conf3, echo = TRUE}
+df2 <- read.csv("./data/mouse.csv")
+
+str(df2)
+
+df2$comp
+```
+
+---
+
++ E se eu tentar 'forçar' a conversão?
++
+```{r conf32, echo = TRUE}
+as.numeric(df2$comp)
+```
+
++ Não deu!
+
+---
+
+Mais uma tentativa:
+
++
+```{r conf33, echo = TRUE}
+df2 <- read.csv("./data/mouse.csv", stringsAsFactors = FALSE)
+str(df2)
+as.numeric(df2$comp)
+```
+
++ _Quase_, mas perdemos dados ...
+
+---
+
+Vamos tentar outra abordagem:
+
++
+```{r conf34, echo = TRUE}
+df2$comp <- gsub(",", ".", df2$comp)
+str(df2)
+df2$comp <- as.numeric(df2$comp)
+str(df2)
+df2$comp
+```
+
+# Salvando os dados
+
+## `write.table()` ; `write.csv()` ; `write.csv2()` 
+
+```{r write1, echo = TRUE}
+
+m <- rnorm(10, 13)
+f <- rnorm(10, 8)
+comp <- c(m, f)
+sex <- rep(c("m", "f"), each = 10)
+df <- data.frame(sex, comp)
+head(df)
+
+write.csv(df, "./data/meudados0_csv_names.csv")
+write.csv2(df, "./data/meudados1_csv2_names.csv")
+write.csv(df, "./data/meudados0_csv.csv", row.names = FALSE)
+write.csv2(df, "./data/meudados1_csv2.csv", row.names = FALSE)
+```
+
+# Exercícios
+
+---
+
+**Exercício 2** Dados de um experimento sobre a tolerância ao frio das espécies de gramíneas _Echinochloa crus-galli_.
+
+- Organize os dados em uma única tabela
+- Exporte para um arquivo de texto
+- Salve os metadados
+- Importe para o R
+- Calcule a média de _'uptake'_ para _'Quebec chilled'_
+
+**Exercício 3** Contagem de árvores em parcelas de 1 hectare na Ilha de Barro Colorado.
+
+- Salve os dados em uma planilha
+- Exporte para um arquivo de texto
+- Calcule o número de indivíduos por parcela
+
+**Exercício 4** Dados do GBIF com 320 linhas e 45 colunas
+
+- Leia o arquivo "0012594-190621201848488.csv"
+- selecione apenas as colunas com o nome da espécie, longitude e latitude
+- salve um arquivo com esses dados
+- Dica:  Use o `help` para descobrir outras funções para importar os dados.
