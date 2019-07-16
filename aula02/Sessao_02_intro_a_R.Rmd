@@ -1,6 +1,6 @@
 ---
-title: "Disciplina: Projetos de análise de dados usando `R`"
-subtitle: "Dia 1, aula 2: Projetos de análise usando R"
+title: "Disciplina: Projetos de análise de dados usando R"
+subtitle: "Dia 1, aula 2: Uma breve introdução a R"
 author: "Andrea Sánchez-Tapia, Sara Mortara, Diogo Rocha"
 date: "2019/06/17 (updated: `r Sys.Date()`)"
 output:
@@ -121,6 +121,20 @@ background-image: url(figs/github-pkg2.png)
 ---
 class:inverse
 
+---
+
+---
+# Instalar pacotes
+
+
+```{r, eval =F}
+install.packages("vegan")
+```
+
+```{r, eval =T}
+library("vegan")
+citation("vegan")
+```
 
 ---
 ## Onde rodar `R`?
@@ -323,10 +337,66 @@ __Não salve o _workspace___
 ---
 class: inverse, center, middle
 
-# Vamos fazer isso
+# Vamos configurar RStudio 
+
+---
+background-image:url("figs/0a_setup.png")
+background-size: 60%
+background-position: 100% 100%
+#### Não salve o workspace
+
+
+---
+background-image:url("figs/0b_soft_wrap.png")
+background-size: 60%
+background-position: 100% 100%
+
+.pull-left[
+As linhas longas do script são cortadas para facilitar a vida
+]
+
+---
+background-image:url("figs/0bb_packages.png")
+background-size: 50%
+background-position: 100% 100%
+
+"Por favor use o espelho (_mirror_) de CRAN mais próximo de você para minimizar a carga da rede."  __Fiocruz__
+
+---
+background-image:url("figs/0c_codificacao.png")
+background-size: 50%
+background-position: 100% 100%
+
+A codificação pode gerar erros entre sistemas operativos, em particular com caracteres especiais. UTF-8 é um padrão bem reconhecido entre plataformas.
+
+.pull-left[
+![](figs/encoding.png)
+]
+
+---
+background-image:url("figs/0d_terminal.png")
+background-size: 50%
+background-position: 100% 100%
+
+O terminal de git vai dar menos problemas porque windows é diferente de mac e linux
+
 
 ---
 ## Uma breve introdução a `R`
+
++ Crie a pasta onde você quer trabalhar __"AQUI"__
++ Crie as subpastas seguintes: 
+
+`/R`  
+`/Data`  
+`/Results`  
+`/docs`  
+
++ Crie um arquivo `README.txt` na base da pasta
+
+
+---
+# No Rstudio
 
 + Abra um script de `R Arquivo > Novo arquivo > Script`
 + Escreva `getwd()`
@@ -335,16 +405,15 @@ class: inverse, center, middle
 + Qual é o resultado de sua chamada a `getwd()`?
 
 ```{r}
+
 getwd()
+
 ```
 
-+ O resultado de `getwd()` é sua pasta de trabalho. 
-+ __Onde você quer trabalhar?__ 
-
 ---
-## Uma breve introdução a `R`
+# No Rstudio
 
-+ Crie a pasta onde você quer trabalhar __"AQUI"__
+
 + Salve o script na pasta onde você quer trabalhar
 + Feche RStudio
 + Faça click no arquivo .R que você criou __DESDE O EXPLORADOR DE ARQUIVOS__
@@ -380,66 +449,10 @@ No canto superior direito do programa, veja o botão de projeto
 
 + RStudio inclui suporte para algo muito importante: o __controle de versões__
 
-+ Vamos fazer uma pausa para configurar RStudio com relação ao que foi dito na aula teórica
-
----
-class: inverse, middle, center
-# Configurando RStudio 
-
----
-background-image:url("figs/0a_setup.png")
-background-size: 60%
-background-position: 100% 100%
-#### Não salve o workspace
-
---
-
-.pull-left[
-<br>
-<br>
-<br>
-Olhe aí sua pasta padrão ->
-]
-
----
-background-image:url("figs/0b_soft_wrap.png")
-background-size: 60%
-background-position: 100% 100%
-
-.pull-left[
-As linhas longas do script são cortadas para facilitar a vida
-]
----
-background-image:url("figs/0bb_packages.png")
-background-size: 50%
-background-position: 100% 100%
-
-"Por favor use o espelho (_mirror_) de CRAN mais próximo de você para minimizar a carga da rede."  __Fiocruz__
-
----
-background-image:url("figs/0c_codificacao.png")
-background-size: 50%
-background-position: 100% 100%
-
-A codificação pode gerar erros entre sistemas operativos, em particular com caracteres especiais. UTF-8 é um padrão bem reconhecido entre plataformas.
-
-.pull-left[
-![](figs/encoding.png)
-]
-
----
-background-image:url("figs/0d_terminal.png")
-background-size: 50%
-background-position: 100% 100%
-
-O terminal de git vai dar menos problemas porque windows é diferente de mac e linux
-
 ---
 class: middle, center
 
-# RStudio pronto? RStudio pronto
-
-Um projeto de RStudio na pasta que queríamos + um script que só diz `getwd()`
++ Um projeto de RStudio na pasta que queríamos + um script que só diz `getwd()`
 
 ---
 # FOI!

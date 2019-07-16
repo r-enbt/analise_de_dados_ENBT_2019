@@ -21,7 +21,7 @@ options(htmltools.dir.version = FALSE)
 ```{r xaringan-themer, include = FALSE}
 library(xaringanthemer)
 mono_light(
-  base_color = "#23395b",
+  base_color = "#23395b", white_color = "white",
   header_font_google = google_font("Source Sans Pro"),
   text_font_google   = google_font("Source Sans Pro", "300", "300i"),
   code_font_google   = google_font("Ubuntu Mono"), text_font_size = "22px"
