@@ -40,8 +40,6 @@ library(GGally)
 4. relações entre variáveis
 
 
-
-
 # 1. análise exploratória de dados (AED)
  
 ## a vida sem análise exploratória de dados
@@ -537,6 +535,15 @@ data(iris)
 summary(iris)
 ```
 
+## gráfico de dispersão
+
+\footnotesize
+```{r dispersao, fig.align='center'}
+plot(Sepal.Width ~ Petal.Width, data=iris, col=iris$Species, pch=19)
+legend("topright", legend=unique(iris$Species), pch=19,
+       col=unique(iris$Species))
+```
+
 ## correlação entre as variáveis
 
 \footnotesize
@@ -551,7 +558,7 @@ cor(iris[1:4])
 ## correlação entre as variáveis
 
 ```{r pairs}
-pairs(iris[1:4])
+pairs(iris[1:4], col=iris$Species)
 ```
 
 ## ou ainda melhor correlação entre as variáveis

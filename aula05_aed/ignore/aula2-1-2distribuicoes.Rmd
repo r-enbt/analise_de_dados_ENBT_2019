@@ -1,0 +1,286 @@
+---
+title: "aula 2: modelos, dados & distribuições"
+author: "Sara Mortara"
+date: ""
+output: beamer_presentation
+fonttheme: "professionalfonts"
+
+header-includes:
+  - \usepackage{longtable,booktabs}
+  - \usepackage{graphicx}
+  - \usepackage{float}
+  - \usepackage{xcolor}
+  - \usepackage{subfig}
+  - \definecolor{cor1}{HTML}{E1BD6D}
+  - \definecolor{cor2}{HTML}{EABE94}
+  - \definecolor{cor3}{HTML}{0B775E}
+  - \definecolor{cor4}{HTML}{35274A}
+  - \definecolor{cor5}{HTML}{F2300F}
+  - \setbeamercolor{title}{fg=cor3}
+  - \setbeamercolor{frametitle}{fg=cor4}
+  - \setbeamercolor{structure}{fg=cor5}
+  - \renewcommand\alert[1]{\textcolor{cor5}{#1}}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# colortheme: "orange"
+```
+
+
+```{r, echo=FALSE}
+setwd("~/Dropbox/posdoc/disciplina_modelagem/teoricas")
+library(wesanderson)
+library(knitr)
+
+cor <- wes_palette("Rushmore1") #("FantasticFox1")
+
+```
+
+
+
+```{r, echo=FALSE}
+# lendo os dados da idade da população que usa fraldas
+fraldas <- read.csv("../praticas/dados/idade_fraldas.csv")
+```
+
+
+
+```{r, echo=FALSE}
+# criando NA, nao é para aparecer no código
+fraldas$idade[c(2,17)] <- NA
+```
+
+
+## checando os dados
+
+
+```{r}
+# criando NA, nao é para aparecer no código
+fraldas$idade[c(2,17)] <- NA
+```
+
+\footnotesize
+```{r, echo=TRUE}
+# checando os dados
+head(fraldas)
+tail(fraldas)
+```
+
+
+
+## inspecionando os dados 
+
+```{r, echo=TRUE}
+str(fraldas)
+```
+
+```{r, echo=TRUE}
+summary(fraldas)
+```
+
+
+## perguntas que devemos fazer aos dados #1
+
+ 1.  \pause existem valores faltantes i.e. (\alert{NA}s)? Eles são mesmo faltantes?
+
+
+## teste lógico para encontrar \alert{NA} e \alert{zero}
+
+\scriptsize
+```{r, echo=TRUE}
+is.na(fraldas$idade)
+```
+
+## onde está \alert{NA}
+
+
+```{r, echo=TRUE}
+which(is.na(fraldas$idade))
+```
+
+```{r, echo=TRUE}
+fraldas[c(2,17),]
+```
+
+ vamos substituir NA por 0
+
+```{r, echo=TRUE}
+fraldas$idade[is.na(fraldas$idade)] <- 0
+```
+
+## conferindo se tem \alert{NA}
+
+\scriptsize
+```{r, echo=TRUE}
+is.na(fraldas$idade)
+```
+
+```{r, echo=TRUE}
+sum(is.na(fraldas$idade))
+```
+
+## perguntas que devemos fazer aos dados #2
+
+
+2. \pause existem muitos \alert{zeros}?
+
+
+\scriptsize
+```{r, echo=TRUE}
+fraldas$idade==0
+```
+
+quantos?
+
+```{r, echo=TRUE}
+sum(fraldas$idade==0)
+```
+
+## perguntas que devemos fazer aos dados #3 #4 #5
+
+3. \pause  onde os dados estão centrados? como estão espalhados? são simétricos? enviesados, bimodais?
+
+
+4. \pause  existem valores extremos (outliers)?
+
+
+5. \pause  qual a distribuição da variável?
+
+```{r, echo=TRUE}
+summary(fraldas$idade)
+```
+
+
+## visualizando os dados em um boxplot
+
+
+```{r, fig.align='center', echo=TRUE, fig.width=4, fig.height=4}
+boxplot(fraldas$idade)
+```
+
+
+## visualizando os dados em um histograma
+
+```{r, echo=TRUE, fig.align='center', echo=TRUE, fig.width=5, fig.width=4}
+hist(fraldas$idade)
+```
+
+## separando bebês e vovxs
+
+```{r, echo=TRUE}
+bb <- fraldas[fraldas$idade<10,] 
+vv <- fraldas[fraldas$idade>10,]
+```
+
+
+
+## os novos gráficos: boxplot
+
+```{r, echo=TRUE, fig.width=9, fig.height=4.5, fig.pos="H"}
+par(mfrow=c(1,2))
+boxplot(bb$idade)
+boxplot(vv$idade)
+par(mfrow=c(1,1))
+```
+
+
+
+
+## entendendo o boxplot
+
+```{r, fig.width=6, fig.height=6}
+set.seed(2)
+par(bty="n")
+bp <- rnorm(1000, 0, 0.1)
+boxplot(bp, yaxt="n", xlim=c(0,4), ylim=c(-0.4, 0.4))
+text(x=2.53, y=min(bp), "último ponto (-1,5 x distância entre-quartis)", cex=.9)
+text(x=1.72, y=quantile(bp)[2], "quartil inferior", cex=.9)
+text(x=1.72, y=median(bp), "mediana", cex=.9)
+text(x=1.72, y=quantile(bp)[4], "quartil superior", cex=.9)
+text(x=2.53, y=bp[203], "último ponto (+1,5 x distância entre-quartis)", cex=.9)
+```
+
+
+## os novos gráficos: histograma
+
+```{r, echo=TRUE, fig.width=9, fig.height=4.5}
+par(mfrow=c(1,2))
+hist(bb$idade)
+hist(vv$idade)
+par(mfrow=c(1,1))
+```
+
+
+## tipos de histograma
+
+
+```{r, echo=TRUE, fig.width=9, fig.height=4.5}
+par(mfrow=c(1,2))
+hist(bb$idade)
+hist(bb$idade, probability = TRUE)
+par(mfrow=c(1,1))
+```
+
+## classes do histograma
+
+```{r, echo=TRUE, fig.width=9, fig.height=3}
+par(mfrow=c(1,3))
+hist(bb$idade, breaks=seq(0, max(bb$idade), length=3))
+hist(bb$idade,  breaks=seq(0, max(bb$idade), length=5))
+hist(bb$idade)
+par(mfrow=c(1,1))
+```
+
+## curvas empíricas de densidade probabilística
+
+representa a função que descreve a probabilidade de se encontrar determinado valor
+
+```{r, echo=TRUE, fig.width=3, fig.height=3, fig.align='center'}
+hist(bb$idade, probability = TRUE )
+```
+
+## distribuição se ajusta aos dados?
+
+distribuição discreta e assimétrica \textbf{$\rightarrow$} Poisson?
+
+```{r, echo=TRUE}
+# máximo de idade
+bb.max <- max(bb$idade)
+# lambda
+bb.med <- mean(bb$idade)
+```
+
+## distribuição \alert{Poisson} se ajusta aos dados?
+
+
+```{r, echo=TRUE, fig.width=3, fig.height=3, fig.align='center'}
+hist(bb$idade, probability = TRUE)
+points(dpois(0:bb.max, bb.med), col=cor[5])
+lines(dpois(0:bb.max, bb.med), col=cor[5])
+```
+
+
+## e quais os caminhos para a análise?
+
+
+\center sua \Huge \textbf{\alert{[ H I P Ó T E S E ]}}
+
+
+## depois da \textbf{\alert{[ H I P Ó T E S E ]}}, quais os caminhos
+
+1. \pause entender bem os dados
+
+2. \pause variável resposta é normal? \textbf{$\rightarrow$} lm
+
+3. \pause variável resposta tem outra distribuição \textbf{$\rightarrow$} glm
+
+4. \pause variáveis preditoras hierarquizadas? \textbf{$\rightarrow$} (g)lmm
+
+5. \pause pseudo-replicação no espaço ou no tempo \textbf{$\rightarrow$} (g)lmm
+
+
+
+
+

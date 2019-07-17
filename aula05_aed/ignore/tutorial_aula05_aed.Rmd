@@ -1,0 +1,267 @@
+---
+title: 'Tutorial aula 05: Análise Exploratória de Dados'
+author: "Sara Mortara, Andrea Sanchéz-Tapia & Diogo S. B. Rocha"
+date: "17.07.2019"
+output:
+  html_document:
+    theme: cosmo
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results='hide')
+library(knitr)
+library(kableExtra)
+```
+
+# Parte 1: O quarteto de Anscombe
+
+Vamos agora ao R explorar alguns dados. Primeiro, veja com seus próprios comandos os dados criados pelo [Frank Anscombe](https://en.wikipedia.org/wiki/Frank_Anscombe) (1918-2001). Frank foi um estatístico que dentre suas muitas contribuições para a ciência advogou em prol do uso de gráficos para conhecer os dados. Para provar seu ponto ele criou o conjunto de dados hoje conhecido por **Quarteto de Anscombe**.
+
+Os dados já existem dentro do R, por isso você pode carregá-los usando a função `data`. 
+
+```{r cars}
+data("anscombe")
+```
+
+## Funções básicas para checar os dados
+
+```{r summary, results='hide'}
+dim(anscombe) # dimensao dos dados, N de linhas e N de colunas
+head(anscombe) # seis primeiras linhas dos dados
+class(anscombe) # classe do objeto
+str(anscombe) # estrutura do objeto
+```
+
+## Selecionando colunas dos dados
+
+Vamos fazer a média por das colunas com x.
+
+```{r pressure, results='hide'}
+mean(anscombe$x1)
+mean(anscombe$x2)
+mean(anscombe$x3)
+mean(anscombe$x4)
+```
+
+A mesma tarefa mas agora com apenas uma linha de comando usando a função `apply`.
+
+```{r, results='hide'}
+# o mesmo calculo, agora apenas em 1 linha de comando
+## media de todos os vetores x
+apply(anscombe[,1:4], 2, mean) #aplica uma funcao a todas as linhas de um objeto
+
+## media de todos os vetores y
+apply(anscombe[,5:8], 2, mean)
+```
+
+## Estatísticas básicas
+
+
+```{r, results='hide'}
+# variância dos dados
+apply(anscombe, 2, var) # aplica a funcao var a todas as linhas do objeto
+```
+
+Ententendo a correlação e coeficiente de regressão dos conjuntos x e y. 
+
+```{r, results='hide'}
+# correlação
+cor(anscombe$x1, anscombe$y1)
+cor(anscombe$x2, anscombe$y2)
+cor(anscombe$x3, anscombe$y3)
+cor(anscombe$x4, anscombe$y4)
+
+# coeficiente de regressão
+## primeiro criamos objetos com as regressoes dos quatro conjuntos
+m1 <- lm(anscombe$y1 ~ anscombe$x1)
+m2 <- lm(anscombe$y2 ~ anscombe$x2)
+m3 <- lm(anscombe$y3 ~ anscombe$x3)
+m4 <- lm(anscombe$y4 ~ anscombe$x4)
+## vamos criar agora uma lista com todos os modelos para facilitar o trabalho
+mlist <- list(m1, m2, m3, m4)
+## agora sim podemos calcular de forma menos repetitiva os coeficientes de regressao
+lapply(mlist, coef) 
+```
+
+Os dados têm mesma média, mesma variância, mesma correlação e mesmo valores dos coeficientes (intercepto e inclinação do modelo linear). Em que os dados são diferentes?
+
+```{r, results='hide'}
+anscombe
+```
+
+Os valores parecem difentes. Mas quão diferentes?
+
+```{r, results='hide', fig.show='hide'}
+# funcao par para definir as configuracoes da janela grafica entre em ?par
+par(mfrow=c(2,2), #abre uma janela gráfica com 2 linhas  e 2 colunas
+    las=1, # deixa as legendas dos eixos na vertical
+    bty="l") # tipo do box do grafico em L 
+plot(anscombe$y1 ~ anscombe$x1) #plot das variaveis
+abline(mlist[[1]]) # adicionando a reta prevista pelo modelo de regressao
+plot(anscombe$y2 ~ anscombe$x2)
+abline(mlist[[2]])
+plot(anscombe$y2 ~ anscombe$x3)
+abline(mlist[[3]])
+plot(anscombe$y3 ~ anscombe$x4)
+abline(mlist[[4]])
+par(mfrow=c(1,1)) # retorna a janela grafica para o padrao de 1 linha e 1 coluna
+```
+
+# Parte 2: Uma rotina (entre muitas possíveis) de análise exploratória
+
+## Padrões morfológicos de espécies de *Iris*
+
+O conjunto de dados `iris` que vocês já utilizaram, foi coletado por Edgar Anderson e ficou famoso pelo trabalho de Ronald E. Fisher. Vamos carregar os dados no R. 
+
+```{r, results='hide',echo=FALSE}
+data(iris)
+```
+
+Após carregar o conjunto de dados, use o comando `?iris` para entender mais sobre o conjunto de dados. Vamos então começar com as inspeções básicas do arquivo.
+
+```{r, results='hide'} 
+head(iris)
+summary(iris) 
+```
+
+## Conhecendo as funções `aggregate` e `tapply`
+
+Quantas informações por espécie?
+
+```{r, results="hide"}
+table(iris$Species)
+```
+
+Qual a média das variáveis por espécie? Vamos usar as funções `agreggate` e `tapply`. As duas funções são semelhantes, o que muda são os argumentos e o formato de saída de cada uma delas. 
+
+```{r, results="hide"}
+# media do comprimento de sepala por especie
+tapply(X = iris$Sepal.Length, INDEX = list(iris$Species), FUN = mean)
+# a mesma tarefa, executada por outra funcao. Outros argumentos e outra saída
+aggregate(x = iris$Sepal.Length, by = list(iris$Species), FUN = mean)
+# ainda a mesma tarefa, com a mesma função mas em uma notação diferente
+aggregate(Sepal.Length ~ Species, data=iris, mean)
+```
+
+Podemos fazer o mesmo para as outras variáveis.
+
+```{r}
+aggregate(Sepal.Length ~ Species, data=iris, mean)
+aggregate(Sepal.Width ~ Species, data=iris, mean)
+aggregate(Petal.Length ~ Species, data=iris, mean)
+```
+
+E agora vamos calcular o desvio padrão das variáveis. 
+
+```{r}
+tapply(X = iris$Sepal.Length, INDEX = list(iris$Species), FUN = sd)
+tapply(X = iris$Sepal.Width, INDEX = list(iris$Species), FUN = sd)
+tapply(X = iris$Petal.Length, INDEX = list(iris$Species), FUN = sd)
+tapply(X = iris$Petal.Width, INDEX = list(iris$Species), FUN = sd)
+```
+
+Sempre que você está copiando e colando um comando, pense que existe uma maneira melhor de executar a sequência de tarefas. Afinal, se você tivesse 99 variáveis, copiar e colar 99x um comando não parece uma boa ideia. Veja abaixo uma solução de como calular a média por espécie de todas as variáveis. Para isso, vamos usar o comando `for` e executar todas as tarefas em um mesmo ciclo. 
+
+```{r}
+# criando matriz de 3 colunas - uma para cada sp - e 4 linhas - uma para cada metrica
+medias <- matrix(NA, ncol=3, nrow=4)
+# definindo o nome das colunas e das linhas da matriz
+colnames(medias) <- unique(iris$Species)
+rownames(medias) <- names(iris)[-5]
+for (i in 1:4){
+medias[i,] <- tapply(iris[,i], iris$Species, mean)  
+}
+```
+
+Se você chamar o objeto `medias` deverá ter algo como: 
+
+```{r, echo=FALSE, results="show"}
+knitr::kable(medias) %>% 
+  kable_styling(full_width = F)
+```
+
+## Estatísticas descritivas
+$% fonte: http://ncss-tech.github.io/stats_for_soil_survey/chapters/4_exploratory_analysis/4_exploratory_analysis.html#4_descriptive_statistics$
+
+As princpais estatísticas descritivas que vamos utilizar são:
+
+| Parâmetro     | Descrição     | Função de R  |
+|------|-------------|--------|
+| Média          | média aritimética | mean() |
+| Mediana       | valor central      |   median() |
+| Moda          | valor mais frequente      |   sort(table(), decreasing = TRUE)[1] |
+| Desvio padrão | variação em torno da média | sd() |
+| Quantis | pontos de corte  dividindo uma distribuição de probabilidade  | quantile() |
+
+### Medidas de tendência central
+
+#### Média
+
+$\overline{x}= \frac{\sum^{n}_{i=1}x_i}{n}$
+
+```{r}
+vars <- iris[,-5]
+apply(vars, 2, mean)
+```
+
+
+#### Mediana: 50º quantil, de forma que divide os dados em duas metades
+
+```{r}
+apply(vars, 2, median)
+```
+
+#### Moda: valor mais frequente na amostra
+
+
+```{r}
+freq_sl <- sort(table(iris$Sepal.Length), decreasing = TRUE)
+freq_sl[1]
+```
+
+
+### Medidas de dispersão 
+
+#### Variância: desvio da média
+$s^{2}=\sum^{n}_{i=1}\frac{(x_i−\overline{x})^2}{n−1}$
+
+```{r}
+apply(vars, 2, var)
+```
+
+#### Desvio padrão: raiz quadrada da variância
+
+$s=\sqrt{\sum^{n}_{i=1}\frac{(x_i−\overline{x})^2}{n−1}}$
+
+```{r}
+sd01 <- apply(vars, 2, sd)
+# outra forma:
+sd02 <- apply(vars, 2, function(x) sqrt(var(x)))
+sd01
+sd02
+sd01==sd02
+```
+
+#### Coeficiente de variação: medida relativa de desvio padrão 
+
+$CV=\frac{s}{\overline{x}}\times100$
+
+Não existe no R base uma função para calcular o coeficiente de variação. Isto não é um problema. Vamos formalmente criar nossa primeira função de R. Para isso, usamos a função `function`
+
+```{r}
+cv <- function(x){
+  sd(x)/mean(x)*100
+}
+apply(vars, 2, cv)
+```
+
+#### Quantis ou percentis
+
+É o valor que corta a enésimo % de valores dos dados quando ordenados de forma ascendente. 
+
+```{r}
+apply(vars, 2, quantile)
+```
+
+

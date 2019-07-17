@@ -1,6 +1,6 @@
 ---
-title: 'Tutorial aula 06: Análise Exploratória de Dados'
-author: "Sara Mortara, Andrea Sánchez-Tapia & Diogo S. B. Rocha"
+title: 'Tutorial aula 05: Análise Exploratória de Dados'
+author: "Sara Mortara, Andrea Sanchéz-Tapia & Diogo S. B. Rocha"
 date: "17.07.2019"
 output: 
     html_document:
@@ -104,9 +104,9 @@ plot(anscombe$y1 ~ anscombe$x1) #plot das variaveis
 abline(mlist[[1]]) # adicionando a reta prevista pelo modelo de regressao
 plot(anscombe$y2 ~ anscombe$x2)
 abline(mlist[[2]])
-plot(anscombe$y3 ~ anscombe$x3)
+plot(anscombe$y2 ~ anscombe$x3)
 abline(mlist[[3]])
-plot(anscombe$y4 ~ anscombe$x4)
+plot(anscombe$y3 ~ anscombe$x4)
 abline(mlist[[4]])
 par(mfrow=c(1,1)) # retorna a janela grafica para o padrao de 1 linha e 1 coluna
 ```
@@ -270,7 +270,7 @@ apply(vars, 2, cv)
 # sumario de 5 numeros
 apply(vars, 2, quantile)
 # 5%, 50% e 95%
-apply(vars, 2, quantile, probs=c(0.05, 0.5, 0.95))
+apply(vars, 2, quantile, probs=c(0.5, 0.5, 0.95))
 ```
 
 #### Intervalo (*range*)
@@ -521,7 +521,7 @@ pairs(vars)
 
 O pacote de R `GGally` fornece uma saída muito interessante para avaliar as relações entre variáveis pois já mostra o valor de correlação entre variáveis e a curva de densidade probabilística de cada uma das variáveis. 
 
-```{r ggally, message=FALSE}
+```{r ggally}
 # carregando o pacote GGally
 ## se você não tiver o pacote usar:
 # install.packages("GGally")
@@ -530,3 +530,7 @@ library(GGally)
 ggpairs(vars)
 ```
 
+### Regressão linear
+
+
+### PCA
