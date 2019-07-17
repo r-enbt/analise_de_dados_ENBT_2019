@@ -192,7 +192,6 @@ How many people have accidentally done something that made them frustrated or sa
 ### Aula 8. Criando relatorios em RMarkdown
 + RMarkdown
 
-
 ## Dia 5
 
 ### Aula 9. Elaboração de mapas em R
