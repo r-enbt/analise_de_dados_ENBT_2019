@@ -44,7 +44,7 @@ __Diogo Souza Bezerra Rocha__ Biólogo Bacharel em Ciências Biológicas, com ê
 
 |  Hora  |  Segunda|  Terça|  Quarta|  Quinta|  Sexta|  
 |-------:|------:|------:|------:|------:|------:|  
-|  09h-13h |Aula 1 - Introdução| Aula 3 - Limpeza de dados|  Aula 5 - Análise exploratória de dados|  Aula 7 - Prática| Aula 9 - Rmarkdown|  
+|  09h-13h |Aula 1 - Introdução| Aula 3 - Limpeza de dados|  Aula 5 - Análise exploratória de dados|  Aula 7 - Graficos | Aula 9 - Rmarkdown|  
 |  14h-18h |Aula 2 - Prática|  Aula 4 - Prática| Aula 6 - Prática|  Aula 8 - Prática|  Aula 10 - R-ecursos|  
 
 
@@ -179,6 +179,7 @@ How many people have accidentally done something that made them frustrated or sa
 
 ### Aula 6. Prática de análise exploratória de dados
 + Seguir tutorial da prática de análise exploratória de dados
++ Fazer o exercicio e o commit do script com a resposta
 
 ## Dia 4
 
@@ -188,15 +189,13 @@ How many people have accidentally done something that made them frustrated or sa
 + Noções básicas de cores e resolução de arquivos
 
 
-### Aula 8. Prática de gráficos em R
-+ Seguir tutorial da prática de análise exploratória de dados
+### Aula 8. Criando relatorios em RMarkdown
++ RMarkdown
+
 
 ## Dia 5
 
-### Aula 9. Elaboração de relatórios em RMarkdown
-
-+ RMarkdown
-+ Gerenciamento de bibliografias (Zootero/Mendeley)
+### Aula 9. Elaboração de mapas em R
 
 ### Aula 10. R-ecursos para biólog@s
 + Visão geral de pacotes em R para análises ecológicas, sistema de informação geográfica, filogenias...
