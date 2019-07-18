@@ -25,10 +25,11 @@ quantil-quantil |	qqnorm()	| geom_qq() |
 box-plot | boxplot() | geom_boxplot() |
 dispersão | plot() | geom_point() |
 
-Nesta aula vamos explorar os gráficos de dispersão e o queridinho box-plot. 
+Nesta aula vamos explorar os gráficos de dispersão, o queridinho box-plot e uma opção de gráfico de pontos com medidas de erro. 
 
 ## Gráfico de dispersão
 
+### `plot` com `abline` do modelo de regressão
 Carregue o arquivo contendo dados de salário de homens e mulheres em empresas de tecnologia que está no diretório da aula de hoje data/salario.csv. Salve o arquivo em sua pasta /data e vamos reproduzir o gráfico da aula. 
 
 ```{r }
@@ -78,7 +79,7 @@ abline(a=coefm[1], b=coefm[2],
 
 ```
 
-## Exportando o gráfico com as funções `png()` e `dev.off()`
+### Exportando o gráfico com as funções `png()` e `dev.off()`
 
 Queremos exportar esse gráfico. Para isso, primeiro crie um diretório /figs em seu repositório. Para exportar o gráfico vamos usar a função png, especificando a resolução e dimensões da figura. Quando criamos gráficos com a função `png` o que fazemos é: 
 
@@ -119,7 +120,7 @@ dev.off()
 
 ```
 
-## Usando a função `legend()` em gráficos de dispersão
+### Usando a função `legend()` em gráficos de dispersão
 
 Vamos fazer o mesmo gráfico anterior, mas agora com todos os pontos em uma mesma janela gráfica. Agora, vamos usar a função `legend()` para diferenciar os pontos. 
 
@@ -146,22 +147,66 @@ legend("topleft", legend=c("homens", "mulheres"),
        lty=1, bty='n')
 ```
 
-## Box-plot 
+## Box-plot
 
 Vamos voltar à construção de box-plots. Desta vez vamos construir box-plots para cada espécie e variável com cada espécie de uma cor. A paleta de cores aqui utilizada é inspirada no filme [Life Aquatic](https://en.wikipedia.org/wiki/The_Life_Aquatic_with_Steve_Zissou) do diretor [Wes Anderson](https://en.wikipedia.org/wiki/Wes_Anderson) e foi gerada no pacote de R [wesanderson](https://github.com/karthik/wesanderson). 
 
+### Usando o argumento `font`
 
+E se quisermos colocar o nome das espécies em *itálico* no eixo? Isto é possível com o argumento `font` da função `axis`. As funções `text` e `mtext` também tem a opção `font`. Vamos ver como isto fica.  
 
 ```{r }
+# criando vetor de cores
 cores <- c("#3B9AB2", "#EBCC2A", "#F21A00")
+# criando vetor com o nome das espécies
+sp <- paste("I.", unique(iris$Species), sep=" ")
 ```
+
 
 ```{r, fig.show='hide'}
 par(mfrow=c(2,2), bty='l', las=1)
-boxplot(Sepal.Length ~ Species, data=iris, xlab="", col=cores)
-boxplot(Sepal.Width ~ Species, data=iris, col=cores)
-boxplot(Petal.Length ~ Species, data=iris, xlab="", col=cores)
-boxplot(Petal.Width ~ Species, data=iris, col=cores)
+boxplot(Sepal.Length ~ Species, data=iris, xlab="", col=cores,
+        xaxt="n")
+axis(1, at=1:3, labels=sp, font=3)
+boxplot(Sepal.Width ~ Species, data=iris, xlab="", col=cores, 
+         xaxt="n")
+axis(1, at=1:3, labels=sp, font=3)
+boxplot(Petal.Length ~ Species, data=iris,  col=cores,
+         xaxt="n")
+axis(1, at=1:3, labels=sp, font=3)
+boxplot(Petal.Width ~ Species, data=iris, col=cores,
+         xaxt="n")
+axis(1, at=1:3, labels=sp, font=3)
 par(mfrow=c(1,1))
+
+```
+
+## Gráfico de média com desvio padrão com `arrows`
+
+Vamos criar um `data.frame` com a média e desvio padrão de cinco variáveis. Atenção: estamos usando a função `set.seed` para que os valores gerados com a função `sample` sejam iguais para todxs os computadores.
+
+```{r }
+# fixando uma semente de numeros aleatorios para manter o mesmo resultado no sample
+set.seed(42)
+# criando um data frame com valores medios e desvio padrão de uma variável
+d2 <- data.frame(name=letters[1:5],
+                 value=sample(seq(4,15),5),
+                 sd=c(1,0.2,3,2,4))
+
+```
+
+Agora vamos: 
+
+1. Fazer o plot dos pontos
+2. Adicionar a configuração do eixo x na mão com a função `axis`
+3. Adicionar os valores de desvio padrão em torno da média com a função `arrows`
+
+```{r, fig.show='hide'}
+plot(x=1:5, d2$value, las=1, bty='l', ylim=c(0, 18), pch=19, xaxt='n',
+     xlab="names", ylab="value")
+axis(1, at=1:5, labels=d2$name)
+arrows(x0=1:5,
+         y0=d2$value+d2$sd,
+         y1=d2$value-d2$sd, angle=90, length=0.05, code=3)
 
 ```

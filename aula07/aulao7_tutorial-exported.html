@@ -390,10 +390,15 @@ summary {
 <div id="TOC">
 <ul>
 <li><a href="#funcoes-basicas-para-graficos-no-r-base-e-ggplot2">Funções básicas para gráficos no R base e ggplot2:</a><ul>
-<li><a href="#grafico-de-dispersao">Gráfico de dispersão</a></li>
+<li><a href="#grafico-de-dispersao">Gráfico de dispersão</a><ul>
+<li><a href="#plot-com-abline-do-modelo-de-regressao"><code>plot</code> com <code>abline</code> do modelo de regressão</a></li>
 <li><a href="#exportando-o-grafico-com-as-funcoes-png-e-dev.off">Exportando o gráfico com as funções <code>png()</code> e <code>dev.off()</code></a></li>
 <li><a href="#usando-a-funcao-legend-em-graficos-de-dispersao">Usando a função <code>legend()</code> em gráficos de dispersão</a></li>
-<li><a href="#box-plot">Box-plot</a></li>
+</ul></li>
+<li><a href="#box-plot">Box-plot</a><ul>
+<li><a href="#usando-o-argumento-font">Usando o argumento <code>font</code></a></li>
+</ul></li>
+<li><a href="#grafico-de-media-com-desvio-padrao-com-arrows">Gráfico de média com desvio padrão com <code>arrows</code></a></li>
 </ul></li>
 </ul>
 </div>
@@ -443,9 +448,11 @@ summary {
 </tr>
 </tbody>
 </table>
-<p>Nesta aula vamos explorar os gráficos de dispersão e o queridinho box-plot.</p>
+<p>Nesta aula vamos explorar os gráficos de dispersão, o queridinho box-plot e uma opção de gráfico de pontos com medidas de erro.</p>
 <div id="grafico-de-dispersao" class="section level2">
 <h2>Gráfico de dispersão</h2>
+<div id="plot-com-abline-do-modelo-de-regressao" class="section level3">
+<h3><code>plot</code> com <code>abline</code> do modelo de regressão</h3>
 <p>Carregue o arquivo contendo dados de salário de homens e mulheres em empresas de tecnologia que está no diretório da aula de hoje data/salario.csv. Salve o arquivo em sua pasta /data e vamos reproduzir o gráfico da aula.</p>
 <pre class="r"><code># lendo os dados
 sal &lt;- read.csv(&quot;data/salarios.csv&quot;)
@@ -486,8 +493,8 @@ mtext(&quot;B&quot;, 3, adj=0, font=2)
 abline(a=coefm[1], b=coefm[2],
        col=&#39;navy&#39;, lwd=2)</code></pre>
 </div>
-<div id="exportando-o-grafico-com-as-funcoes-png-e-dev.off" class="section level2">
-<h2>Exportando o gráfico com as funções <code>png()</code> e <code>dev.off()</code></h2>
+<div id="exportando-o-grafico-com-as-funcoes-png-e-dev.off" class="section level3">
+<h3>Exportando o gráfico com as funções <code>png()</code> e <code>dev.off()</code></h3>
 <p>Queremos exportar esse gráfico. Para isso, primeiro crie um diretório /figs em seu repositório. Para exportar o gráfico vamos usar a função png, especificando a resolução e dimensões da figura. Quando criamos gráficos com a função <code>png</code> o que fazemos é:</p>
 <ol style="list-style-type: decimal">
 <li><p>anunciar qual extensão e arquivo vamos plotar o gráfico com a função <code>png()</code></p></li>
@@ -523,8 +530,8 @@ dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
 </div>
-<div id="usando-a-funcao-legend-em-graficos-de-dispersao" class="section level2">
-<h2>Usando a função <code>legend()</code> em gráficos de dispersão</h2>
+<div id="usando-a-funcao-legend-em-graficos-de-dispersao" class="section level3">
+<h3>Usando a função <code>legend()</code> em gráficos de dispersão</h3>
 <p>Vamos fazer o mesmo gráfico anterior, mas agora com todos os pontos em uma mesma janela gráfica. Agora, vamos usar a função <code>legend()</code> para diferenciar os pontos.</p>
 <pre class="r"><code># plot dos valores de salario dos homens
 plot(salario ~ experiencia, data=sal[sal$sexo==&quot;H&quot;,], 
@@ -547,16 +554,54 @@ legend(&quot;topleft&quot;, legend=c(&quot;homens&quot;, &quot;mulheres&quot;),
        col=c(&quot;tomato&quot;, &quot;navy&quot;),
        lty=1, bty=&#39;n&#39;)</code></pre>
 </div>
+</div>
 <div id="box-plot" class="section level2">
 <h2>Box-plot</h2>
 <p>Vamos voltar à construção de box-plots. Desta vez vamos construir box-plots para cada espécie e variável com cada espécie de uma cor. A paleta de cores aqui utilizada é inspirada no filme <a href="https://en.wikipedia.org/wiki/The_Life_Aquatic_with_Steve_Zissou">Life Aquatic</a> do diretor <a href="https://en.wikipedia.org/wiki/Wes_Anderson">Wes Anderson</a> e foi gerada no pacote de R <a href="https://github.com/karthik/wesanderson">wesanderson</a>.</p>
-<pre class="r"><code>cores &lt;- c(&quot;#3B9AB2&quot;, &quot;#EBCC2A&quot;, &quot;#F21A00&quot;)</code></pre>
+<div id="usando-o-argumento-font" class="section level3">
+<h3>Usando o argumento <code>font</code></h3>
+<p>E se quisermos colocar o nome das espécies em <em>itálico</em> no eixo? Isto é possível com o argumento <code>font</code> da função <code>axis</code>. As funções <code>text</code> e <code>mtext</code> também tem a opção <code>font</code>. Vamos ver como isto fica.</p>
+<pre class="r"><code># criando vetor de cores
+cores &lt;- c(&quot;#3B9AB2&quot;, &quot;#EBCC2A&quot;, &quot;#F21A00&quot;)
+# criando vetor com o nome das espécies
+sp &lt;- paste(&quot;I.&quot;, unique(iris$Species), sep=&quot; &quot;)</code></pre>
 <pre class="r"><code>par(mfrow=c(2,2), bty=&#39;l&#39;, las=1)
-boxplot(Sepal.Length ~ Species, data=iris, xlab=&quot;&quot;, col=cores)
-boxplot(Sepal.Width ~ Species, data=iris, col=cores)
-boxplot(Petal.Length ~ Species, data=iris, xlab=&quot;&quot;, col=cores)
-boxplot(Petal.Width ~ Species, data=iris, col=cores)</code></pre>
+boxplot(Sepal.Length ~ Species, data=iris, xlab=&quot;&quot;, col=cores,
+        xaxt=&quot;n&quot;)
+axis(1, at=1:3, labels=sp, font=3)
+boxplot(Sepal.Width ~ Species, data=iris, xlab=&quot;&quot;, col=cores, 
+         xaxt=&quot;n&quot;)
+axis(1, at=1:3, labels=sp, font=3)
+boxplot(Petal.Length ~ Species, data=iris,  col=cores,
+         xaxt=&quot;n&quot;)
+axis(1, at=1:3, labels=sp, font=3)
+boxplot(Petal.Width ~ Species, data=iris, col=cores,
+         xaxt=&quot;n&quot;)
+axis(1, at=1:3, labels=sp, font=3)</code></pre>
 <pre class="r"><code>par(mfrow=c(1,1))</code></pre>
+</div>
+</div>
+<div id="grafico-de-media-com-desvio-padrao-com-arrows" class="section level2">
+<h2>Gráfico de média com desvio padrão com <code>arrows</code></h2>
+<p>Vamos criar um <code>data.frame</code> com a média e desvio padrão de cinco variáveis. Atenção: estamos usando a função <code>set.seed</code> para que os valores gerados com a função <code>sample</code> sejam iguais para todxs os computadores.</p>
+<pre class="r"><code># fixando uma semente de numeros aleatorios para manter o mesmo resultado no sample
+set.seed(42)
+# criando um data frame com valores medios e desvio padrão de uma variável
+d2 &lt;- data.frame(name=letters[1:5],
+                 value=sample(seq(4,15),5),
+                 sd=c(1,0.2,3,2,4))</code></pre>
+<p>Agora vamos:</p>
+<ol style="list-style-type: decimal">
+<li>Fazer o plot dos pontos</li>
+<li>Adicionar a configuração do eixo x na mão com a função <code>axis</code></li>
+<li>Adicionar os valores de desvio padrão em torno da média com a função <code>arrows</code></li>
+</ol>
+<pre class="r"><code>plot(x=1:5, d2$value, las=1, bty=&#39;l&#39;, ylim=c(0, 18), pch=19, xaxt=&#39;n&#39;,
+     xlab=&quot;names&quot;, ylab=&quot;value&quot;)
+axis(1, at=1:5, labels=d2$name)
+arrows(x0=1:5,
+         y0=d2$value+d2$sd,
+         y1=d2$value-d2$sd, angle=90, length=0.05, code=3)</code></pre>
 </div>
 </div>
 
