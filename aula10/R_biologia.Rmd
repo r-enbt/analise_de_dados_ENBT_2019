@@ -1,7 +1,7 @@
 ---
 title: "Disciplina: Projetos de análise de dados usando R"
-subtitle: "Dia 5, aula 2: R para biólogos, ecólogos e taxônomos"
-author: "Andrea Sánchez Tapia, Sara Mortara, Diogo Rocha"
+subtitle: "Dia 5: R para biólogos, ecólogos e taxonomistas"
+author: "Andrea Sánchez-Tapia, Sara Mortara, Diogo S. B. Rocha"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
@@ -48,7 +48,7 @@ https://cran.r-project.org/web/views/Multivariate.html
 ---
 # Análise multivariada em R
 
-+ Análise multivaraiada em geral: Legendre & Legendre - Numerical Ecology
++ Análise multivariada em geral: Legendre & Legendre - Numerical Ecology
 + Cajo Ter Braak
 + Página do Legendre Lab
 + Página do Jari Oksanen
@@ -145,5 +145,53 @@ ENMeval, spThin, presenceabsence
 + Os pacotes: preparação dos dados, limpeza, partição dos dados em dados de treino e teste dos algoritmos, algoritmos, medidas de desempenho e avaliação. 
 
 `
+
+---
+# Instalar pacotes
+
+
+```{r, eval =F}
+install.packages("vegan")
+```
+
+```{r, eval =T}
+library("vegan")
+citation("vegan")
+```
+
+---
+
+# O help de `R`
+
+* `R` possui ampla documentação de cada função e pacote.
+
+```{r,eval = FALSE}
+?anova
+??anova
+help(anova)
+```
+
+* A estrutura do help é sempre similar: Description, Usage, Arguments... Details, Notes, References, See Also, Examples 
+
+* O uso de todas as funções é:   
+`nome da função(argumentos)`
+
+---
+# Onde buscar ajuda?
+
++ A pessoa do seu lado.
++ Colegas mais experientes
++ google
++ Stack Overflow: leia bem as instruções para postar perguntas e tente dar exemplos
++ A lista de emails de `R`-help: um monte de pessoas lê e posta mas o tom pode ser um pouco seco. 
++ Os autores do pacote ou os repositorios de github 
++ A comunidade de RStudio community.rstudio.com
++ Listas de emails específicas (GIS, phylogenetics, etc…)
++ Twitter, hashtag `#rstats`
+
+
+https://datacarpentry.org/`R`-ecology-lesson/00-before-we-start.html  
+http://datacarpentry.org/semester-biology/materials/googling-for-help/  
+http://community.rstudio.com
 
 
