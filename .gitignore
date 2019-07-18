@@ -8,3 +8,4 @@ README.html
 /ref
 /ignore
 *.R~
+*.Rmd~
