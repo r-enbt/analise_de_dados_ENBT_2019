@@ -179,6 +179,134 @@ head(com_matrix[,1:4])
 ---
 ## Análises filogenéticas
 
+Estrutura de dados
+
+```{r, message=FALSE}
+library(picante)
+data(phylocom)
+names(phylocom)
+
+phy <- phylocom$phylo
+comm <- phylocom$sample
+traits <- phylocom$traits
+
+```
+
+---
+## Filogenia
+
+```{r }
+phy
+```
+
+---
+## Dados de comunidade
+
+
+```{r }
+comm[,1:13]
+
+```
+
+---
+## 
+
+
+--- 
+## Dados de atributos
+
+```{r }
+head(traits)
+
+traitA <- df2vec(traits, "traitA")
+head(traitA)
+```
+
+---
+## Visualizando árvores e dados
+
+
+```{r }
+prunedphy <- prune.sample(comm, phy)
+prunedphy
+```
+
+---
+## Visualizando uma árvore
+
+
+```{r, eval=FALSE }
+par(mfrow = c(2, 2))
+for (i in names(traits)) {
+plot(phy, show.tip.label = FALSE, main = i)
+7
+tiplabels(pch = 22, col = traits[, i] + 1, bg = traits[, i] + 1, cex = 1.5)
+}
+```
+
+
+---
+## Visualizando uma árvore
+
+
+```{r, echo=FALSE}
+par(mfrow = c(2, 2))
+for (i in names(traits)) {
+plot(phy, show.tip.label = FALSE, main = i)
+7
+tiplabels(pch = 22, col = traits[, i] + 1, bg = traits[, i] + 1, cex = 1.5)
+}
+```
+
+---
+## Diversidade filogenética
+
+```{r }
+pd.result <- pd(comm, phy, include.root = TRUE)
+pd.result
+```
+
+---
+## Distância filogenética média MPD e sesMPD
+
+```{r }
+phydist <- cophenetic(phy)
+phydist[1:13,1:13]
+```
+
+---
+## Distância filogenética média MPD e sesMPD
+
+```{r }
+ses.mpd.result <- ses.mpd(comm, phydist, null.model = "taxa.labels",
+                          abundance.weighted = FALSE, runs = 99)
+ses.mpd.result
+```
+
+---
+## Modelos lineares (lm), modelos lineares generalizados (glm) e modelos lineares generalizados mistos (glmm)
+
++ Ben Bolker <3: [Ecological Models and Data in R](http://emdbolker.wikidot.com/)
+
++ Michael Crawley: [The R Book](https://onlinelibrary.wiley.com/doi/book/10.1002/9781118448908)
+
++ Alain Zuur: [Highland Statistics Ltd.](https://www.highstat.com/)
+
++ Burnham & Anderson: [Model Selection and Multimodel Inference](https://www.springer.com/gp/book/9780387953649)
+
+
+---
+## Pacotes (g)lm(m)
+
++ `stats` e `MASS` no R base com funções `lm` e `glm`
+
++ `lme4` para modelos mistos
+
++ `MuMIn` para seleção de modelos
+
++  `bbmle` ferramentas para modelagem B.Bolker <3 
+
++ `MCMCglmm`, `glmmTMB` pacotes só com consoantes 
 
 ---
 ## Modelagem de nicho ecológico
