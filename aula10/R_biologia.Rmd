@@ -9,11 +9,12 @@ output:
     nature:
       highlightStyle: github
       highlightLines: true
-      countIncrementalSlides: true
+      countIncrementalSlides: false
 ---
 
 # As respostas que vocês deram
  
+
 + Análise exploratória
 + Modelos lineares
 + Análise multivariada
@@ -25,8 +26,12 @@ output:
 
 # Como começar?
 
+
+---
+# Análise multivariada
+
 + Estudando - R não resolve nada por si só
-+ Livros da área: Legendre & Legendre Numerical ecology - Borcard et al 1999 Numerical ecology using R
++ Livros da área: Legendre & Legendre Numerical ecology - Borcard et al 1999 Numerical ecology using R 
 + A seção de métodos dos artigos científicos
 + As __vignettes__ dos pacotes 
 + As páginas web (__ISSO AINDA EXISTE__) dos autores - Legendre lab, Oksanen 
@@ -65,26 +70,35 @@ citation(vegan)
 
 --
 + Quais pacotes? 
+
 + Com calcular medidas de distância?
+
 + Como fazer classificação, análises de agrupamento (_cluster analysis_)?
+
 + Análise de componentes principais
+
 + Como e onde executar outros métodos de ordenação?
 
 ---
 
 # Alguns pacotes de análise multivariada em R
 
---
-+ Quais pacotes? [vegan]() e [ade4](), [factomineR]() entre outros
-+ Como calcular medidas de distância? [dist()]() de base, [vegdist()]() de vegan
++ Quais pacotes? __vegan__ e __ade4__, __factomineR__ entre outros
+
++ Como calcular medidas de distância? __dist()__ de base, [vegdist()]() de vegan
+
 + Como fazer classificação, análises de agrupamento (_cluster analysis_)? [hclust]() de stats - 
+
 + Análise de componentes principais `stats::prcomp()`, `vegan::rda()`
+
 + Como e onde executar outros métodos de ordenação?
 
-
 + Classificação: `stats::hclust()`.
+
 + vegan Oksanen et al 
+
 + `ade4` - grupo francês
+
 + factomineR
 
 ---
@@ -94,6 +108,7 @@ Quais medidas de distância e por quê? qual método de agrupamento e por quê?
 Qual método de ordenação e por quê? 
 
 `¯\_(ツ)_/¯`
+
 
 ---
 
@@ -113,11 +128,49 @@ Scripts de artigos científicos
 Pacotes FD, vegan, labDSV, 
 Literatura científica: Sandrine Pavoine, Carlo Ricotta, André Dias, Francesco de Bello entre outros. Scripts com cálculos de índices de diversidade, comparação entre medidas de diversidade funcional e filogenética etc. 
 
+
+---
+# Formato dos dados
+
+```{r, echo = F, eval = F}
+library(vegan)
+library(tidyr)
+library(dplyr)
+BCI %>% tibble::rownames_to_column("parcela") %>%
+  gather(especie, n, -1) %>% arrange(parcela) %>% write.csv("./aula10/data/BCI.csv")
+```
+
+```{r, echo = F}
+bci <- read.csv("./data/BCI.csv", row.names = 1)
+head(bci)
+tail(bci)
+```
+---
+## Precisamos do formato com as espécies nas colunas
+
+```{r}
+length(unique(bci$especie))
+com_matrix <- tidyr::spread(bci, especie, n,
+                            fill = 0)
+head(com_matrix[,1:4])
+```
+
+---
+
+```{r}
+com_matrix <- tibble::column_to_rownames(com_matrix, "parcela")
+head(com_matrix[,1:4])
+```
+
+---
+![]("./figs/4thcorner.jpg")
+
 ---
 ## Análises filogenéticas
 
 + Como é um _workflow_ de análise em filogenia? 
-+ Em ecologia, ler, modificar e escrever árvores filogenéticas, plotar, anotar. + Árvores filogenéticas: formatos Nexus e Newick
++ Em ecologia, ler, modificar e escrever árvores filogenéticas, plotar, anotar.
++ Árvores filogenéticas: formatos Nexus e Newick
 
 ```
 ((A, B), C);
@@ -144,7 +197,7 @@ ENMeval, spThin, presenceabsence
     
 + Os pacotes: preparação dos dados, limpeza, partição dos dados em dados de treino e teste dos algoritmos, algoritmos, medidas de desempenho e avaliação. 
 
-`
+
 
 ---
 # Instalar pacotes
@@ -184,13 +237,12 @@ help(anova)
 + google
 + Stack Overflow: leia bem as instruções para postar perguntas e tente dar exemplos
 + A lista de emails de `R`-help: um monte de pessoas lê e posta mas o tom pode ser um pouco seco. 
-+ Os autores do pacote ou os repositorios de github 
++ Os autores do pacote ou os repositórios de github 
 + A comunidade de RStudio community.rstudio.com
 + Listas de emails específicas (GIS, phylogenetics, etc…)
 + Twitter, hashtag `#rstats`
 
 
-https://datacarpentry.org/`R`-ecology-lesson/00-before-we-start.html  
 http://datacarpentry.org/semester-biology/materials/googling-for-help/  
 http://community.rstudio.com
 
