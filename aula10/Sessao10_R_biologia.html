@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Disciplina: Projetos de análise de dados usando R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Andrea Sánchez-Tapia, Sara Mortara, Diogo S.B. Rocha" />
+    <meta name="date" content="2019-07-22" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Disciplina: Projetos de análise de dados usando R
+## Dia 5: R para biólogos, ecólogos e taxonomistas
+### Andrea Sánchez-Tapia, Sara Mortara, Diogo S.B. Rocha
+### 2019-07-22
+
+---
+
+
+
+
+
+
+# Fluxo de trabalho
+
++ Não faça um script único para todas as análises
+    + `01_ler_formatar_dados.R`
+    + `02_diversidade.R`
+    + `03_pca.R`
+    + `04_simulacoes.R`
+    `...`
+
+--
+
++ Idealmente um script começa lendo algum dado e termina __escrevendo__ algum resultado.      
+
+--
+
++ O script seguinte pode __ler dados brutos__ ou __resultados de scripts anteriores__. 
+
+---
+# Exemplo
+
+.pull-left[
++ `R/01_data_clean.R`
+]
+.pull-right[
++ lê __`data/dados_brutos.csv`__
++ escreve __`data/dados_limpos.csv`__
+]
+
+--
+
+.pull-left[
+
++ `R/02_diversidade.R`
+]
+.pull-right[
++ lê __`data/dados_limpos.csv`__
++ escreve __`results/02_diversidade.csv`__   __`figs/02_diversidade.png`__
+]
+
+---
+# Exemplo
+
+.pull-left[
++ `R/03_pca.R`
+]
+.pull-right[
++ lê __`data/dados_limpos.csv`__
++ escreve __`figs/03_pca.png`__
+]
+
+--
+
+.pull-left[
++ `R/04_simulacoes.R`
+]
+.pull-right[
++ lê __`data/dados_limpos.csv`__
++ salva __`results/04_simulacoes.rda`__   __`figs/04_simulacoes.png`__
+]
+
+---
+# Exemplo
+
+Se um objeto for pesado, ou demora muito para rodar, ele pode ser salvo como um objeto de r (__`.rda`__)  
+exemplo: __`save(objeto, "./results/04_simulacoes.rda")`__
+
++ Scripts seguintes podem começar carregando esses objetos: 
+
+Exemplo: no script `05_analisando_simulacoes.R`
+
+__`load("results/04_simulacoes.rda)`__
+
+_Mas nunca salve o workspace _
+
+
+---
+class: inverse, middle, center
+
+# A organização de cada script
+
+.footnote[Prints tomados de swcarpentry.github.io/r-novice-inflammation/06-best-practices-R]
+
+---
+# Cada script
+
++ Um cabeçalho em cada script contando quem, como, quando, onde, porque __METADADOS__
+
+![](./figs/01meta.png)
+--
+
++ Uma porção carregando todos os pacotes que serão necessários desde o início com `library()`*  &lt;!--library da erro quando há um error enquanto require nãõ diz nada--&gt;
+
+![](./figs/02library.png)
+
+---
+# Cada script
+
++  Lendo os dados que serão necessários (__workspace vazio__)
+
+![](./figs/01read.png)
+
+
+--
+
++ Codificando qualquer variável que não vai mudar 
+
+--
+
++ Comentando profusamente cada etapa
+  
+--
+
++ Escrevendo no HD o resultado de cada etapa.
+
+---
+# Cada script 
+
++ O script deve poder ser rodado em sequência desde o início até o fim. 
+    + Sem repetições,
+    + Linhas fora da ordem
+    + Chamadas que não fecham (`png` ---&gt; `dev.off()`)
+
++ Você deve poder apagar o workspace no meio da sessão e reconstruir
+
++ Não defina funções dentro do script. Bote as funções em um script e pasta aparte __`/fct/editar.R`__ e chame via __`source()`__.
+
+![](./figs/03source.png)
+
+---
+# Algumas dicas adicionais
+
++ Use nomes informativos e concisos
+    + __`a &lt;- `__ NO
+
++ Não use nomes já existentes: `cor`
+
++ Use nomes para variáveis (__`tabela`__) e verbos para funções (__`editar()`__)
+
++ Seja consistente no estilo 
+   + `camelCase` ou `under_scores`?
+   + Espaços, indentações
+
++ __Se copiar e colar mais de três vezes é hora de escrever um loop ou uma função__
+
+
+---
+# Mais dicas
+
++ https://owi.usgs.gov/blog/intro-best-practices/
++ https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/
++ https://www.r-bloggers.com/r-code-best-practices/
++ https://www.tidyverse.org/articles/2017/12/workflow-vs-script/
+---
+class: inverse, center, middle
+
+---
+## Fazendo as análises que me interessam - como começar?
+
++ Estudando - R não resolve nada por si só
++ __Hipótese(s) embasadas na teoria__
++ Publicações
++ __Não foquem apenas nas ferramentas__
+
+--
+
+### É uma pergunta de teoria ou de R?
+
+![](https://media.giphy.com/media/3o7buirYcmV5nSwIRW/giphy.gif)
+
+
+---
+## Buscar ajuda
+
++ Google
++ Listas de emails específicas (GIS, phylogenetics, etc…)
++ Os autores do pacote ou os repositórios de github 
++ Research Gate
++ Stack Overflow: leia bem as instruções para postar perguntas e tente dar exemplos
+
+---
+# R Task views
+
+Alguns pacotes organizados por temas, curados por um especialista
+ 
++ [https://cran.r-project.org/web/views/](https://cran.r-project.org/web/views/)
++ [https://cran.r-project.org/web/views/Multivariate.html](https://cran.r-project.org/web/views/Multivariate.html)
++ [https://cran.r-project.org/web/views/Phylogenetics.html](https://cran.r-project.org/web/views/Phylogenetics.html)
+---
+background-image: url(figs/numerical_ecology.png)
+background-size: 30%
+background-position: 50% 70%
+
+# Análise multivariada
+
++ Legendre &amp; Legendre (2012) Numerical ecology - 
+
+
+---
+# Outras fontes de informação
+
++ Borcard et al 1999 Numerical ecology using R 
++ A seção de métodos dos artigos científicos
++ As __vignettes__ dos pacotes 
++ Páginas web dos autores das técnicas de análise
+    + Cajo Ter Braak
+    +  [Legendre Lab](http://adn.biol.umontreal.ca/~numericalecology/indexEn.html)
+    + [Jari Oksanen](http://cc.oulu.fi/~jarioksa/old_index.html)
++ Help do pacote vegan
+
+---
+# Pacotes de análise multivariada em R
+
++ Quais pacotes?
+    + __vegan__ e __ade4__, __factomineR__ entre outros
++ Como calcular medidas de distância? 
+    + __dist()__ de base, [vegdist()]() de vegan
++ Como fazer análises de agrupamento (_cluster analysis_)? 
+    + [hclust]() de stats - 
++ Análise de componentes principais
+    + `stats::prcomp()`, `vegan::rda()`
+
+---
+class: middle, center
+
+ANTES DISSO: 
+
+Quais medidas de distância e por quê?  
+Classificação ou ordenação?  
+Classificação supervisionada ou não?   
+Qual método de agrupamento e por quê?  
+Qual método de ordenação e por quê?   
+
+`¯\_(ツ)_/¯`
+
+---
+background-image: url("./figs/4thcorner.jpg")
+background-size: 40%
+background-position: 90% 50%
+
+## As tabelas
+
+.pull-left[
++ De comunidade (parcelas, espécie)
++ De variáveis ambientais (parcelas, variáveis)
++ De atributos das espécies + informação taxonômica
+
+### É essencial ter um identificador único para poder manipular as tabelas
+
+]
+---
+### O formato dos dados da planilha é vertical
+
+
+
+
+```
+##   parcela               especie n
+## 1       1    Abarema.macradenia 0
+## 2       1 Vachellia.melanoceras 0
+## 3       1 Acalypha.diversifolia 0
+## 4       1 Acalypha.macrostachya 0
+## 5       1        Adelia.triloba 0
+## 6       1  Aegiphila.panamensis 0
+```
+
+```
+##       parcela                 especie  n
+## 11245       9       Xylopia.macrantha  0
+## 11246       9     Zanthoxylum.ekmanii 13
+## 11247       9 Zanthoxylum.juniperinum  1
+## 11248       9   Zanthoxylum.panamense  4
+## 11249       9   Zanthoxylum.setulosum  0
+## 11250       9       Zuelania.guidonia  0
+```
+---
+### Precisamos do formato com as espécies nas colunas
+
+
+```r
+com_matrix &lt;- tidyr::spread(bci, especie, n, fill = 0)
+head(com_matrix[,1:4])
+```
+
+```
+##   parcela Abarema.macradenia Acalypha.diversifolia Acalypha.macrostachya
+## 1       1                  0                     0                     0
+## 2       2                  0                     0                     0
+## 3       3                  0                     0                     0
+## 4       4                  0                     0                     0
+## 5       5                  0                     0                     0
+## 6       6                  0                     0                     0
+```
+
+---
+
+Tirando a coluna parcela e botando ela como row name
+
+
+```r
+com_matrix &lt;- tibble::column_to_rownames(com_matrix, "parcela")
+head(com_matrix[,1:4])
+```
+
+```
+##   Abarema.macradenia Acalypha.diversifolia Acalypha.macrostachya
+## 1                  0                     0                     0
+## 2                  0                     0                     0
+## 3                  0                     0                     0
+## 4                  0                     0                     0
+## 5                  0                     0                     0
+## 6                  0                     0                     0
+##   Adelia.triloba
+## 1              0
+## 2              0
+## 3              0
+## 4              3
+## 5              1
+## 6              0
+```
+
+
+---
+# Medidas de distância
+
+
+```r
+library(vegan)
+?vegdist()
+bray_dist &lt;- vegdist(com_matrix, method = "bray")
+jaccard_dist &lt;- vegdist(com_matrix, method = "jaccard")
+```
+
+---
+# Análise de agrupamento (_cluster analysis_)
+
+
+```r
+agrup &lt;- hclust(bray_dist, method = "ward.D2")
+plot(agrup)
+```
+
+![](Sessao10_R_biologia_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+
+---
+# Esse plot ¬¬
+
+
+```r
+plot(as.dendrogram(agrup), main = "", sub = "", las = 1)
+```
+
+![](Sessao10_R_biologia_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+# Ordenação
+
++ No vegan:
+    + rda para PCA e RDA
+    + cca para CA e CCA
+
++ A sintaxe é similar,
+para ordenações "unconstrained" (PCA, CA),
+
+`cca(matriz)`
+
+para ordenações "constrained" (RDA, CCA),
+
+`cca(matriz ~ variáveis)`
+
+
+---
+## Diversidade taxonômica
+
++ Índices clássicos de diversidade: Shannon, Simpson, com `diversity()`
+
+```
+?diversity
+```
+
+&gt; Better stories can be told about Simpson's index than about Shannon's index, and still grander narratives about rarefaction (Hurlbert 1971). However, these indices are all very closely related (Hill 1973), and there is no reason to despise one more than others (but if you are a graduate student, don't drag me in, but obey your Professor's orders)...
+
+---
+## Diversidade funcional
+
++ Pacotes:
+    +FD,
+    + vegan,
++ Literatura científica: 
+     + Sandrine Pavoine
+     + Carlo Ricotta
+     + André Dias
+     + Francesco de Bello entre outros.
+     
+Scripts com cálculos de índices de diversidade, comparação entre medidas de diversidade funcional e filogenética etc. 
+
+---
+## Análises filogenéticas
+
++ Como é um _workflow_ de análise em filogenia? 
++ Em ecologia, ler, modificar e escrever árvores filogenéticas, plotar, anotar.
++ Árvores filogenéticas: formatos Nexus e Newick
+
+```{}
+((A, B), C);
+```
+
+---
+## Análises filogenéticas
+
+Estrutura de dados
+
+
+```r
+library(picante)
+data(phylocom)
+names(phylocom)
+```
+
+```
+## [1] "phylo"  "sample" "traits"
+```
+
+```r
+phy &lt;- phylocom$phylo
+comm &lt;- phylocom$sample
+traits &lt;- phylocom$traits
+```
+
+---
+## Filogenia
+
+
+```r
+phy
+```
+
+```
+## 
+## Phylogenetic tree with 32 tips and 31 internal nodes.
+## 
+## Tip labels:
+## 	sp1, sp2, sp3, sp4, sp5, sp6, ...
+## Node labels:
+## 	A, B, C, D, E, F, ...
+## 
+## Rooted; includes branch lengths.
+```
+
+---
+## Dados de comunidade
+
+
+
+```r
+comm[,1:13]
+```
+
+```
+##         sp1 sp10 sp11 sp12 sp13 sp14 sp15 sp17 sp18 sp19 sp2 sp20 sp21
+## clump1    1    0    0    0    0    0    0    0    0    0   1    0    0
+## clump2a   1    2    2    2    0    0    0    0    0    0   1    0    0
+## clump2b   1    0    0    0    0    0    0    2    2    2   1    2    0
+## clump4    1    1    0    0    0    0    0    2    2    0   1    0    0
+## even      1    0    0    0    1    0    0    1    0    0   0    0    1
+## random    0    0    0    1    0    4    2    3    0    0   1    0    0
+```
+
+---
+--- 
+## Dados de atributos
+
+
+```r
+head(traits)
+```
+
+```
+##     traitA traitB traitC traitD
+## sp1      1      1      1      0
+## sp2      1      1      2      0
+## sp3      2      1      3      0
+## sp4      2      1      4      0
+## sp5      2      2      1      0
+## sp6      2      2      2      0
+```
+
+```r
+traitA &lt;- df2vec(traits, "traitA")
+head(traitA)
+```
+
+```
+## sp1 sp2 sp3 sp4 sp5 sp6 
+##   1   1   2   2   2   2
+```
+
+---
+## Visualizando árvores e dados
+
+
+
+```r
+prunedphy &lt;- prune.sample(comm, phy)
+prunedphy
+```
+
+```
+## 
+## Phylogenetic tree with 25 tips and 24 internal nodes.
+## 
+## Tip labels:
+## 	sp1, sp2, sp3, sp4, sp5, sp6, ...
+## Node labels:
+## 	A, B, C, D, E, F, ...
+## 
+## Rooted; includes branch lengths.
+```
+
+---
+## Visualizando uma árvore
+
+
+
+```r
+par(mfrow = c(2, 2))
+for (i in names(traits)) {
+plot(phy, show.tip.label = FALSE, main = i)
+7
+tiplabels(pch = 22, col = traits[, i] + 1, bg = traits[, i] + 1, cex = 1.5)
+}
+```
+
+
+---
+## Visualizando uma árvore
+
+
+![](Sessao10_R_biologia_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+---
+## Diversidade filogenética
+
+
+```r
+pd.result &lt;- pd(comm, phy, include.root = TRUE)
+pd.result
+```
+
+```
+##         PD SR
+## clump1  16  8
+## clump2a 17  8
+## clump2b 18  8
+## clump4  22  8
+## even    30  8
+## random  27  8
+```
+
+---
+## Distância filogenética média MPD e sesMPD
+
+
+```r
+phydist &lt;- cophenetic(phy)
+phydist[1:13,1:13]
+```
+
+```
+##      sp1 sp2 sp3 sp4 sp5 sp6 sp7 sp8 sp9 sp10 sp11 sp12 sp13
+## sp1    0   2   4   4   6   6   6   6   8    8    8    8    8
+## sp2    2   0   4   4   6   6   6   6   8    8    8    8    8
+## sp3    4   4   0   2   6   6   6   6   8    8    8    8    8
+## sp4    4   4   2   0   6   6   6   6   8    8    8    8    8
+## sp5    6   6   6   6   0   2   4   4   8    8    8    8    8
+## sp6    6   6   6   6   2   0   4   4   8    8    8    8    8
+## sp7    6   6   6   6   4   4   0   2   8    8    8    8    8
+## sp8    6   6   6   6   4   4   2   0   8    8    8    8    8
+## sp9    8   8   8   8   8   8   8   8   0    2    4    4    6
+## sp10   8   8   8   8   8   8   8   8   2    0    4    4    6
+## sp11   8   8   8   8   8   8   8   8   4    4    0    2    6
+## sp12   8   8   8   8   8   8   8   8   4    4    2    0    6
+## sp13   8   8   8   8   8   8   8   8   6    6    6    6    0
+```
+
+---
+## Distância filogenética média MPD e sesMPD
+
+
+```r
+ses.mpd.result &lt;- ses.mpd(comm, phydist, null.model = "taxa.labels",
+                          abundance.weighted = FALSE, runs = 99)
+ses.mpd.result
+```
+
+```
+##         ntaxa  mpd.obs mpd.rand.mean mpd.rand.sd mpd.obs.rank   mpd.obs.z
+## clump1      8 4.857143      8.363636   0.2855486          1.0 -12.2798489
+## clump2a     8 6.000000      8.304473   0.3015968          1.0  -7.6409078
+## clump2b     8 7.142857      8.269841   0.3562022          2.5  -3.1638888
+## clump4      8 8.285714      8.391775   0.2640006         30.5  -0.4017437
+## even        8 8.857143      8.281385   0.4069904        100.0   1.4146710
+## random      8 8.428571      8.372294   0.2713735         49.5   0.2073786
+##         mpd.obs.p runs
+## clump1      0.010   99
+## clump2a     0.010   99
+## clump2b     0.025   99
+## clump4      0.305   99
+## even        1.000   99
+## random      0.495   99
+```
+
+---
+## Modelos lineares (lm), modelos lineares generalizados (glm) e modelos lineares generalizados mistos (glmm)
+
++ Ben Bolker &lt;3: [Ecological Models and Data in R](http://emdbolker.wikidot.com/), [FAQ in GLMM](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html)
+
++ Michael Crawley: [The R Book](https://onlinelibrary.wiley.com/doi/book/10.1002/9781118448908)
+
++ Alain Zuur: [Highland Statistics Ltd.](https://www.highstat.com/)
+
++ Burnham &amp; Anderson: [Model Selection and Multimodel Inference](https://www.springer.com/gp/book/9780387953649)
+
+
+---
+## Pacotes (g)lm(m)
+
++ `stats` e `MASS` no R base com funções `lm` e `glm`
+
++ `lme4` para modelos mistos
+
++ `MuMIn` para seleção de modelos
+
++  `bbmle` ferramentas para modelagem B.Bolker &lt;3 
+
++ `MCMCglmm`, `glmmTMB` pacotes só com consoantes 
+
+---
+## Modelagem de nicho ecológico
+
++ Peterson et al (2011) Ecological Niches and Geographic Distributions 
++ Quais pacotes?
+    `biomod2`, `dismo`, `sdm`, `wallace`, `kuenm`
++ Pacotes acessórios
+`ENMeval`, `spThin`, `presenceabsence`
+    
++ Input necessário: 
+    + Arquivos raster de variáveis explicativas
+    + Coordenadas de ocorrência
+    
++ Os pacotes: preparação dos dados, limpeza, partição dos dados em dados de treino e teste dos algoritmos, algoritmos, medidas de desempenho e avaliação.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
