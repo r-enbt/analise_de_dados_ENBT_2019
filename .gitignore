@@ -9,3 +9,4 @@ README.html
 /ignore
 *.R~
 *.Rmd~
+*.css

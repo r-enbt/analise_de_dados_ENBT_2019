@@ -1,32 +1,27 @@
----
-title: "Disciplina: Projetos de análise de dados usando R"
-subtitle: "Dia 1, aula 2: Uma breve introdução a R"
-author: "Andrea Sánchez-Tapia, Sara Mortara, Diogo S.B. Rocha"
-date: "2019/06/17 (updated: `r Sys.Date()`)"
-output:
-  xaringan::moon_reader:
-    lib_dir: libs
-    css: xaringan-themer.css
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Disciplina: Projetos de análise de dados usando R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Andrea Sánchez-Tapia, Sara Mortara, Diogo S.B. Rocha" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Disciplina: Projetos de análise de dados usando R
+## Dia 1, aula 2: Uma breve introdução a R
+### Andrea Sánchez-Tapia, Sara Mortara, Diogo S.B. Rocha
+### 2019/06/17 (updated: 2019-07-22)
+
 ---
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-```
 
-```{r xaringan-themer, include = FALSE}
-library(xaringanthemer)
-mono_light(
-  base_color = "#23395b",
-  header_font_google = google_font("Source Sans Pro"),
-  text_font_google   = google_font("Source Sans Pro", "300", "300i"),
-  code_font_google   = google_font("Ubuntu Mono"), text_font_size = "24px"
-)
-```
-<!-- falar de `R`
+
+
+
+&lt;!-- falar de `R`
 introduzir rstudio
 falar da consola, do script, do _workspace_ e do diretorio de trabalho,
 falar de caminhos relativos,
@@ -34,7 +29,7 @@ falar do help,
 do help das funcoes, 
 de ajuda online,
 falar de boas praticas de trabalho em `R`: 
--->
+--&gt;
 
 ![](http://www.r-project.org/Rlogo.png)
 
@@ -127,13 +122,56 @@ class:inverse
 # Instalar pacotes
 
 
-```{r, eval =F}
+
+```r
 install.packages("vegan")
 ```
 
-```{r, eval =T}
+
+```r
 library("vegan")
+```
+
+```
+## Loading required package: permute
+```
+
+```
+## Loading required package: lattice
+```
+
+```
+## This is vegan 2.5-3
+```
+
+```r
 citation("vegan")
+```
+
+```
+## 
+## To cite package 'vegan' in publications use:
+## 
+##   Jari Oksanen, F. Guillaume Blanchet, Michael Friendly, Roeland
+##   Kindt, Pierre Legendre, Dan McGlinn, Peter R. Minchin, R. B.
+##   O'Hara, Gavin L. Simpson, Peter Solymos, M. Henry H. Stevens,
+##   Eduard Szoecs and Helene Wagner (2018). vegan: Community Ecology
+##   Package. R package version 2.5-3.
+##   https://CRAN.R-project.org/package=vegan
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Manual{,
+##     title = {vegan: Community Ecology Package},
+##     author = {Jari Oksanen and F. Guillaume Blanchet and Michael Friendly and Roeland Kindt and Pierre Legendre and Dan McGlinn and Peter R. Minchin and R. B. O'Hara and Gavin L. Simpson and Peter Solymos and M. Henry H. Stevens and Eduard Szoecs and Helene Wagner},
+##     year = {2018},
+##     note = {R package version 2.5-3},
+##     url = {https://CRAN.R-project.org/package=vegan},
+##   }
+## 
+## ATTENTION: This citation information has been auto-generated from
+## the package DESCRIPTION file and may need manual editing, see
+## 'help("citation")'.
 ```
 
 ---
@@ -180,15 +218,15 @@ background-size: 90%
 ]
 ]
 
- <!-- abrir, 
- Arquivo > Novo arquivo > `R` script
+ &lt;!-- abrir, 
+ Arquivo &gt; Novo arquivo &gt; `R` script
 4 esquinas, o script, a consola, algumas abas que iremos explorando 1. foco en el script
 getwd() control enter, algo similar a esto debe aparecer
  dà para escribir lo mismo en la consola pero no va a quedar guardado. 
  el script puede ser salvado. 
  la hitoria va a registrar ambas cosas
  a maior parte do trabalho vai ser aqui e quando tiver um plot vai na aba de plots, quando tiver algum objeto no ambiente, ele vai ser listado no ambiente
- --> 
+ --&gt; 
 
 ---
 ## Uma breve introdução a `R`
@@ -214,7 +252,7 @@ Uma sessão de trabalho em `R` inclui:
 ## O script
 
 + Arquivo de texto com extensão __.R__
-+ Ele permite recriar todas as análises -> __reprodutibilidade__
++ Ele permite recriar todas as análises -&gt; __reprodutibilidade__
 + É a unidade de busca e troca entre pesquisadores e está sendo anexada a publicações científicas 
 
 --
@@ -222,7 +260,7 @@ Uma sessão de trabalho em `R` inclui:
 ## O _workspace_ 
 
 + Os objetos são armazenados na memória RAM (temporariamente) no ___workspace___ da sessão.
-+ O operador __`<-`__ cria o objeto (assigna o nome)
++ O operador __`&lt;-`__ cria o objeto (assigna o nome)
 + Tem muitas formas de ler diferentes tipos de dado, funções como `read.table()` ou `read.csv()`
 + Também tem muitas formas de salvar os resultados:
 `write.table()` ou `write.csv()` para tabelas, `write.png()` e similares para imagens, etc.
@@ -282,7 +320,7 @@ __Não salve o _workspace___
   * Lê os arquivos e outros objetos
   * É onde devem estar os scripts
 
-#### Essa pasta vai estar em um caminho diferente para cada um e para cada projeto -> "Aqui"
+#### Essa pasta vai estar em um caminho diferente para cada um e para cada projeto -&gt; "Aqui"
 
 ---
 ## A pasta de trabalho (_working directory_)
@@ -310,7 +348,7 @@ __Não salve o _workspace___
 + __Cada projeto de análise deve ter sua própria pasta.__ 
 --
 
-+ Dá para ter __subpastas__ para __dividir__ e __organizar__ o trabalho -> `Vamos usar isto muito`
++ Dá para ter __subpastas__ para __dividir__ e __organizar__ o trabalho -&gt; `Vamos usar isto muito`
 --
 
 + __Cada computador é diferente__ Como colaborar? 
@@ -398,16 +436,19 @@ O terminal de git vai dar menos problemas porque windows é diferente de mac e l
 ---
 # No Rstudio
 
-+ Abra um script de `R Arquivo > Novo arquivo > Script`
++ Abra um script de `R Arquivo &gt; Novo arquivo &gt; Script`
 + Escreva `getwd()`
 + Mande o comando com `Ctrl+ Enter`
-+ `getwd()` significa _Get working directory_ -> __onde estou trabalhando?__ 
++ `getwd()` significa _Get working directory_ -&gt; __onde estou trabalhando?__ 
 + Qual é o resultado de sua chamada a `getwd()`?
 
-```{r}
 
+```r
 getwd()
+```
 
+```
+## [1] "/Users/andreasancheztapia/Documents/4_aulas/ENBT_2019/analise_de_dados_ENBT_2019/aula02"
 ```
 
 ---
@@ -429,7 +470,7 @@ RStudio tem uma opção muito útil para manter a organização dos projetos de 
 No canto superior direito do programa, veja o botão de projeto
 
 + Novo projeto
-+ Directorio existente > Vá até a pasta "AQUI"
++ Directorio existente &gt; Vá até a pasta "AQUI"
 + Crie ("test"), abra
 
 .pull-left[
@@ -466,7 +507,7 @@ class: middle, center
 ---
 # RStudio e git
 
-+ Abra um terminal usando `Ferramentas > Terminal > Novo Terminal`
++ Abra um terminal usando `Ferramentas &gt; Terminal &gt; Novo Terminal`
 
 --
 
@@ -497,7 +538,7 @@ __As variáveis que você inseriu devem aparecer__
 ---
 ## Só se você está no seu próprio computador!
 
-1. `Preferencias > git/svn`
+1. `Preferencias &gt; git/svn`
 1. Checar que git está apontando para um arquivo `git.exe`
 2. O campo SVN vazio
 3. Naõ deve ter nada no campo da chave RSA.
@@ -508,7 +549,7 @@ __As variáveis que você inseriu devem aparecer__
 ### No Github
 
 1. Log in
-2. Perfil > Chaves ssh > criar uma chave ssh
+2. Perfil &gt; Chaves ssh &gt; criar uma chave ssh
 4. Nome de seu computador
 5. Colar a chave que tinha sido copiada. 
 6. Add, OK. 
@@ -528,7 +569,7 @@ __As variáveis que você inseriu devem aparecer__
 
 ---
 #### No RStudio
-1. `Project options > Git/SVN Version control system: Git` (vai reiniciar)
+1. `Project options &gt; Git/SVN Version control system: Git` (vai reiniciar)
 
 ![](figs/projopt.png)
 
@@ -567,15 +608,32 @@ __As variáveis que você inseriu devem aparecer__
 
 No script: 
 
-```{r}
+
+```r
 ls() # lista os objetos guardados na memória
+```
+
+```
+## character(0)
 ```
 
 + Logicamente não há nada. 
 
-```{r}
+
+```r
 3 + 2 # executa a soma
+```
+
+```
+## [1] 5
+```
+
+```r
 ls()
+```
+
+```
+## character(0)
 ```
 
 + Nada mudou
@@ -583,15 +641,27 @@ ls()
 ---
 ## Uma breve introdução a `R`
 
-+ Para criar objetos utiliza-se o operador __`<-`__ 
++ Para criar objetos utiliza-se o operador __`&lt;-`__ 
 + Ele assigna o nome ao objeto
 
 
-```{r}
-a <- 3 # cria o objeto a
+
+```r
+a &lt;- 3 # cria o objeto a
 # para obter o valor de a o comando "a" deve ser executado
 a 
+```
+
+```
+## [1] 3
+```
+
+```r
 ls()
+```
+
+```
+## [1] "a"
 ```
 
 + O objeto __`a`__ foi criado e agora ele está no __workspace__
@@ -600,15 +670,25 @@ ls()
 ---
 ## Uma breve introdução a `R`
 
-```{r}
-b <- c(5, 4, 2, 1) #cria o vetor b
+
+```r
+b &lt;- c(5, 4, 2, 1) #cria o vetor b
 b
+```
+
+```
+## [1] 5 4 2 1
 ```
 
 Na aba ambiente deveria ter um objeto `a` e outro `b`
 
-```{r}
+
+```r
 a + b
+```
+
+```
+## [1] 8 7 5 4
 ```
 
 ---
@@ -619,10 +699,10 @@ getwd()
 ls()
 3 + 2
 ls()
-a <- 3
+a &lt;- 3
 a
 ls()
-b <- c(5, 4, 2, 1)
+b &lt;- c(5, 4, 2, 1)
 b
 a + b
 ```
@@ -643,5 +723,94 @@ a + b
 
 + Configuramos uma pasta de trabalho que é projeto de RStudio e repositório de github
 + Adicionamos um script de R e modificamos o script. O progresso ficou salvo em dois "commits"
-+ Amanhã vamos começar a usar esta estrutura de trabalho 
++ Amanhã vamos começar a usar esta estrutura de trabalho
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
 
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
