@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Disciplina: Projetos de análise de dados usando R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Sara Mortara, Andrea Sánchez-Tapia, Diogo S.B. Rocha" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Disciplina: Projetos de análise de dados usando R
+## Dia 3: Uma breve introdução a git para R
+### Sara Mortara, Andrea Sánchez-Tapia, Diogo S.B. Rocha
+### 2019/06/17 (updated: 2019-07-22)
+
+---
+
+background-image: url("./figs/logo-git.png")
+background-position: 90% 10% 
+
+
+
+
+
+## O que são?
+
+Sistema de __controle de versão__ __livre__ e de __código aberto__ 
+
+--
+
+permite a distribuição através de clones
+
+--
+
+permite a colaboração através de __ramificações__ (_branching_ &amp; _merging_)
+
+--
+
+.pull-right[
+![](./figs/GitHub_Logo.png)
+]
+
+__serviço de hospedagem na internet__ para controle de versão e __colaboração__ usando git
+
+---
+
+### Git é __o__ sistema de controle de versões usado na atualidade. 
+(já teve outros, por ex. Subversion SVN e Mercurial)
+
+### GitHub funciona sobre Git e __há alternativas a GitHub__
+
+.pull-left[
+![](figs/gitlab-logo-gray-rgb.png)
+]
+
+.pull-right[
+![](figs/btibucket.png)
+]
+
+
+---
+
+# Na segunda a gente configurou...
+
++ O usuário e email no git
+
++ Uma chave RSA do computador no RStudio e colou no _github_
+
++ Uma pasta que é um projeto de RStudio que é um __repositório local de git__ e tem __um remoto no github__
+
+---
+### Os comandos básicos: __localmente!__
+
+`git init` para iniciar um repositório   
+`git clone URL` para clonar um repositório já existente
+
+--
+
+`git status` para checar em que pé está
+
+--
+
+`git pull origin master` Para atualizar o repo localmente
+
+--
+
+`git add filename` para adicionar um arquivo novo ou para adicionar mudanças a arquivos que já foram adicionados antes
+
+__Se um arquivo for modificado ele vai aparecer como modificado mas a modificação só vai ser salva ao fazer `git add`__
+
+--
+
+`git commit -m "uma mensagem informativa para você e coleguinhxs"` manda o que foi adicionado. Pode ter vários adds para um único commit
+
+---
+### Conexão local (git) a remoto (github)
+
+`git remote -v` - vê os remotos
+
+--
+
+`git remote add origin [URL]` - adiciona remoto e dá um nome
+
+--
+
+`git push origin master` - manda os commits locais para github
+
+--
+
+`git pull origin master` - traz os commits de github para o computador local 
+
+
+---
+# Trabalhando com branches
+
+--
+
+`git branch NOME` para criar um branch (uma ramificação)
+
+--
+
+`git checkout NOME` para trocar de branch
+
+---
+### Fluxo de trabalho - Primeira vez
+
+`git init`  
+`git add remote`  
+    `(...)`  
+        `git add`  
+    `(...)`  
+        `git add`  
+            `git commit`  
+    `(...)`  
+        `git add`  
+    `(...)`  
+        `git add`  
+            `git commit`  
+                      `git push -u`  
+
+---
+
+### Vezes seguintes
+
+`git pull origin master`    
+`(...)`  
+`git add`  
+`git commit`  
+`git push origin master`  
+
+---
+# Desde o R Studio
+
+.pull-left[
+![](./figs/git_status.png)
+]
+
+
+
+---
+### Explorando o github
+
+https://github.com/Model-R/modelr_pkg
+
+
++ Que tipos de arquivo vc reconhece?
++ O que há no final da página?
++ Quando o repositório foi criado?
++ Quando foi o último commit?
++ Quantas issues estão abertas e fechadas?
++ Quantos branches tem? 
+
+---
+background-image: url("./figs/basic.png")
+
+## Fluxo básico de trabalho (sem ramificação)
+
+---
+background-image:url("./figs/feature-branch.png")
+
+## Fluxo de trabalho por feature
+
+---
+background-image:url("./figs/gitflow.png")
+
+## Fluxo de trabalho gitflow
+
+---
+background-image:url("./figs/jennifer_gilbert.png")
+
+
+---
+## Boas práticas
+
+1. descrever no commit (o porquê da) mudança
+
+1. trabalhar uma tarefa em cada branch
+
+1. `.gitignore`
+
+1. usar modo diff para acompanhar mudanças no código
+
+1. reportar erros no código em issues
+
+---
+background-image: url(./figs/xkcd.png)
+class: center, middle
+
+---
+# Mais referências
+
++ Getting started with Git and GitHub for R users https://saghirb.github.io/shared/Getting-Started-with-Git-and-GitHub-for-R-Users.html#1
+
++ A página oficial de git e o tutorial oficial https://git-scm.com/doc/ext
+, https://git-scm.com/docs/gittutorial
+
++ Livro Pro Git https://git-scm.com/book/es/v1
+
++ Jenny Bryan - Happy Git and GitHub for the useR https://happygitwithr.com/
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
